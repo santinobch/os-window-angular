@@ -4,6 +4,14 @@
 
 Read the wiki on how to [get started](https://github.com/santinobch/os-window-angular/wiki/Getting-Started), i promise it's a light read ;)
 
+## Compiling the library
+
+I have made a custom npm script that compiles the library automatically: 
+
+```npm run compile```
+
+This will delete `./dist`. After that run `ng serve` to start the App Demo/Testing App
+
 ## Yes it works :D ! Here are some features:
 
 ### Movement
@@ -36,7 +44,7 @@ At the moment, im working on this alone in my free time, using this to build my 
 
 If i have enough time i will keep this updated periodically. 
 
-If you want to help please contact me directly or leave a comment in **discussions**  (づ｡◕‿‿◕｡)づ
+If you want to help please contact me directly (@VitoDraws on twitter) or start an **issue**  (づ｡◕‿‿◕｡)づ
 
 Things i want to implement:
 
