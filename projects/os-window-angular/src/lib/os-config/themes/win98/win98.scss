@@ -1,0 +1,319 @@
+
+@font-face {
+    font-family: w95fa;
+    src: url('./win98/fonts/w95fa.woff2');
+}
+
+// provide font size in rem, with px fallback
+@mixin font($font, $size: 24, $base: 16) {
+    font-family: $font;
+    font-size: round($size) + pt;
+    //font-size: ($size / $base) * 1rem;
+}
+
+@mixin theme($variant, $transparency) {
+
+    //win98 classic colors
+    $classic-base: #c0c0c0;
+    $classic-disabled: #808080;
+    $classic-shadows: #595856;
+
+    $classic-light: white;
+    $classic-dark: black;
+
+    $classic-selected: #000080;
+    $classic-unselected: #808080;
+
+    //win98 vaporwave colors
+    $vaporwave-base: #c1bac4;
+    $vaporwave-disabled: #86758a;
+    $vaporwave-shadows: #5b505e;
+
+    $vaporwave-light: white;
+    $vaporwave-dark: #210029;
+
+    $vaporwave-selected: #d200ff;
+    $vaporwave-unselected: #86758a;
+
+    //Color logic
+
+    //Basics
+    $base_color: if($variant !='vaporwave', $classic-base, $vaporwave-base);
+    $disabled_color: if($variant !='vaporwave', $classic-disabled, $vaporwave-disabled);
+    $shadow_color: if($variant !='vaporwave', $classic-shadows, $vaporwave-shadows);
+
+    $text_color: if($variant !='vaporwave', $classic-dark, $vaporwave-dark);
+    $light_color: if($variant !='vaporwave', $classic-light, $vaporwave-light);
+    $dark_color: if($variant !='vaporwave', $classic-dark, $vaporwave-dark);
+
+    $selected_fg_color: white;
+    $selected_bg_color: if($variant !='vaporwave', $classic-selected, $vaporwave-selected);
+
+    //Links
+    $link_color: if($variant =='vaporwave', darken($selected_bg_color,10%),
+                                            lighten($selected_bg_color,20%) );
+
+    $link_visited_color: if($variant =='vaporwave', darken($selected_bg_color,20%),
+                                                    lighten($selected_bg_color,10%) );
+
+
+    //window-bar
+    $header_bg: red;
+    @if $transparency=='true' and ($variant=='classic') { $header_bg: transparentize($classic-selected, 0.03); }
+    @if $transparency=='false' and ($variant=='classic') { $header_bg: $classic-selected; }
+    @if $transparency=='true' and ($variant=='vaporwave') { $header_bg: transparentize($vaporwave-selected, 0.05); }
+    @if $transparency=='false' and ($variant=='vaporwave') { $header_bg: $vaporwave-selected; }
+
+    $header_bg_backdrop: if($variant == 'vaporwave', lighten($header_bg, 1.5%), lighten($header_bg, 3%));
+
+    $header_border: if($variant == 'classic', darken($header_bg, 7%), darken($header_bg, 4%));
+
+    $header_text: white;
+
+
+    //Control buttons
+
+    // Close
+    $wm_button_close_bg: if($variant == 'classic', #f46067, #cc575d);
+    $wm_button_close_hover_bg: if($variant == 'classic', #f68086, #d7787d);
+    $wm_button_close_active_bg: if($variant == 'classic', #f13039, #be3841);
+
+    $wm_icon_close_bg: if($variant == 'classic', #F8F8F9 , #2f343f);
+
+    // Minimize, Maximize
+    $wm_button_hover_bg: if($variant == 'classic', #fdfdfd, #454C5C);
+    $wm_button_active_bg: $selected_bg_color;
+
+    $wm_button_hover_border: if($variant == 'classic', #D1D3DA, #262932);
+
+    $wm_icon_bg: if($variant == 'classic', #90949E, #90939B);
+    $wm_icon_unfocused_bg: if($variant == 'classic', #B6B8C0, #666A74);
+    $wm_icon_hover_bg: if($variant == 'classic', #7A7F8B, #C4C7CC);
+    $wm_icon_active_bg: $selected_fg_color;
+    
+    // Others
+    $font-size: 10;
+    $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
+
+
+
+    //
+    // CSS Variables (We may change this ones in runtime)
+    // These variables are not used in this theme, we use box-shadow instead,
+    // we still need to declare them for correct javascript functionality.
+    //
+    --winBorder: 1px;
+    --winRadius: 0px;
+
+    %win98_box {
+        box-shadow: inset -1px -1px $dark_color, 
+                    inset 1px 1px $base_color, 
+                    inset -2px -2px $disabled_color, 
+                    inset 2px 2px $light_color;
+        
+    }
+
+    %win98_inner_box {
+        padding: 1px;
+
+        box-shadow: inset -1px -1px $light_color, 
+                    inset 1px 1px $disabled_color, 
+                    inset -2px -2px $base_color, 
+                    inset 2px 2px $dark_color;
+        
+    }
+
+    //Window control buttons
+    %win98_control_box {
+        box-shadow:  inset -1px -1px $dark_color, 
+                    inset 1px 1px #fff, 
+                    inset -2px -2px $disabled_color;
+    }
+
+    %win98_control_box_active {
+        box-shadow:  inset -1px -1px $light_color, 
+                    inset 1px 1px $dark_color, 
+                    inset 2px 2px $disabled_color;
+    }
+
+
+
+    // Maximized styles > Focused styles > Normal style
+
+    //
+    // General styles
+    // 
+    .os-window {
+        @extend %win98_box;
+
+        @include font($font-family, $font-size);
+
+        padding: 4px;
+
+        background-color: $base_color;
+
+        .window-bar {
+            height: 20px;
+            padding: 0px;
+
+            background: none;
+    
+            border-top-left-radius: var(--topRadius);
+            border-top-right-radius: var(--topRadius);
+
+            .window-bar-anchor {
+                background: linear-gradient(90deg, $shadow_color 0%, $base_color 170%);
+                height: 18px;
+                width: 100%;
+
+                .window-title  {
+                    margin-left: 30px;
+            
+                    ::ng-deep span {
+                        color: $header_text;
+                    }
+                }
+            }
+        }
+
+        .window-content {
+            @extend %win98_inner_box;
+
+            width: calc(100% - 2px);
+            color: $text_color;
+        }
+    }
+
+    //
+    // Focused window styles
+    //
+    .focused  {  
+        .window-bar {
+            .window-bar-anchor {
+                background: linear-gradient(90deg, $header_bg 0%, $base_color 170%);
+                height: 18px;
+                width: 100%;
+            }
+        }
+    }
+    
+    //
+    // Maximized window styles
+    //
+    .maximized {
+
+        border: 0px;
+        border-radius: 0px;
+
+        box-shadow: 0 0, 
+                    0 0; 
+
+        padding: 0;
+
+        .window-bar {
+            border: 0px;
+            border-radius: 0px;
+        }
+    }
+    
+    //
+    // Separators
+    //
+    .controls-separator {
+        display: none;
+    }
+
+
+    //
+    // Window control buttons
+    //
+    .controls-container {
+        margin-right: 2px;
+        width: 50px;
+        height: auto;
+        
+    }
+
+    .controls {
+        @extend %win98_control_box;
+
+        padding-left: 0;
+        min-height: 14px;
+        width: 16px;
+        height: 14px;
+
+        outline: none;
+        border: 0;
+        border-radius: 0px;
+
+        background-color: $base_color;
+        image-rendering: pixelated;
+    }
+
+    $asset_path: './win98/assets';
+
+    .minimize {
+        background-image: url("#{$asset_path}/minimize.png");
+
+        &:active { @extend %win98_control_box_active }
+    }
+
+    .maximize {
+        background-image: url("#{$asset_path}/maximize.png");
+
+        &:active { @extend %win98_control_box_active }
+    }
+
+    .close {
+        margin-left: 2px;
+        background-image: url("#{$asset_path}/close.png");
+
+        &:active { @extend %win98_control_box_active }
+    }
+
+    //
+    // Links
+    //
+    .window-content ::ng-deep {
+        a { color: $link_color; }
+        a:visited { color: $link_visited_color; }
+        a:visited:hover { color: lighten($link_visited_color,10%); }
+        a:hover { color: lighten($link_color,10%); }
+    }
+
+    //
+    // Scrollbars
+    //
+    .window-content ::ng-deep {
+
+        .os-scrollbar-track {
+            background-image: './assets/scrollbar_track.png';
+            min-height: 14px;
+            min-width: 14px;
+
+            margin-right: 4px;
+            margin-bottom: 4px;
+            margin-top: 1px;
+
+            border-radius: 0;
+        }
+
+        .os-scrollbar-thumb {
+            @extend %win98_box;
+
+            background-color: $base_color;
+            height: 14px;
+            width: 14px;
+        }
+    }
+}
+
+.win98-classic {
+    @include theme('classic', 'false');
+    //@include lightAssets();
+}
+
+.win98-vaporwave {
+    @include theme('vaporwave', 'false');
+    //@include darkAssets();
+}

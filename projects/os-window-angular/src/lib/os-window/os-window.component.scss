@@ -1,0 +1,161 @@
+
+.os-window-parent {
+    //
+    //Variables
+    //
+
+    //Size of window
+    --winWidth: 200px;
+    --winHeight: 200px;
+
+    //z-index of this window
+    --zIndex: 0;
+
+    //This is used in the window-bar-filler, 
+    //--winRadius and --winBorder are declared in the main theme .scss
+    --topRadius: calc( var(--winRadius) - var(--winBorder) );
+
+    //Hides & shows controls buttons
+    --minimizeButton: block;
+    --maximizeButton: block;
+    --closeButton: block;
+
+    //Hides & shows resizable cursor
+    --cursorN: n-resize;
+    --cursorNE: ne-resize;
+    --cursorE: e-resize;
+    --cursorSE: se-resize;
+    --cursorS: s-resize;
+    --cursorSW: sw-resize;
+    --cursorW: w-resize;
+    --cursorNW: nw-resize;
+
+    position: fixed;
+    top: -100%;
+    left: 0;
+}
+
+//Universal theming
+.os-window {
+    width: var(--winWidth);
+    height: var(--winHeight);
+
+    .window-resize {
+        position: absolute;
+    }
+
+    //heads up, --winBorder is located in the theme file
+    .n {
+        top: calc(-4px - var(--winBorder));
+        left: calc(4px - var(--winBorder));
+
+        height: 8px;
+        width: calc(100% - (8px - 2 * var(--winBorder)) );
+
+        cursor:  var(--cursorN);
+    }
+
+    .ne {
+        top: calc(-4px - var(--winBorder));
+        right: calc(-4px - var(--winBorder));
+
+        height: 8px;
+        width: 8px;
+        
+        cursor:  var(--cursorNE);
+    }
+
+    .e {
+        top: calc(4px - var(--winBorder));
+        right: calc(-4px - var(--winBorder));
+
+        height: calc(100% - (8px - 2 * var(--winBorder)) );
+        width: 8px;
+        
+        cursor:  var(--cursorE);
+    }
+
+    .se {
+        bottom: calc(-4px - var(--winBorder));
+        right: calc(-4px - var(--winBorder));
+
+        height: 8px;
+        width: 8px;
+        
+        cursor:  var(--cursorSE);
+    }
+
+    .s {
+        bottom: calc(-4px - var(--winBorder));
+        left: calc(4px - var(--winBorder));
+
+        height: 8px;
+        width: calc(100% - (8px - 2 * var(--winBorder)) );
+        
+        cursor:  var(--cursorS);
+    }
+
+    .sw {
+        bottom: calc(-4px - var(--winBorder));;
+        left: calc(-4px - var(--winBorder));
+
+        height: 8px;
+        width: 8px;
+        
+        cursor:  var(--cursorSW);
+    }
+
+    .w {
+        top: calc(4px - var(--winBorder));
+        left: calc(-4px - var(--winBorder));
+
+        height: calc(100% - (8px - 2 * var(--winBorder)) );
+        width: 8px;
+        
+        cursor:  var(--cursorW);
+    }
+
+    .nw {
+        top: calc(-4px - var(--winBorder));
+        left: calc(-4px - var(--winBorder));;
+
+        height: 8px;
+        width: 8px;
+        
+        cursor:  var(--cursorNW);
+    }
+
+
+    .window-bar {
+        padding-top: 4px;
+        padding-right: 4px;
+        padding-left: 4px;
+    
+        .window-bar-anchor {
+            .minimize {
+                display: var(--minimizeButton);
+            }
+            
+            .maximize {
+                display: var(--maximizeButton);
+            }
+            
+            .close {
+                display: var(--closeButton);
+            }
+        }
+    }
+
+    .window-content {
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+    }
+}
+
+.maximized {
+    width: 100vw;
+    height: 100vh;
+}
+
+
