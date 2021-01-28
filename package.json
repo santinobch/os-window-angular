@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~10.2.0",
     "@angular/platform-browser-dynamic": "~10.2.0",
     "@angular/router": "~10.2.0",
+    "angular-cli-ghpages": "^1.0.0-rc.1",
     "ngx-scrollbar": "^7.5.3",
     "rimraf": "^3.0.2",
     "rxjs": "~6.6.0",
