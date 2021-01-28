@@ -1,27 +1,55 @@
-# OsWindowAngularWorkspace
+# OS window like, component for Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+## Getting started
 
-## Development server
+Read the wiki on how to [get started](https://github.com/santinobch/os-window-angular/wiki/Getting-Started), i promise it's a light read ;)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Yes it works :D ! Here are some features:
 
-## Code scaffolding
+### Movement
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![Movement](https://imgur.com/b82u1rS.gif)
 
-## Build
+### Bounce
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+![Bounce](https://imgur.com/U9LVqQa.gif)
 
-## Running unit tests
+### Resize
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Resize](https://imgur.com/uiC5B74.gif)
 
-## Running end-to-end tests
+### Maximize
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+![Maximize](https://imgur.com/una0RIr.gif)
 
-## Further help
+### Close
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Close](https://imgur.com/LXcAj0B.gif)
+
+### Multiple Windows
+
+![Multiple Windows](https://imgur.com/UYRctFE.gif)
+
+## Roadmap
+
+At the moment, im working on this alone in my free time, using this to build my own portafolio. Also learning in the way how to make, publish and mantain a ***npm*** package.
+
+If i have enough time i will keep this updated periodically. 
+
+If you want to help please contact me directly or leave a comment in **discussions**  (づ｡◕‿‿◕｡)づ
+
+Things i want to implement:
+
+- At the moment changing for example the theme of a window at runtime will not work, themes can only be applyed at component initialization.
+- Zoom fix (At the moment zooming a maximized window will make some weird behavior)
+- The Win98 Vaporwave theme needs some love
+- Buttons, all of them: Radio, Switches, Checkboxes, etc...
+- Text inputs
+- Loading bars
+- Tool bars
+- Tree view
+
+After realease 1.0:
+
+- Add more themes: Win XP, Mac OSX 10.6, Win 3.1, Etc... 
+- Eventually some templates (By example a file manager template)
