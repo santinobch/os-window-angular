@@ -44,7 +44,9 @@ At the moment, im working on this alone in my free time, using this to build my 
 
 If i have enough time i will keep this updated periodically. 
 
-If you want to help please contact me directly (@VitoDraws on twitter) or start an **issue**  (づ｡◕‿‿◕｡)づ
+If you want to help please contact me directly (@VitoDraws on twitter) or start an **issue**  
+
+(づ｡◕‿‿◕｡)づ
 
 Things i want to implement:
 

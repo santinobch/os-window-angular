@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compile": "rimraf ./dist && ng build --prod --project=os-window-angular",
+    "compile": "rimraf ./dist && ng build os-window-angular --prod",
     "postcompile": "ngcc"
   },
   "private": true,
