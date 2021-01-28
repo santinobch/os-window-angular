@@ -1,14 +1,37 @@
 {
-  "name": "os-window-angular",
+  "name": "@santinobch/os-window-angular",
   "version": "0.1.0",
   "peerDependencies": {
-    "@angular/common": "^10.2.4",
-    "@angular/core": "^10.2.4",
-    "@angular/cdk": "^10.2.7",
-    "@angular/flex-layout": "^11.0.0-beta.33",
-    "ngx-scrollbar": "^7.5.3"
+    "@angular/common": "~11.1.1",
+    "@angular/core": "~11.1.1",
+    "@angular/cdk": "^11.1.1",
+    "@angular/flex-layout": "^11.0.0-beta.33"
   },
   "dependencies": {
+    "ngx-scrollbar": "^7.5.3",
     "tslib": "^2.0.0"
-  }
+  },
+  "description": "This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.4.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santinobch/os-window-angular/tree/master"
+  },
+  "keywords": [
+    "os",
+    "operating system",
+    "window",
+    "ui",
+    "window ui",
+    "angular",
+    "component",
+    "angular component",
+    "arc",
+    "win98",
+    "windows98",
+    "windows",
+    "theme"
+  ],
+  "author": "santinobch (Santino Bosacacci Chiapella)",
+  "license": "MIT"
 }

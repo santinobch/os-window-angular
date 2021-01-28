@@ -6,5 +6,6 @@
     "umdModuleIds": {
       "ngx-scrollbar": "ngx-scrollbar"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": ["."]
 }
