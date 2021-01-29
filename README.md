@@ -36,7 +36,7 @@ At the moment, im working on this alone in my free time, using this to build my 
 
 If i have enough time i will keep this updated periodically. 
 
-If you want to help please contact me directly (@VitoDraws on twitter) or start an **issue**  
+If you want to help me, start by reading [Compiling the Library](https://github.com/santinobch/os-window-angular/wiki/Compiling-the-library), and please contact me directly (@VitoDraws on twitter) or start an **issue**.
 
 (づ｡◕‿‿◕｡)づ
 
