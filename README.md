@@ -40,10 +40,11 @@ If you want to help me, start by reading [Compiling the Library](https://github.
 
 (づ｡◕‿‿◕｡)づ
 
-Things i want to implement:
+Things i want to implement/fix before 1.0:
 
 - At the moment changing for example the theme of a window at runtime will not work, themes can only be applyed at component initialization.
 - Zoom fix (At the moment zooming a maximized window will make some weird behavior)
+- Resize Z-Index fix (Resizing a window will not change it's z-index value)
 - The Win98 Vaporwave theme needs some love
 - Buttons, all of them: Radio, Switches, Checkboxes, etc...
 - Text inputs
