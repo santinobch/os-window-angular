@@ -8,8 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compile": "rimraf ./dist && ng build os-window-angular --prod",
-    "postcompile": "ngcc"
+    "compile": "rimraf ./dist && ng build os-window-angular --prod && ngcc && npm link ./dist/os-window-angular && npm link ./dist/os-window-angular",
+    "buildweb": "npm run testcompile && ng build testing-app && rimraf ./dist/os-window-angular",
+    "publishweb": "angular-cli-ghpages"
   },
   "private": true,
   "dependencies": {
