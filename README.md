@@ -1,5 +1,7 @@
 # OS window like, component for Angular
 
+Demo: https://santinobch.github.io/os-window-angular/
+
 ## Getting started
 
 Read the wiki on how to [get started](https://github.com/santinobch/os-window-angular/wiki/Getting-Started), i promise it's a light read ;)
