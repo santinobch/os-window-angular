@@ -162,6 +162,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "os-window-angular"
 }
