@@ -1,5 +1,3 @@
-
-
 @import './fonts';
 
 // provide font size in rem, with px fallback
@@ -93,16 +91,6 @@
     $font-size: 10;
     $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
 
-
-
-    //
-    // CSS Variables (We may change this ones in runtime)
-    // These variables are not used in this theme, we use box-shadow instead,
-    // we still need to declare them for correct javascript functionality.
-    //
-    --winBorder: 1px;
-    --winRadius: 0px;
-
     %win98_box {
         box-shadow: inset -1px -1px $dark_color, 
                     inset 1px 1px $base_color, 
@@ -134,184 +122,15 @@
                     inset 2px 2px $disabled_color;
     }
 
-
-
-    // Maximized styles > Focused styles > Normal style
-
-    //
-    // General styles
-    // 
-    .os-window {
-        @extend %win98_box;
-
-        @include font($font-family, $font-size);
-
-        padding: 4px;
-
-        background-color: $base_color;
-
-        .window-bar {
-            height: 20px;
-            padding: 0px;
-
-            background: none;
-    
-            border-top-left-radius: var(--topRadius);
-            border-top-right-radius: var(--topRadius);
-
-            .window-bar-anchor {
-                background: linear-gradient(90deg, $shadow_color 0%, $base_color 170%);
-                height: 18px;
-                width: 100%;
-
-                .window-title  {
-                    margin-left: 30px;
-            
-                    ::ng-deep span {
-                        color: $header_text;
-                    }
-                }
-            }
-        }
-
-        .window-content {
-            @extend %win98_inner_box;
-
-            width: calc(100% - 2px);
-            color: $text_color;
-        }
-    }
-
-    //
-    // Focused window styles
-    //
-    .focused  {  
-        .window-bar {
-            .window-bar-anchor {
-                background: linear-gradient(90deg, $header_bg 0%, $base_color 170%);
-                height: 18px;
-                width: 100%;
-            }
-        }
-    }
-    
-    //
-    // Maximized window styles
-    //
-    .maximized {
-
-        border: 0px;
-        border-radius: 0px;
-
-        box-shadow: 0 0, 
-                    0 0; 
-
-        padding: 0;
-
-        .window-bar {
-            border: 0px;
-            border-radius: 0px;
-        }
-    }
-    
-    //
-    // Separators
-    //
-    .controls-separator {
-        display: none;
-    }
-
-
-    //
-    // Window control buttons
-    //
-    .controls-container {
-        margin-right: 2px;
-        width: 50px;
-        height: auto;
-        
-    }
-
-    .controls {
-        @extend %win98_control_box;
-
-        padding-left: 0;
-        min-height: 14px;
-        width: 16px;
-        height: 14px;
-
-        outline: none;
-        border: 0;
-        border-radius: 0px;
-
-        background-color: $base_color;
-        image-rendering: pixelated;
-    }
-
-    $asset_path: './win98/assets';
-
-    .minimize {
-        background-image: url("#{$asset_path}/minimize.png");
-
-        &:active { @extend %win98_control_box_active }
-    }
-
-    .maximize {
-        background-image: url("#{$asset_path}/maximize.png");
-
-        &:active { @extend %win98_control_box_active }
-    }
-
-    .close {
-        margin-left: 2px;
-        background-image: url("#{$asset_path}/close.png");
-
-        &:active { @extend %win98_control_box_active }
-    }
-
-    //
-    // Links
-    //
-    .window-content ::ng-deep {
-        a { color: $link_color; }
-        a:visited { color: $link_visited_color; }
-        a:visited:hover { color: lighten($link_visited_color,10%); }
-        a:hover { color: lighten($link_color,10%); }
-    }
-
-    //
-    // Scrollbars
-    //
-    .window-content ::ng-deep {
-
-        .os-scrollbar-track {
-            background-image: './assets/scrollbar_track.png';
-            min-height: 14px;
-            min-width: 14px;
-
-            margin-right: 4px;
-            margin-bottom: 4px;
-            margin-top: 1px;
-
-            border-radius: 0;
-        }
-
-        .os-scrollbar-thumb {
-            @extend %win98_box;
-
-            background-color: $base_color;
-            height: 14px;
-            width: 14px;
-        }
-    }
+    @extend %win98_box;
 }
 
-.win98-classic {
+.win98-classic-button {
     @include theme('classic', 'false');
-    //@include lightAssets();
+
+    background-color: red;
 }
 
-.win98-vaporwave {
+.win98-vaporwave-button {
     @include theme('vaporwave', 'false');
-    //@include darkAssets();
 }

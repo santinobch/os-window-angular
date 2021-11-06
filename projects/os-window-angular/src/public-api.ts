@@ -3,5 +3,9 @@
  */
 
 export * from './lib/os-config/os-config.module'
+
 export * from './lib/os-window/os-window.component';
 export * from './lib/os-window/os-window.module';
+
+export * from './lib/os-button/os-button.component';
+export * from './lib/os-button/os-button.module';

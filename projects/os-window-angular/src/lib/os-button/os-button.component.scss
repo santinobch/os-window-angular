@@ -1,0 +1,20 @@
+a[os-button], 
+a[os-circle-button], 
+a[os-fab-button], 
+a[os-warn-button],
+button[os-button], 
+button[os-circle-button], 
+button[os-fab-button], 
+button[os-warn-button] {
+    outline: 0;
+    border: none;
+    text-decoration: none;
+
+    border-radius: 5px;
+    line-height: 36px;
+    max-height: 64px;
+    padding: 0 16px;
+    margin: 5px;
+
+    display: inline-block;
+}
