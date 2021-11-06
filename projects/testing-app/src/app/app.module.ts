@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 //import { OsWindowComponent, OsWindowContent } from "os-window-angular";
-import { OsWindowModule, OsConfigModule, OsButtonModule } from 'os-window-angular';
+import { OsWindowModule, OsConfigModule, OsButtonModule } from '@santinobch/os-window-angular';
 
 @NgModule({
   declarations: [

@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import { osConfigData } from "./commons";
+import { osConfigData } from "../../models/OsConfigData.model";
 import { OsConfigService } from "./os-config.service";
 
 

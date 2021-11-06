@@ -12,8 +12,8 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { osConfigData } from "../os-config/commons";
-import { OsConfigService } from "../os-config/os-config.service";
+import { osConfigData } from "../../models/OsConfigData.model";
+import { OsConfigService } from "../../services/os-config/os-config.service";
 
 //Button Selectors: Normal, Warn, Icon, FAB
 //Button States: Normal, Pressed, Disabled, Focused
@@ -48,12 +48,12 @@ export class OsButtonComponent implements OnInit {
   //
   //  Component theme  //
   //
-  _theme: string;
+  _theme!: string;
   @Input()
   get theme(): string { return this._theme; }
   set theme(v: string) { this._theme = v; };
 
-  _variant: string;
+  _variant!: string;
   @Input()
   get variant(): string { return this._variant; }
   set variant(v: string) { this._variant = v; };

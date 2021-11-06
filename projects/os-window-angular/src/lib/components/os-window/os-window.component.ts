@@ -10,17 +10,24 @@ import {
   ViewChild,
   Directive
 } from '@angular/core';
-import { osConfigData } from "../os-config/commons";
-import { OsConfigService } from "../os-config/os-config.service";
+
+
+//Models
+import { PointModel } from "../../models/Point.model";
+import { OsWindowModel } from "../../models/OsWindow.model";
+
+//Tools
 import { 
-  Point, 
-  osWindow, 
   clamp, 
   setStyle, 
   getStyle, 
   setHeight,
   setWidth
-} from './os-window.utils';
+} from './os-window.tools';
+
+//Config service
+import { osConfigData } from "../../models/OsConfigData.model";
+import { OsConfigService } from "../../services/os-config/os-config.service";
 
 
 const MIN_HEIGHT: number = 200;
@@ -43,14 +50,14 @@ export class OsWindowContent {}
   templateUrl: './os-window.component.html',
   styleUrls: [
     './os-window.component.scss',
-    '../os-config/themes/main.scss'
+    '../../themes/main.scss'
   ]
 })
 
 export class OsWindowComponent implements OnInit, OnChanges {
 
   //References parent html element from component
-  @ViewChild('osWindowParent') osWindowParent: ElementRef;
+  @ViewChild('osWindowParent') osWindowParent!: ElementRef;
 
   //Stores data from OsThemeComponent
   globalConfigData: osConfigData = {
@@ -62,7 +69,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
   lastZIndex: number = 1;
 
   //Declares new OsWindow interface
-  win: osWindow;
+  win: OsWindowModel;
   
   constructor(
     private componentElement: ElementRef, 
@@ -117,12 +124,12 @@ export class OsWindowComponent implements OnInit, OnChanges {
   //
   //  Component theme  //
   //
-  _theme: string;
+  _theme!: string;
   @Input()
   get theme(): string { return this._theme; }
   set theme(v: string) { this._theme = v; };
 
-  _variant: string;
+  _variant!: string;
   @Input()
   get variant(): string { return this._variant; }
   set variant(v: string) { this._variant = v; };
@@ -154,9 +161,9 @@ export class OsWindowComponent implements OnInit, OnChanges {
     this.win.width = clamp(v || this.win.minWidth);
   };
 
-  positionStr: string[];
+  positionStr!: string[];
   @Input()
-  get position(): string { return ; }
+  get position(): string { return ""; }
   set position(v: string) {
     this.positionStr = v.split(" ", 2);
   };
@@ -362,13 +369,13 @@ export class OsWindowComponent implements OnInit, OnChanges {
   ////////////////////////
 
   //Anchor stores temporary point of the current resize CdkDragMove event
-  anchor: Point = {x: 0, y: 0};
-  newPosition: Point = {x: 0, y: 0};
+  anchor: PointModel = {x: 0, y: 0};
+  newPosition: PointModel = {x: 0, y: 0};
 
-  initialHeight: number;
-  initialWidth: number;
+  initialHeight!: number;
+  initialWidth!: number;
 
-  mousePos: Point = {x: 0, y: 0};
+  mousePos: PointModel = {x: 0, y: 0};
 
   storeMousePos(event: MouseEvent) {
     this.mousePos = {

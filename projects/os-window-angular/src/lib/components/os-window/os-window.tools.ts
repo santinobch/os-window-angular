@@ -1,49 +1,6 @@
 import { ElementRef } from '@angular/core'
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
-export interface Point {
-  x: number;
-  y: number;
-}
-
-//Window object
-export interface osWindow {
-  element: ElementRef,
-  minHeight: number,
-  minWidth: number,
-
-  height: number,
-  width: number,
-  transform: string,
-
-  setPosition: Point,
-  position: Point,
-
-  resize: {
-    n: Point,
-    ne: Point,
-    e: Point,
-    se: Point,
-    s: Point,
-    sw: Point,
-    w: Point,
-    nw: Point
-  },
-
-  state: {
-    zIndex: number,
-    minimized: boolean,
-    maximized: boolean
-  },
-
-  rules: {
-    disableResize: boolean,
-    minimizable: boolean,
-    maximizable: boolean,
-    closable: boolean
-  }
-}
-
 export function clamp(v: Number, min = 0, max = Number.MAX_SAFE_INTEGER) {
   return Math.max(min, Math.min(max, coerceNumberProperty(v) ) );
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { osConfigData } from "./commons";
+import { osConfigData } from "../../models/OsConfigData.model";
 
 @Injectable({
   providedIn: 'root'
