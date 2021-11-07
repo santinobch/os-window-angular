@@ -1,4 +1,4 @@
-export interface osConfigData {
+export interface OsConfigModel {
     theme: string;
     variant: string;
 }

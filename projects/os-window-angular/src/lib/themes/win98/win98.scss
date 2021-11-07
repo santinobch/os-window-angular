@@ -306,12 +306,11 @@
     }
 }
 
+//Actual declaration of themes
 .win98-classic {
     @include theme('classic', 'false');
-    //@include lightAssets();
 }
 
 .win98-vaporwave {
     @include theme('vaporwave', 'false');
-    //@include darkAssets();
 }

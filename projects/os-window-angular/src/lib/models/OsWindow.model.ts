@@ -39,8 +39,8 @@ export interface OsWindowModel {
 }
 
 //Deafult minHeight & minWidth
-const MIN_HEIGHT: number = 200;
-const MIN_WIDTH:  number = 200;
+export const MIN_HEIGHT: number = 200;
+export const MIN_WIDTH:  number = 200;
 
 export function initializeDefaultWindow(_element: ElementRef): OsWindowModel {
   let winDefault: OsWindowModel = {
@@ -52,6 +52,7 @@ export function initializeDefaultWindow(_element: ElementRef): OsWindowModel {
     width: 0,
     transform: "",
   
+    //This functions as the used variable in real time for position
     setPosition: {x: 0, y: 0},
     position: {x: 0, y: 0},
   

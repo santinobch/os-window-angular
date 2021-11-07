@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import { osConfigData } from "../models/OsConfigData.model";
+import { OsConfigModel } from "../models/OsConfig.model";
 import { OsConfigService } from "../services/os-config/os-config.service";
 
 
@@ -26,7 +26,7 @@ export class OsConfigDirective implements OnInit {
   get variant(): string { return this._variant; }
   set variant(v: string) { v == "" ? this._variant = "light" : this._variant = v; };
 
-  _config: osConfigData = {
+  _config: OsConfigModel = {
     theme:  "",
     variant: ""  
   };

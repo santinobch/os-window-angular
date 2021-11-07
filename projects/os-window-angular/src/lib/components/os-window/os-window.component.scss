@@ -30,9 +30,11 @@
     --cursorW: w-resize;
     --cursorNW: nw-resize;
 
+    //Why is this fixed 'instead' of 'absolute'?
     position: fixed;
     top: -100%;
     left: 0;
+    z-index: var(--zIndex);
 }
 
 //Universal theming

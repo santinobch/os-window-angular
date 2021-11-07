@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { osConfigData } from "../../models/OsConfigData.model";
+import { OsConfigModel } from "../../models/OsConfig.model";
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +8,16 @@ export class OsConfigService {
 
   constructor() { }
 
-  private _config: osConfigData = {
+  private _config: OsConfigModel = {
     theme: "arc",
     variant: "light"
   };
 
-  getConfig(): osConfigData {
+  getConfig(): OsConfigModel {
     return this._config;
   }
 
-  setConfig(config: osConfigData) {
+  setConfig(config: OsConfigModel) {
     this._config = config;
   }
 

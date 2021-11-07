@@ -5,7 +5,9 @@ export function clamp(v: Number, min = 0, max = Number.MAX_SAFE_INTEGER) {
   return Math.max(min, Math.min(max, coerceNumberProperty(v) ) );
 }
 
-//Simplifyng seting & getting styles of component
+
+//There seems to be no way to access CSS variables from Render2 so we can only use the nativeElement way. //
+
 export function setStyle(_elementRef: ElementRef, property: string, value: string)  {
   _elementRef.nativeElement.style.setProperty(property, value);
 }

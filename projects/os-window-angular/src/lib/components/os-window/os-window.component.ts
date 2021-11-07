@@ -14,7 +14,7 @@ import {
 
 //Models
 import { PointModel } from "../../models/Point.model";
-import { OsWindowModel, initializeDefaultWindow } from "../../models/OsWindow.model";
+import { OsWindowModel, initializeDefaultWindow, MIN_HEIGHT, MIN_WIDTH } from "../../models/OsWindow.model";
 
 //Tools
 import { 
@@ -26,12 +26,9 @@ import {
 } from './os-window.tools';
 
 //Config service
-import { osConfigData } from "../../models/OsConfigData.model";
+import { OsConfigModel } from "../../models/OsConfig.model";
 import { OsConfigService } from "../../services/os-config/os-config.service";
 
-
-const MIN_HEIGHT: number = 200;
-const MIN_WIDTH:  number = 200;
 
 @Directive ({
   selector: `window-title, [window-title], [windowTitle]`,
@@ -59,26 +56,26 @@ export class OsWindowComponent implements OnInit, OnChanges {
   //References parent html element from component
   @ViewChild('osWindowParent') osWindowParent!: ElementRef;
 
-  //Stores data from OsThemeComponent
-  globalConfigData: osConfigData = {
-    theme: "arc",
-    variant: "light"
-  };
-
-  //z-index of the current window
-  lastZIndex: number = 1;
-
-  //Declares new OsWindow interface
-  win!: OsWindowModel;
-  
   constructor(
     private componentElement: ElementRef, 
     private renderer: Renderer2,
     private globalConfigService: OsConfigService
     ) {
-
       this.win = initializeDefaultWindow(componentElement);
   }
+
+
+  //////////////////////////
+  // Variable declarations//
+  //////////////////////////
+
+  //Stores global config
+  globalConfigData!: OsConfigModel;
+
+  //z-index of the current window
+  lastZIndex: number = 1;
+
+  win!: OsWindowModel;
 
 
   //////////////////////
@@ -121,6 +118,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
     this.win.width = clamp(v || this.win.minWidth);
   };
 
+  //TODO implement PointModel return
   positionStr!: string[];
   @Input()
   get position(): string { return ""; }
@@ -159,12 +157,21 @@ export class OsWindowComponent implements OnInit, OnChanges {
 
   ngAfterViewInit() {
 
-    //Global theme config
     this.globalConfigData = this.globalConfigService.getConfig();
 
-    //Setting element as <div #osWindow> elementRef
+    //Getting element reference (see @ViewChild)
     this.win.element = this.osWindowParent;
-    
+
+
+    /* We first care about the dimensions and position of the window */
+    //Initial width & height, also returns corrected value if bellow minimal
+    this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
+    this.win.height = setHeight(this.win.element, this.win.height, this.win.minHeight);
+
+    //Sets initial position
+    this.positionWindow();
+
+    /* After dimensions & position we set the themes and rules */
     //Setting theme of component
     if (this._theme !== "" && this._theme !== undefined && this._variant !== "" && this._variant !== undefined) {
 
@@ -173,10 +180,6 @@ export class OsWindowComponent implements OnInit, OnChanges {
       
       this.renderer.addClass(this.win.element.nativeElement, `${this.globalConfigData.theme}-${this.globalConfigData.variant}`);
     }
-
-    //Initial width & height, also returns corrected value if bellow minimal
-    this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
-    this.win.height = setHeight(this.win.element, this.win.height, this.win.minHeight);
 
     //Minimizable?
     if (!this.win.rules.minimizable) {
@@ -193,9 +196,6 @@ export class OsWindowComponent implements OnInit, OnChanges {
       setStyle(this.win.element, '--closeButton', 'none');
     }
 
-    //Sets initial position
-    this.positionWindow();
-
     //Resizable?
     if (this.win.rules.disableResize) {
       setStyle(this.win.element, '--cursorN', 'auto')
@@ -207,6 +207,8 @@ export class OsWindowComponent implements OnInit, OnChanges {
       setStyle(this.win.element, '--cursorW', 'auto')
       setStyle(this.win.element, '--cursorNW', 'auto')
     }
+
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -306,7 +308,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
   }
 
   //When maximized and then dragged the window demaximizes 
-  // and puts itself aligned with the mouse position
+  //and puts itself aligned with the mouse position
   demaximize() {
     if (this.win.state.maximized == true) {
       this.win.position = {
