@@ -14,7 +14,7 @@ import {
 
 //Models
 import { PointModel } from "../../models/Point.model";
-import { OsWindowModel } from "../../models/OsWindow.model";
+import { OsWindowModel, initializeDefaultWindow } from "../../models/OsWindow.model";
 
 //Tools
 import { 
@@ -69,7 +69,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
   lastZIndex: number = 1;
 
   //Declares new OsWindow interface
-  win: OsWindowModel;
+  win!: OsWindowModel;
   
   constructor(
     private componentElement: ElementRef, 
@@ -77,43 +77,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
     private globalConfigService: OsConfigService
     ) {
 
-    //Initializing osWindow interface
-    this.win = {
-      element: this.componentElement,
-      minHeight: MIN_HEIGHT,
-      minWidth: MIN_WIDTH,
-
-      height: 0,
-      width: 0,
-      transform: "",
-
-      setPosition: {x: 0, y: 0},
-      position: {x: 0, y: 0},
-
-      resize: {
-        n:  {x: 0, y: 0},
-        ne: {x: 0, y: 0},
-        e:  {x: 0, y: 0},
-        se: {x: 0, y: 0},
-        s:  {x: 0, y: 0},
-        sw: {x: 0, y: 0},
-        w:  {x: 0, y: 0},
-        nw: {x: 0, y: 0},
-      },
-
-      state: {
-        zIndex: 0,
-        maximized: false,
-        minimized: false
-      },
-
-      rules: {
-        disableResize: false,
-        minimizable: true,
-        maximizable: true,
-        closable: true
-      }
-    };
+      this.win = initializeDefaultWindow(componentElement);
   }
 
 
@@ -121,9 +85,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
   ////    Inputs    ////
   //////////////////////
 
-  //
   //  Component theme  //
-  //
   _theme!: string;
   @Input()
   get theme(): string { return this._theme; }
@@ -134,9 +96,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
   get variant(): string { return this._variant; }
   set variant(v: string) { this._variant = v; };
 
-  //
   //  Size & position  ///
-  //
   @Input()
   get minHeight(): Number { return this.win.minHeight; }
   set minHeight(v: Number) {
@@ -168,9 +128,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
     this.positionStr = v.split(" ", 2);
   };
 
-  //
   //  Rules  //
-  //
   @Input()
   get resizable(): boolean { return this.win.rules.disableResize; }
   set resizable(v: boolean) {
@@ -194,7 +152,6 @@ export class OsWindowComponent implements OnInit, OnChanges {
   set closable(v: boolean) {
     this.win.rules.closable = v;
   };
-
 
 
   ngOnInit(): void {

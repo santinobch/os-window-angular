@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OsConfigDirective } from './os-config.directive';
+import { OsConfigDirective } from '../../directives/os-config.directive';
 
 
 

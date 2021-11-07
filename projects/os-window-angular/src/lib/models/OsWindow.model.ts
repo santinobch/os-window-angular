@@ -1,39 +1,83 @@
-import { ElementRef } from '@angular/core'
+import { ElementRef, Renderer2 } from '@angular/core'
 import { PointModel } from "./Point.model";
 
 export interface OsWindowModel {
-    element: ElementRef,
-    minHeight: number,
-    minWidth: number,
+  element: ElementRef,
+  minHeight: number,
+  minWidth: number,
+
+  height: number,
+  width: number,
+  transform: string,
+
+  setPosition: PointModel,
+  position: PointModel,
+
+  resize: {
+    n: PointModel,
+    ne: PointModel,
+    e: PointModel,
+    se: PointModel,
+    s: PointModel,
+    sw: PointModel,
+    w: PointModel,
+    nw: PointModel
+  },
+
+  state: {
+    zIndex: number,
+    minimized: boolean,
+    maximized: boolean
+  },
+
+  rules: {
+    disableResize: false | boolean,
+    minimizable: true | boolean,
+    maximizable: true | boolean,
+    closable: true | boolean
+  }
+}
+
+//Deafult minHeight & minWidth
+const MIN_HEIGHT: number = 200;
+const MIN_WIDTH:  number = 200;
+
+export function initializeDefaultWindow(_element: ElementRef): OsWindowModel {
+  let winDefault: OsWindowModel = {
+    element: _element,
+    minHeight: MIN_HEIGHT,
+    minWidth: MIN_WIDTH,
   
-    height: number,
-    width: number,
-    transform: string,
+    height: 0,
+    width: 0,
+    transform: "",
   
-    setPosition: PointModel,
-    position: PointModel,
+    setPosition: {x: 0, y: 0},
+    position: {x: 0, y: 0},
   
     resize: {
-      n: PointModel,
-      ne: PointModel,
-      e: PointModel,
-      se: PointModel,
-      s: PointModel,
-      sw: PointModel,
-      w: PointModel,
-      nw: PointModel
+      n:  {x: 0, y: 0},
+      ne: {x: 0, y: 0},
+      e:  {x: 0, y: 0},
+      se: {x: 0, y: 0},
+      s:  {x: 0, y: 0},
+      sw: {x: 0, y: 0},
+      w:  {x: 0, y: 0},
+      nw: {x: 0, y: 0},
     },
   
     state: {
-      zIndex: number,
-      minimized: boolean,
-      maximized: boolean
+      zIndex: 0,
+      maximized: false,
+      minimized: false
     },
   
     rules: {
-      disableResize: boolean,
-      minimizable: boolean,
-      maximizable: boolean,
-      closable: boolean
+      disableResize: false,
+      minimizable: true,
+      maximizable: true,
+      closable: true
     }
-  }
+  };
+  return winDefault;
+}

@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "compile": "rimraf ./dist && ng build os-window-angular && npm link ./dist/os-window-angular && npm link ./dist/os-window-angular",
-    "buildweb": "npm run testcompile && ng build testing-app && rimraf ./dist/os-window-angular",
+    "buildweb": "npm run compile && ng build testing-app && rimraf ./dist/os-window-angular",
     "publishweb": "angular-cli-ghpages"
   },
   "private": true,

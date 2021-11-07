@@ -5,8 +5,8 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import { osConfigData } from "../../models/OsConfigData.model";
-import { OsConfigService } from "./os-config.service";
+import { osConfigData } from "../models/OsConfigData.model";
+import { OsConfigService } from "../services/os-config/os-config.service";
 
 
 @Directive({
