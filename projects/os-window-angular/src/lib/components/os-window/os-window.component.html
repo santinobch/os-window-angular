@@ -4,95 +4,103 @@ TO DO:
 - Arc Theme                 HALF DONE
 - Win98 Theme               Check inner shadow scroll right & bottom, next release
 - Revise code
-- Documentation         
-- Licencing             
-- Release               
+- Documentation
+- Licencing
+- Release
 
 -->
 
-<div #osWindowParent 
-    class="os-window-parent" 
+<div #osWindowParent
+    class="os-window-parent"
     (mousedown)="focus()">
 
     <div class="os-window"
-        fxLayout="column" 
-        fxLayoutAlign="start stretch" 
+        fxLayout="column"
+        fxLayoutAlign="start stretch"
         cdkDrag
-        (mousedown)="storeMousePos($event)"
-        (mousedown)="focus()"
         (cdkDragStarted)="demaximize()"
         (cdkDragEnded)="storeWindowPos($event)"
         (cdkDragEnded)="correctEndPosition($event)"
-        [cdkDragFreeDragPosition]="this.win.setPosition">
+        [cdkDragFreeDragPosition]="this.win.setPosition"
+        (mousedown)="storeMousePos($event)"
+        (mousedown)="focus()">
 
-        <div cdkDrag 
+        <div cdkDrag
             cdkDragLockAxis="y"
             (cdkDragStarted)="startResize()"
             (cdkDragMoved)="resize($event, 'n')"
             (cdkDragEnded)="endResize()"
             [cdkDragFreeDragPosition]="this.win.resize.n"
             [cdkDragDisabled]="this.win.rules.disableResize"
+            (mousedown)="focus()"
             class="window-resize n"></div>
-        <div 
+        <div
             cdkDrag
             (cdkDragStarted)="startResize()"
             (cdkDragMoved)="resize($event, 'ne')"
             (cdkDragEnded)="endResize()"
             [cdkDragFreeDragPosition]="this.win.resize.ne"
             [cdkDragDisabled]="this.win.rules.disableResize"
+            (mousedown)="focus()"
             class="window-resize ne"></div>
-        <div 
-            cdkDrag 
+        <div
+            cdkDrag
             cdkDragLockAxis="x"
             (cdkDragStarted)="startResize()"
             (cdkDragMoved)="resize($event, 'e')"
             (cdkDragEnded)="endResize()"
             [cdkDragFreeDragPosition]="this.win.resize.e"
             [cdkDragDisabled]="this.win.rules.disableResize"
+            (mousedown)="focus()"
             class="window-resize e"></div>
-        <div 
-            cdkDrag 
+        <div
+            cdkDrag
             (cdkDragStarted)="startResize()"
             (cdkDragMoved)="resize($event, 'se')"
             (cdkDragEnded)="endResize()"
             [cdkDragFreeDragPosition]="this.win.resize.se"
             [cdkDragDisabled]="this.win.rules.disableResize"
+            (mousedown)="focus()"
             class="window-resize se"></div>
-        <div 
-            cdkDrag 
-            cdkDragLockAxis="y" 
+        <div
+            cdkDrag
+            cdkDragLockAxis="y"
             (cdkDragStarted)="startResize()"
             (cdkDragMoved)="resize($event, 's')"
             (cdkDragEnded)="endResize()"
             [cdkDragFreeDragPosition]="this.win.resize.s"
             [cdkDragDisabled]="this.win.rules.disableResize"
+            (mousedown)="focus()"
             class="window-resize s"></div>
-        <div 
-            cdkDrag 
+        <div
+            cdkDrag
             (cdkDragStarted)="startResize()"
             (cdkDragMoved)="resize($event, 'sw')"
             (cdkDragEnded)="endResize()"
             [cdkDragFreeDragPosition]="this.win.resize.sw"
             [cdkDragDisabled]="this.win.rules.disableResize"
+            (mousedown)="focus()"
             class="window-resize sw"></div>
-        <div 
-            cdkDrag 
-            cdkDragLockAxis="x" 
+        <div
+            cdkDrag
+            cdkDragLockAxis="x"
             (cdkDragStarted)="startResize()"
             (cdkDragMoved)="resize($event, 'w')"
             (cdkDragEnded)="endResize()"
             [cdkDragFreeDragPosition]="this.win.resize.w"
             [cdkDragDisabled]="this.win.rules.disableResize"
+            (mousedown)="focus()"
             class="window-resize w"></div>
-        <div 
-            cdkDrag 
+        <div
+            cdkDrag
             (cdkDragStarted)="startResize()"
             (cdkDragMoved)="resize($event, 'nw')"
             (cdkDragEnded)="endResize()"
             [cdkDragFreeDragPosition]="this.win.resize.nw"
             [cdkDragDisabled]="this.win.rules.disableResize"
+            (mousedown)="focus()"
             class="window-resize nw"></div>
-        
+
 
         <div class="window-bar">
 

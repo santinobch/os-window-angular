@@ -284,7 +284,7 @@
 }
 
 @mixin lightAssets {
-    $asset_path: './arc/assets/light-assets/controls';
+    $asset_path: './assets/light-assets/controls';
 
     .minimize {
         background: url("#{$asset_path}/light-titlebutton-minimize.png");
@@ -306,7 +306,7 @@
 }
 
 @mixin darkAssets {
-    $asset_path: './arc/assets/dark-assets/controls';
+    $asset_path: './assets/dark-assets/controls';
 
     .minimize {
         background: url("#{$asset_path}/dark-titlebutton-minimize.png");

@@ -248,7 +248,7 @@
         image-rendering: pixelated;
     }
 
-    $asset_path: './win98/assets';
+    $asset_path: './assets';
 
     .minimize {
         background-image: url("#{$asset_path}/minimize.png");

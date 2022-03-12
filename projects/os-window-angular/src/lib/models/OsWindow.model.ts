@@ -31,10 +31,10 @@ export interface OsWindowModel {
   },
 
   rules: {
-    disableResize: false | boolean,
-    minimizable: true | boolean,
-    maximizable: true | boolean,
-    closable: true | boolean
+    disableResize: boolean,
+    minimizable: boolean,
+    maximizable: boolean,
+    closable: boolean
   }
 }
 
@@ -42,20 +42,20 @@ export interface OsWindowModel {
 export const MIN_HEIGHT: number = 200;
 export const MIN_WIDTH:  number = 200;
 
-export function initializeDefaultWindow(_element: ElementRef): OsWindowModel {
+export function initializeWindow(_element: ElementRef): OsWindowModel {
   let winDefault: OsWindowModel = {
     element: _element,
     minHeight: MIN_HEIGHT,
     minWidth: MIN_WIDTH,
-  
+
     height: 0,
     width: 0,
     transform: "",
-  
+
     //This functions as the used variable in real time for position
     setPosition: {x: 0, y: 0},
     position: {x: 0, y: 0},
-  
+
     resize: {
       n:  {x: 0, y: 0},
       ne: {x: 0, y: 0},
@@ -66,14 +66,16 @@ export function initializeDefaultWindow(_element: ElementRef): OsWindowModel {
       w:  {x: 0, y: 0},
       nw: {x: 0, y: 0},
     },
-  
+
     state: {
+      //zIndex deberia ser parte de 'position' probablemente crear un PositionModel para puntos 3D
       zIndex: 0,
       maximized: false,
       minimized: false
     },
-  
+
     rules: {
+      //deberia llamarse resizable
       disableResize: false,
       minimizable: true,
       maximizable: true,

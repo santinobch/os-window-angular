@@ -1,5 +1,5 @@
 import { CdkDragEnd, CdkDragMove, CdkDragRelease, CdkDragStart, DragRef } from '@angular/cdk/drag-drop';
-import { 
+import {
   Component,
   ElementRef,
   Input,
@@ -14,13 +14,13 @@ import {
 
 //Models
 import { PointModel } from "../../models/Point.model";
-import { OsWindowModel, initializeDefaultWindow, MIN_HEIGHT, MIN_WIDTH } from "../../models/OsWindow.model";
+import { OsWindowModel, initializeWindow, MIN_HEIGHT, MIN_WIDTH } from "../../models/OsWindow.model";
 
 //Tools
-import { 
-  clamp, 
-  setStyle, 
-  getStyle, 
+import {
+  clamp,
+  setStyle,
+  getStyle,
   setHeight,
   setWidth
 } from './os-window.tools';
@@ -57,11 +57,11 @@ export class OsWindowComponent implements OnInit, OnChanges {
   @ViewChild('osWindowParent') osWindowParent!: ElementRef;
 
   constructor(
-    private componentElement: ElementRef, 
+    private componentElement: ElementRef,
     private renderer: Renderer2,
     private globalConfigService: OsConfigService
     ) {
-      this.win = initializeDefaultWindow(componentElement);
+      this.win = initializeWindow(componentElement);
   }
 
 
@@ -99,7 +99,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
   set minHeight(v: Number) {
     this.win.minHeight = clamp(v || MIN_HEIGHT);
   };
-  
+
   @Input()
   get minWidth(): Number { return this.win.minWidth; }
   set minWidth(v: Number) {
@@ -121,7 +121,6 @@ export class OsWindowComponent implements OnInit, OnChanges {
   //TODO implement PointModel return
   positionStr!: string[];
   @Input()
-  get position(): string { return ""; }
   set position(v: string) {
     this.positionStr = v.split(" ", 2);
   };
@@ -177,7 +176,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
 
       this.renderer.addClass(this.win.element.nativeElement, `${this._theme}-${this._variant}`);
     } else {
-      
+
       this.renderer.addClass(this.win.element.nativeElement, `${this.globalConfigData.theme}-${this.globalConfigData.variant}`);
     }
 
@@ -208,7 +207,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
       setStyle(this.win.element, '--cursorNW', 'auto')
     }
 
-    
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -236,7 +235,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
       case 'left':
         this.win.position.x = 0;
         break;
-    
+
       case 'center':
         this.win.position.x = (window.innerWidth / 2 - this.win.width / 2);
         break;
@@ -250,13 +249,13 @@ export class OsWindowComponent implements OnInit, OnChanges {
         break;
     }
 
-    //To hide the window element we need to set it top: -100% in scss, 
+    //To hide the window element we need to set it top: -100% in scss,
     //so we later need to calculate everything + innerHeight
     switch (this.positionStr[1]) {
       case 'top':
         this.win.position.y = window.innerHeight;
         break;
-    
+
       case 'center':
         this.win.position.y = window.innerHeight + (window.innerHeight / 2 - this.win.height / 2);
         break;
@@ -285,7 +284,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
   maximize() {
     if (this.win.rules.maximizable) {
       if (this.win.state.maximized == false) {
-        
+
         this.renderer.addClass(this.win.element.nativeElement.firstChild, 'maximized');
 
         this.win.setPosition = {x: 0, y: window.innerHeight};
@@ -300,14 +299,14 @@ export class OsWindowComponent implements OnInit, OnChanges {
           x: this.win.position.x,
           y: this.win.position.y
         }
-        
+
         this.win.state.maximized = false;
         this.win.rules.disableResize = false;
       }
     }
   }
 
-  //When maximized and then dragged the window demaximizes 
+  //When maximized and then dragged the window demaximizes
   //and puts itself aligned with the mouse position
   demaximize() {
     if (this.win.state.maximized == true) {
@@ -427,7 +426,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
         this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
 
         break;
-      
+
       //Width, Height
       case 'se':
         this.anchor = dragEvent.source.getFreeDragPosition();
@@ -515,21 +514,21 @@ export class OsWindowComponent implements OnInit, OnChanges {
         this.anchor = dragEvent.source.getFreeDragPosition();
 
         //Checks that the new position and dimesions produce a minHeight lower than the required
-        if ( (this.initialWidth - this.anchor.x) >= this.win.minWidth ) 
+        if ( (this.initialWidth - this.anchor.x) >= this.win.minWidth )
         {
           this.newPosition.x = (this.win.position.x + this.anchor.x);
 
           this.win.width = this.initialWidth - this.anchor.x;
           this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
-        } 
+        }
 
-        if ( (this.initialHeight - this.anchor.y) >= this.win.minHeight ) 
+        if ( (this.initialHeight - this.anchor.y) >= this.win.minHeight )
         {
           this.newPosition.y = (this.win.position.y + this.anchor.y);
 
           this.win.height = this.initialHeight - this.anchor.y;
           this.win.height = setHeight(this.win.element, this.win.height, this.win.minHeight);
-        } 
+        }
 
         //Sets the new position
         this.win.setPosition = {
@@ -585,7 +584,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
   }
 
   //When releasing the os-window the user may leave it outside of the browser window
-  //which would make it imposible to interact with the component again, 
+  //which would make it imposible to interact with the component again,
   //this makes the window 'bounce' back into sight
   correctEndPosition(event: CdkDragEnd) {
 
@@ -599,9 +598,9 @@ export class OsWindowComponent implements OnInit, OnChanges {
         y: this.win.position.y
       }
 
-    } 
+    }
     else if (this.win.position.y > ( window.innerHeight * 2 - 40) ) {
-      
+
       this.win.position.y = ( window.innerHeight * 2 - 40);
 
       this.win.setPosition = {
@@ -620,9 +619,9 @@ export class OsWindowComponent implements OnInit, OnChanges {
         y: this.win.position.y
       }
 
-    } 
+    }
     else if (this.win.position.x > (window.innerWidth - this.win.width / 4) ) {
-      
+
       this.win.position.x = (window.innerWidth - this.win.width / 4);
 
       this.win.setPosition = {
