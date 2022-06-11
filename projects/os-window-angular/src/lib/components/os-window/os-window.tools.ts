@@ -5,6 +5,11 @@ export function clamp(v: Number, min = 0, max = Number.MAX_SAFE_INTEGER) {
   return Math.max(min, Math.min(max, coerceNumberProperty(v) ) );
 }
 
+function highest(input: number, max: number) {
+  let n: number = input >= max ? input : max;
+  return n;
+}
+
 
 //There seems to be no way to access CSS variables from Render2 so we can only use the nativeElement way.
 
@@ -19,7 +24,7 @@ export function getStyle(_elementRef: ElementRef, property: string) {
 export function setHeight(_elementRef: ElementRef, _height: number, _minHeight?: number) {
 
   if (_minHeight) {
-    _height = _height >= _minHeight ? _height : _minHeight;
+    _height = highest(_height, _minHeight)
   }
   setStyle(_elementRef, '--winHeight', `${_height}px`);
 
@@ -29,7 +34,7 @@ export function setHeight(_elementRef: ElementRef, _height: number, _minHeight?:
 export function setWidth(_elementRef: ElementRef, _width: number, _minWidth?: number) {
 
   if (_minWidth) {
-    _width = _width >= _minWidth ? _width : _minWidth;
+    _width = highest(_width, _minWidth)
   }
   setStyle(_elementRef, '--winWidth', `${_width}px`);
 

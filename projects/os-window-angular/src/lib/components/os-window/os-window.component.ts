@@ -56,14 +56,6 @@ export class OsWindowComponent implements OnInit, OnChanges {
   //References parent html element from component
   @ViewChild('osWindowParent') osWindowParent!: ElementRef;
 
-  constructor(
-    private componentElement: ElementRef,
-    private renderer: Renderer2,
-    private globalConfigService: OsConfigService
-    ) {
-      this.win = initializeWindow(componentElement);
-  }
-
 
   //////////////////////////
   // Variable declarations//
@@ -77,21 +69,28 @@ export class OsWindowComponent implements OnInit, OnChanges {
 
   win!: OsWindowModel;
 
+  constructor(
+    private componentElement: ElementRef,
+    private renderer: Renderer2,
+    private globalConfigService: OsConfigService
+    ) {
+      this.win = initializeWindow(componentElement);
+  }
+
+
 
   //////////////////////
   ////    Inputs    ////
   //////////////////////
 
   //  Component theme  //
-  _theme!: string;
   @Input()
-  get theme(): string { return this._theme; }
-  set theme(v: string) { this._theme = v; };
+  get theme(): String { return this.win.style.theme; }
+  set theme(v: String) { };
 
-  _variant!: string;
   @Input()
-  get variant(): string { return this._variant; }
-  set variant(v: string) { this._variant = v; };
+  get variant(): String { return this.win.style.variant; }
+  set variant(v: String) { };
 
   //  Size & position  ///
   @Input()
@@ -172,62 +171,14 @@ export class OsWindowComponent implements OnInit, OnChanges {
 
     /* After dimensions & position we set the themes and rules */
     //Setting theme of component
-    if (this._theme !== "" && this._theme !== undefined && this._variant !== "" && this._variant !== undefined) {
+    this.loadStyles(this.win.style.theme, this.win.style.variant);
 
-      this.renderer.addClass(this.win.element.nativeElement, `${this._theme}-${this._variant}`);
-    } else {
-
-      this.renderer.addClass(this.win.element.nativeElement, `${this.globalConfigData.theme}-${this.globalConfigData.variant}`);
-    }
-
-    //Minimizable?
-    if (!this.win.rules.minimizable) {
-      setStyle(this.win.element, '--minimizeButton', 'none');
-    }
-
-    //Maximizable?
-    if (!this.win.rules.maximizable) {
-      setStyle(this.win.element, '--maximizeButton', 'none');
-    }
-
-    //Closable?
-    if (!this.win.rules.closable) {
-      setStyle(this.win.element, '--closeButton', 'none');
-    }
-
-    //Resizable?
-    if (this.win.rules.disableResize) {
-      setStyle(this.win.element, '--cursorN', 'auto')
-      setStyle(this.win.element, '--cursorNE', 'auto')
-      setStyle(this.win.element, '--cursorE', 'auto')
-      setStyle(this.win.element, '--cursorSE', 'auto')
-      setStyle(this.win.element, '--cursorS', 'auto')
-      setStyle(this.win.element, '--cursorSW', 'auto')
-      setStyle(this.win.element, '--cursorW', 'auto')
-      setStyle(this.win.element, '--cursorNW', 'auto')
-    }
-
-
+    this.loadRules();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.subscribeStyles(changes);
   }
-
-  /*
-  alternateTheme() {
-    if (this.win.style.theme !== "") {
-      if (this.win.style.theme == "arc-dark") {
-        this.renderer.removeClass(this.win.element.nativeElement, 'arc-dark');
-        this.win.style.theme = "arc-light";
-        this.renderer.addClass(this.win.element.nativeElement, this.win.style.theme);
-      } else {
-        this.renderer.removeClass(this.win.element.nativeElement, 'arc-light');
-        this.win.style.theme = "arc-dark";
-        this.renderer.addClass(this.win.element.nativeElement, this.win.style.theme);
-      }
-    }
-  }
-  */
 
   //    Position logic    //
   positionWindow() {
@@ -276,9 +227,13 @@ export class OsWindowComponent implements OnInit, OnChanges {
 
   }
 
-  //    Control Logic    //
-  minimize() {
 
+  /////////////////////////
+  //    Control Logic    //
+  /////////////////////////
+
+  minimize() {
+    //TODO
   }
 
   maximize() {
@@ -628,6 +583,82 @@ export class OsWindowComponent implements OnInit, OnChanges {
         x: this.win.position.x,
         y: this.win.position.y
       }
+    }
+  }
+
+
+  ////////////////////////
+  //       Style        //
+  ////////////////////////
+
+  
+
+  loadGlobalStyles() {
+    this.win.style.theme = this.globalConfigData.theme;
+    this.win.style.variant = this.globalConfigData.variant;
+
+    //Adds theme class
+    this.renderer.addClass(this.win.element.nativeElement, `${this.win.style.theme}-${this.win.style.variant}`);
+  }
+
+  loadStyles(_theme: String, _variant: String) {
+
+    if (_theme !== "" && _theme !== undefined && _variant !== "" && _variant !== undefined) {
+
+      //Removes old theme class
+      if (this.win.style.theme !== "" && this.win.style.theme !== undefined && this.win.style.variant !== "" && this.win.style.variant !== undefined) {
+        this.renderer.removeClass(this.win.element.nativeElement, `${this.win.style.theme}-${this.win.style.variant}`);
+      }
+
+      this.win.style.theme = _theme;
+      this.win.style.variant = _variant;
+
+      //Adds theme class
+      this.renderer.addClass(this.win.element.nativeElement, `${this.win.style.theme}-${this.win.style.variant}`);
+    } else {
+
+      this.loadGlobalStyles()
+    }
+  }
+
+  subscribeStyles(changes: SimpleChanges) {
+    
+    if (changes != undefined && changes.theme != undefined && changes.variant != undefined) {
+      
+      this.loadStyles(changes.theme.currentValue, changes.variant.currentValue);
+    }
+  }
+
+  ////////////////////////
+  //       Rules        //
+  ////////////////////////
+
+  loadRules() {
+    //Minimizable?
+    if (!this.win.rules.minimizable) {
+      setStyle(this.win.element, '--minimizeButton', 'none');
+    }
+
+    //Maximizable?
+    if (!this.win.rules.maximizable) {
+      setStyle(this.win.element, '--maximizeButton', 'none');
+    }
+
+    //Closable?
+    if (!this.win.rules.closable) {
+      setStyle(this.win.element, '--closeButton', 'none');
+    }
+
+    //Resizable?
+    if (this.win.rules.disableResize) {
+      setStyle(this.win.element, '--cursorN', 'auto')
+      setStyle(this.win.element, '--cursorNE', 'auto')
+      setStyle(this.win.element, '--cursorE', 'auto')
+      setStyle(this.win.element, '--cursorSE', 'auto')
+      setStyle(this.win.element, '--cursorS', 'auto')
+      setStyle(this.win.element, '--cursorSW', 'auto')
+      setStyle(this.win.element, '--cursorW', 'auto')
+      setStyle(this.win.element, '--cursorNW', 'auto')
     }
   }
 }

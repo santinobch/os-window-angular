@@ -1,4 +1,5 @@
-import { ElementRef, Renderer2 } from '@angular/core'
+import { ElementRef } from '@angular/core'
+import { Observable, Subject } from 'rxjs';
 import { PointModel } from "./Point.model";
 
 export interface OsWindowModel {
@@ -36,7 +37,13 @@ export interface OsWindowModel {
     maximizable: boolean,
     closable: boolean
   }
+
+  style: {
+    theme: String,
+    variant: String
+  }
 }
+
 
 //Deafult minHeight & minWidth
 export const MIN_HEIGHT: number = 200;
@@ -80,7 +87,13 @@ export function initializeWindow(_element: ElementRef): OsWindowModel {
       minimizable: true,
       maximizable: true,
       closable: true
+    },
+
+    style: {
+      theme: "",
+      variant: ""
     }
   };
+
   return winDefault;
 }

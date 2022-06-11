@@ -114,8 +114,8 @@
   </os-window>
 
   <os-window 
-  theme="arc"
-  variant="dark"
+  [theme]="theme ? 'arc' : 'win98'"
+  [variant]="theme ? 'dark' : 'classic'"
   [height]=400 
   [width]=600 
   [minHeight]=300 
