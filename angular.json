@@ -18,8 +18,12 @@
           "configurations": {
             "production": {
               "tsConfig": "projects/os-window-angular/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/my-lib/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -99,6 +103,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -110,8 +122,12 @@
           "configurations": {
             "production": {
               "browserTarget": "testing-app:build:production"
+            },
+            "development": {
+              "browserTarget": "testing-app:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -158,8 +174,12 @@
           "configurations": {
             "production": {
               "devServerTarget": "testing-app:serve:production"
+            },
+            "development": {
+              "devServerTarget": "testing-app:serve:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         }
       }
     }

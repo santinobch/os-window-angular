@@ -11,23 +11,11 @@ import {
   Directive
 } from '@angular/core';
 
-
 //Models
-import { PointModel } from "../../models/Point.model";
-import { OsWindowModel, initializeWindow, MIN_HEIGHT, MIN_WIDTH } from "../../models/OsWindow.model";
+import { OsWindow, clamp } from "../../models/OsWindow.model";
 
-//Tools
-import {
-  clamp,
-  setStyle,
-  getStyle,
-  setHeight,
-  setWidth
-} from './os-window.tools';
-
-//Config service
-import { OsConfigModel } from "../../models/OsConfig.model";
-import { OsConfigService } from "../../services/os-config/os-config.service";
+//Services
+import { OsConfigService } from '../../services/os-config/os-config.service';
 
 
 @Directive ({
@@ -54,30 +42,18 @@ export class OsWindowContent {}
 export class OsWindowComponent implements OnInit, OnChanges {
 
   //References parent html element from component
-  @ViewChild('osWindowParent') osWindowParent!: ElementRef;
+  @ViewChild('osWindowParent') osWindowParent!: ElementRef<HTMLElement>;
 
 
-  //////////////////////////
-  // Variable declarations//
-  //////////////////////////
-
-  //Stores global config
-  globalConfigData!: OsConfigModel;
-
-  //z-index of the current window
-  lastZIndex: number = 1;
-
-  win!: OsWindowModel;
 
   constructor(
-    private componentElement: ElementRef,
+    private componentElement: ElementRef<HTMLElement>,
     private renderer: Renderer2,
     private globalConfigService: OsConfigService
     ) {
-      this.win = initializeWindow(componentElement);
   }
 
-
+  win: OsWindow = new OsWindow(this.componentElement, this.renderer, this.globalConfigService);
 
   //////////////////////
   ////    Inputs    ////
@@ -96,13 +72,13 @@ export class OsWindowComponent implements OnInit, OnChanges {
   @Input()
   get minHeight(): Number { return this.win.minHeight; }
   set minHeight(v: Number) {
-    this.win.minHeight = clamp(v || MIN_HEIGHT);
+    this.win.minHeight = clamp(v || this.win.minHeight);
   };
 
   @Input()
   get minWidth(): Number { return this.win.minWidth; }
   set minWidth(v: Number) {
-    this.win.minWidth = clamp(v || MIN_WIDTH);
+    this.win.minWidth = clamp(v || this.win.minWidth);
   };
 
   @Input()
@@ -154,513 +130,25 @@ export class OsWindowComponent implements OnInit, OnChanges {
   }
 
   ngAfterViewInit() {
-
-    this.globalConfigData = this.globalConfigService.getConfig();
-
+    
     //Getting element reference (see @ViewChild)
     this.win.element = this.osWindowParent;
 
-
     /* We first care about the dimensions and position of the window */
     //Initial width & height, also returns corrected value if bellow minimal
-    this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
-    this.win.height = setHeight(this.win.element, this.win.height, this.win.minHeight);
+    this.win.setDimesions();
 
     //Sets initial position
-    this.positionWindow();
+    this.win.setPosition(this.positionStr);
 
     /* After dimensions & position we set the themes and rules */
     //Setting theme of component
-    this.loadStyles(this.win.style.theme, this.win.style.variant);
+    this.win.loadStyles(this.win.style.theme, this.win.style.variant);
 
-    this.loadRules();
+    this.win.loadRules();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.subscribeStyles(changes);
-  }
-
-  //    Position logic    //
-  positionWindow() {
-    switch (this.positionStr[0]) {
-      case 'left':
-        this.win.position.x = 0;
-        break;
-
-      case 'center':
-        this.win.position.x = (window.innerWidth / 2 - this.win.width / 2);
-        break;
-
-      case 'right':
-        this.win.position.x = (window.innerWidth - this.win.width);
-          break;
-
-      default:
-        this.win.position.x = 0;
-        break;
-    }
-
-    //To hide the window element we need to set it top: -100% in scss,
-    //so we later need to calculate everything + innerHeight
-    switch (this.positionStr[1]) {
-      case 'top':
-        this.win.position.y = window.innerHeight;
-        break;
-
-      case 'center':
-        this.win.position.y = window.innerHeight + (window.innerHeight / 2 - this.win.height / 2);
-        break;
-
-      case 'bottom':
-        this.win.position.y = window.innerHeight + (window.innerHeight - this.win.height);
-        break;
-
-      default:
-        this.win.position.y = window.innerHeight;
-        break;
-    }
-
-    this.win.setPosition = {
-      x: this.win.position.x,
-      y: this.win.position.y
-    }
-
-  }
-
-
-  /////////////////////////
-  //    Control Logic    //
-  /////////////////////////
-
-  minimize() {
-    //TODO
-  }
-
-  maximize() {
-    if (this.win.rules.maximizable) {
-      if (this.win.state.maximized == false) {
-
-        this.renderer.addClass(this.win.element.nativeElement.firstChild, 'maximized');
-
-        this.win.setPosition = {x: 0, y: window.innerHeight};
-
-        this.win.state.maximized = true;
-        this.win.rules.disableResize = true;
-      }
-      else {
-        this.renderer.removeClass(this.win.element.nativeElement.firstChild, 'maximized');
-
-        this.win.setPosition = {
-          x: this.win.position.x,
-          y: this.win.position.y
-        }
-
-        this.win.state.maximized = false;
-        this.win.rules.disableResize = false;
-      }
-    }
-  }
-
-  //When maximized and then dragged the window demaximizes
-  //and puts itself aligned with the mouse position
-  demaximize() {
-    if (this.win.state.maximized == true) {
-      this.win.position = {
-        x: (this.mousePos.x - this.win.width / 2),
-        y: ( this.mousePos.y + window.innerHeight - 20)
-      }
-      this.maximize();
-    }
-  }
-
-  close() {
-    this.componentElement.nativeElement.remove();
-  }
-
-  ////////////////////////
-  //    Resize logic    //
-  ////////////////////////
-
-  //Anchor stores temporary point of the current resize CdkDragMove event
-  anchor: PointModel = {x: 0, y: 0};
-  newPosition: PointModel = {x: 0, y: 0};
-
-  initialHeight!: number;
-  initialWidth!: number;
-
-  mousePos: PointModel = {x: 0, y: 0};
-
-  storeMousePos(event: MouseEvent) {
-    this.mousePos = {
-      x: event.x,
-      y: event.y
-    }
-  }
-
-  storeWindowPos(event: CdkDragEnd) {
-    this.win.position = event.source.getFreeDragPosition();
-  }
-
-  //Sets some variables when the resize drag starts, we use them later
-  startResize() {
-    this.initialHeight = this.win.height;
-    this.initialWidth = this.win.width;
-
-    this.newPosition = {
-      x: this.win.position.x,
-      y: this.win.position.y
-    }
-  }
-
-  resize(dragEvent: CdkDragMove, direction: string) {
-
-    switch (direction) {
-      //Height, Y
-      case 'n':
-        this.anchor = dragEvent.source.getFreeDragPosition();
-
-        //Checks that the new position and dimesions produce a minHeight lower than the required
-        if ( (this.initialHeight - this.anchor.y) >= this.win.minHeight) {
-          this.newPosition = {
-            x: this.win.position.x,
-            y: this.win.position.y + this.anchor.y
-          }
-
-          this.win.height = this.initialHeight - this.anchor.y;
-          this.win.height = setHeight(this.win.element, this.win.height, this.win.minHeight);
-        }
-
-        //Sets the new position
-        this.win.setPosition = {
-          x: this.newPosition.x,
-          y: this.newPosition.y
-        }
-
-        //Devuleve el div de resize a su posicion 0 0
-        this.win.resize.n = {x: 0, y: 0};
-
-        break;
-
-      //Height, Width, Y
-      case 'ne':
-        this.anchor = dragEvent.source.getFreeDragPosition();
-
-        //Checks that the new position and dimesions produce a minHeight lower than the required
-        if ( (this.initialHeight - this.anchor.y) >= this.win.minHeight) {
-          this.newPosition = {
-            x: this.win.position.x,
-            y: this.win.position.y + this.anchor.y
-          }
-
-          this.win.height = this.initialHeight - this.anchor.y;
-          this.win.height = setHeight(this.win.element, this.win.height, this.win.minHeight);
-        }
-
-        //Sets the new position
-        this.win.setPosition = {
-          x: this.newPosition.x,
-          y: this.newPosition.y
-        }
-
-        //Devuleve el div de resize a su posicion 0 0
-        this.win.resize.ne = {x: 0, y: 0};
-
-        this.win.width = (this.initialWidth + this.anchor.x);
-        this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
-
-        break;
-
-      //Width
-      case 'e':
-        this.anchor = dragEvent.source.getFreeDragPosition();
-
-        //Devuleve el div de resize a su posicion 0 0
-        this.win.resize.e = {x: 0, y: 0};
-
-        this.win.width = (this.initialWidth + this.anchor.x);
-        this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
-
-        break;
-
-      //Width, Height
-      case 'se':
-        this.anchor = dragEvent.source.getFreeDragPosition();
-
-        //Devuleve el div de resize a su posicion 0 0
-        this.win.resize.se = {x: 0, y: 0};
-
-        this.win.width = (this.initialWidth + this.anchor.x);
-        this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
-
-        this.win.height = this.initialHeight + this.anchor.y;
-        this.win.height = setHeight(this.win.element, this.win.height, this.win.minHeight);
-
-        break;
-
-      //Height
-      case 's':
-        this.anchor = dragEvent.source.getFreeDragPosition();
-
-        //Devuleve el div de resize a su posicion 0 0
-        this.win.resize.s = {x: 0, y: 0};
-
-        this.win.height = this.initialHeight + this.anchor.y;
-        this.win.height = setHeight(this.win.element, this.win.height, this.win.minHeight);
-
-        break;
-
-      //Height, Width, X
-      case 'sw':
-        this.anchor = dragEvent.source.getFreeDragPosition();
-
-        //Checks that the new position and dimesions produce a minHeight lower than the required
-        if ( (this.initialWidth - this.anchor.x) >= this.win.minWidth) {
-          this.newPosition = {
-            x: this.win.position.x + this.anchor.x,
-            y: this.win.position.y
-          }
-
-          this.win.width = this.initialWidth - this.anchor.x;
-          this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
-        }
-
-        //Sets the new position
-        this.win.setPosition = {
-          x: this.newPosition.x,
-          y: this.newPosition.y
-        }
-
-        //Devuleve el div de resize a su posicion 0 0
-        this.win.resize.sw = {x: 0, y: 0};
-
-        this.win.height = (this.initialHeight + this.anchor.y);
-        this.win.height = setHeight(this.win.element, this.win.height, this.win.minHeight);
-
-        break;
-
-      //Width, X
-      case 'w':
-        this.anchor = dragEvent.source.getFreeDragPosition();
-
-        //Checks that the new position and dimesions produce a minHeight lower than the required
-        if ( (this.initialWidth - this.anchor.x) >= this.win.minWidth) {
-          this.newPosition = {
-            x: this.win.position.x + this.anchor.x,
-            y: this.win.position.y
-          }
-
-          this.win.width = this.initialWidth - this.anchor.x;
-          this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
-        }
-
-        //Sets the new position
-        this.win.setPosition = {
-          x: this.newPosition.x,
-          y: this.newPosition.y
-        }
-
-        //Devuleve el div de resize a su posicion 0 0
-        this.win.resize.w = {x: 0, y: 0};
-
-        break;
-
-      //Width, Height, X, Y
-      case 'nw':
-        this.anchor = dragEvent.source.getFreeDragPosition();
-
-        //Checks that the new position and dimesions produce a minHeight lower than the required
-        if ( (this.initialWidth - this.anchor.x) >= this.win.minWidth )
-        {
-          this.newPosition.x = (this.win.position.x + this.anchor.x);
-
-          this.win.width = this.initialWidth - this.anchor.x;
-          this.win.width = setWidth(this.win.element, this.win.width, this.win.minWidth);
-        }
-
-        if ( (this.initialHeight - this.anchor.y) >= this.win.minHeight )
-        {
-          this.newPosition.y = (this.win.position.y + this.anchor.y);
-
-          this.win.height = this.initialHeight - this.anchor.y;
-          this.win.height = setHeight(this.win.element, this.win.height, this.win.minHeight);
-        }
-
-        //Sets the new position
-        this.win.setPosition = {
-          x: this.newPosition.x,
-          y: this.newPosition.y
-        }
-
-        //Devuleve el div de resize a su posicion 0 0
-        this.win.resize.nw = {x: 0, y: 0};
-
-        break;
-    }
-  }
-
-  //When the resize drag has ended sets the newPosition as the stored position
-  endResize() {
-    this.win.position = {
-      x: this.newPosition.x,
-      y: this.newPosition.y
-    }
-  }
-
-
-
-  //////////////////////////////
-  //  Other user interaction  //
-  //////////////////////////////
-
-  //When a window is clicked we want to change it's z-index value and apply some styles
-  focus() {
-
-    //First we increase the z-index of the clicked window
-    this.lastZIndex = this.globalConfigService.getZIndex();
-
-    if (this.win.state.zIndex != this.lastZIndex) {
-      this.lastZIndex++;
-      this.globalConfigService.setZIndex(this.lastZIndex);
-
-      this.win.state.zIndex = this.lastZIndex;
-      setStyle(this.win.element, '--zIndex', `${this.win.state.zIndex}`)
-    }
-
-    //After that we remove the 'focused' class from all the windows
-    let focused = document.getElementsByClassName("focused");
-    let i: number = 0;
-    while (i < focused.length) {
-      this.renderer.removeClass(focused[i], 'focused');
-      i++;
-    }
-
-    //We add the 'focused' class to the current window
-    this.renderer.addClass(this.win.element.nativeElement.firstChild, "focused");
-  }
-
-  //When releasing the os-window the user may leave it outside of the browser window
-  //which would make it imposible to interact with the component again,
-  //this makes the window 'bounce' back into sight
-  correctEndPosition(event: CdkDragEnd) {
-
-    //Fix for Y position, the window-bar will always be visible
-    if (this.win.position.y < window.innerHeight) {
-
-      this.win.position.y = window.innerHeight;
-
-      this.win.setPosition = {
-        x: this.win.position.x,
-        y: this.win.position.y
-      }
-
-    }
-    else if (this.win.position.y > ( window.innerHeight * 2 - 40) ) {
-
-      this.win.position.y = ( window.innerHeight * 2 - 40);
-
-      this.win.setPosition = {
-        x: this.win.position.x,
-        y: this.win.position.y
-      }
-    }
-
-    //Fix for X position, a quarter of the window will always be visible
-    if (this.win.position.x < -(this.win.width / 4 * 3) ) {
-
-      this.win.position.x = -(this.win.width / 4 * 3);
-
-      this.win.setPosition = {
-        x: this.win.position.x,
-        y: this.win.position.y
-      }
-
-    }
-    else if (this.win.position.x > (window.innerWidth - this.win.width / 4) ) {
-
-      this.win.position.x = (window.innerWidth - this.win.width / 4);
-
-      this.win.setPosition = {
-        x: this.win.position.x,
-        y: this.win.position.y
-      }
-    }
-  }
-
-
-  ////////////////////////
-  //       Style        //
-  ////////////////////////
-
-  
-
-  loadGlobalStyles() {
-    this.win.style.theme = this.globalConfigData.theme;
-    this.win.style.variant = this.globalConfigData.variant;
-
-    //Adds theme class
-    this.renderer.addClass(this.win.element.nativeElement, `${this.win.style.theme}-${this.win.style.variant}`);
-  }
-
-  loadStyles(_theme: String, _variant: String) {
-
-    if (_theme !== "" && _theme !== undefined && _variant !== "" && _variant !== undefined) {
-
-      //Removes old theme class
-      if (this.win.style.theme !== "" && this.win.style.theme !== undefined && this.win.style.variant !== "" && this.win.style.variant !== undefined) {
-        this.renderer.removeClass(this.win.element.nativeElement, `${this.win.style.theme}-${this.win.style.variant}`);
-      }
-
-      this.win.style.theme = _theme;
-      this.win.style.variant = _variant;
-
-      //Adds theme class
-      this.renderer.addClass(this.win.element.nativeElement, `${this.win.style.theme}-${this.win.style.variant}`);
-    } else {
-
-      this.loadGlobalStyles()
-    }
-  }
-
-  subscribeStyles(changes: SimpleChanges) {
-    
-    if (changes != undefined && changes.theme != undefined && changes.variant != undefined) {
-      
-      this.loadStyles(changes.theme.currentValue, changes.variant.currentValue);
-    }
-  }
-
-  ////////////////////////
-  //       Rules        //
-  ////////////////////////
-
-  loadRules() {
-    //Minimizable?
-    if (!this.win.rules.minimizable) {
-      setStyle(this.win.element, '--minimizeButton', 'none');
-    }
-
-    //Maximizable?
-    if (!this.win.rules.maximizable) {
-      setStyle(this.win.element, '--maximizeButton', 'none');
-    }
-
-    //Closable?
-    if (!this.win.rules.closable) {
-      setStyle(this.win.element, '--closeButton', 'none');
-    }
-
-    //Resizable?
-    if (this.win.rules.disableResize) {
-      setStyle(this.win.element, '--cursorN', 'auto')
-      setStyle(this.win.element, '--cursorNE', 'auto')
-      setStyle(this.win.element, '--cursorE', 'auto')
-      setStyle(this.win.element, '--cursorSE', 'auto')
-      setStyle(this.win.element, '--cursorS', 'auto')
-      setStyle(this.win.element, '--cursorSW', 'auto')
-      setStyle(this.win.element, '--cursorW', 'auto')
-      setStyle(this.win.element, '--cursorNW', 'auto')
-    }
+    this.win.subscribeStyles(changes);
   }
 }
-
-

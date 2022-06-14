@@ -12,93 +12,88 @@ TO DO:
 
 <div #osWindowParent
     class="os-window-parent"
-    (mousedown)="focus()">
+    (mousedown)="this.win.focus()">
 
     <div class="os-window"
         fxLayout="column"
         fxLayoutAlign="start stretch"
         cdkDrag
-        (cdkDragStarted)="demaximize()"
-        (cdkDragEnded)="storeWindowPos($event)"
-        (cdkDragEnded)="correctEndPosition($event)"
-        [cdkDragFreeDragPosition]="this.win.setPosition"
-        (mousedown)="storeMousePos($event)"
-        (mousedown)="focus()">
+        (cdkDragStarted)="this.win.demaximize()"
+        (cdkDragEnded)="this.win.correctEndPosition($event)"
+        [cdkDragFreeDragPosition]="this.win.position.current"
+        (mousedown)="this.win.storeMousePos($event)"
+        (mousedown)="this.win.focus()">
 
         <div cdkDrag
             cdkDragLockAxis="y"
-            (cdkDragStarted)="startResize()"
-            (cdkDragMoved)="resize($event, 'n')"
-            (cdkDragEnded)="endResize()"
-            [cdkDragFreeDragPosition]="this.win.resize.n"
+            (cdkDragStarted)="this.win.startResize()"
+            (cdkDragMoved)="this.win.resize($event, 'n')"
+            (cdkDragEnded)="this.win.endResize()"
+            [cdkDragFreeDragPosition]="this.win.cdkAnchors.n"
             [cdkDragDisabled]="this.win.rules.disableResize"
-            (mousedown)="focus()"
+            (mousedown)="this.win.focus()"
             class="window-resize n"></div>
         <div
             cdkDrag
-            (cdkDragStarted)="startResize()"
-            (cdkDragMoved)="resize($event, 'ne')"
-            (cdkDragEnded)="endResize()"
-            [cdkDragFreeDragPosition]="this.win.resize.ne"
+            (cdkDragStarted)="this.win.startResize()"
+            (cdkDragMoved)="this.win.resize($event, 'ne')"
+            [cdkDragFreeDragPosition]="this.win.cdkAnchors.ne"
             [cdkDragDisabled]="this.win.rules.disableResize"
-            (mousedown)="focus()"
+            (mousedown)="this.win.focus()"
             class="window-resize ne"></div>
         <div
             cdkDrag
             cdkDragLockAxis="x"
-            (cdkDragStarted)="startResize()"
-            (cdkDragMoved)="resize($event, 'e')"
-            (cdkDragEnded)="endResize()"
-            [cdkDragFreeDragPosition]="this.win.resize.e"
+            (cdkDragStarted)="this.win.startResize()"
+            (cdkDragMoved)="this.win.resize($event, 'e')"
+            [cdkDragFreeDragPosition]="this.win.cdkAnchors.e"
             [cdkDragDisabled]="this.win.rules.disableResize"
-            (mousedown)="focus()"
+            (mousedown)="this.win.focus()"
             class="window-resize e"></div>
         <div
             cdkDrag
-            (cdkDragStarted)="startResize()"
-            (cdkDragMoved)="resize($event, 'se')"
-            (cdkDragEnded)="endResize()"
-            [cdkDragFreeDragPosition]="this.win.resize.se"
+            (cdkDragStarted)="this.win.startResize()"
+            (cdkDragMoved)="this.win.resize($event, 'se')"
+            [cdkDragFreeDragPosition]="this.win.cdkAnchors.se"
             [cdkDragDisabled]="this.win.rules.disableResize"
-            (mousedown)="focus()"
+            (mousedown)="this.win.focus()"
             class="window-resize se"></div>
         <div
             cdkDrag
             cdkDragLockAxis="y"
-            (cdkDragStarted)="startResize()"
-            (cdkDragMoved)="resize($event, 's')"
-            (cdkDragEnded)="endResize()"
-            [cdkDragFreeDragPosition]="this.win.resize.s"
+            (cdkDragStarted)="this.win.startResize()"
+            (cdkDragMoved)="this.win.resize($event, 's')"
+            [cdkDragFreeDragPosition]="this.win.cdkAnchors.s"
             [cdkDragDisabled]="this.win.rules.disableResize"
-            (mousedown)="focus()"
+            (mousedown)="this.win.focus()"
             class="window-resize s"></div>
         <div
             cdkDrag
-            (cdkDragStarted)="startResize()"
-            (cdkDragMoved)="resize($event, 'sw')"
-            (cdkDragEnded)="endResize()"
-            [cdkDragFreeDragPosition]="this.win.resize.sw"
+            (cdkDragStarted)="this.win.startResize()"
+            (cdkDragMoved)="this.win.resize($event, 'sw')"
+            (cdkDragEnded)="this.win.endResize()"
+            [cdkDragFreeDragPosition]="this.win.cdkAnchors.sw"
             [cdkDragDisabled]="this.win.rules.disableResize"
-            (mousedown)="focus()"
+            (mousedown)="this.win.focus()"
             class="window-resize sw"></div>
         <div
             cdkDrag
             cdkDragLockAxis="x"
-            (cdkDragStarted)="startResize()"
-            (cdkDragMoved)="resize($event, 'w')"
-            (cdkDragEnded)="endResize()"
-            [cdkDragFreeDragPosition]="this.win.resize.w"
+            (cdkDragStarted)="this.win.startResize()"
+            (cdkDragMoved)="this.win.resize($event, 'w')"
+            (cdkDragEnded)="this.win.endResize()"
+            [cdkDragFreeDragPosition]="this.win.cdkAnchors.w"
             [cdkDragDisabled]="this.win.rules.disableResize"
-            (mousedown)="focus()"
+            (mousedown)="this.win.focus()"
             class="window-resize w"></div>
         <div
             cdkDrag
-            (cdkDragStarted)="startResize()"
-            (cdkDragMoved)="resize($event, 'nw')"
-            (cdkDragEnded)="endResize()"
-            [cdkDragFreeDragPosition]="this.win.resize.nw"
+            (cdkDragStarted)="this.win.startResize()"
+            (cdkDragMoved)="this.win.resize($event, 'nw')"
+            (cdkDragEnded)="this.win.endResize()"
+            [cdkDragFreeDragPosition]="this.win.cdkAnchors.nw"
             [cdkDragDisabled]="this.win.rules.disableResize"
-            (mousedown)="focus()"
+            (mousedown)="this.win.focus()"
             class="window-resize nw"></div>
 
 
@@ -108,7 +103,7 @@ TO DO:
                 cdkDragHandle
                 fxLayout="row"
                 fxLayoutAlign="space-evenly center"
-                (dblclick)="maximize()">
+                (dblclick)="this.win.maximize()">
 
                 <div class="window-title"
                     fxFlex>
@@ -120,9 +115,9 @@ TO DO:
                 <div class="controls-container"
                     fxLayoutAlign="space-between center">
 
-                    <button class="controls minimize" (click)="minimize()"></button>
-                    <button class="controls maximize" (click)="maximize()"></button>
-                    <button class="controls close" (click)="close()"></button>
+                    <button class="controls minimize" (click)="this.win.minimize()"></button>
+                    <button class="controls maximize" (click)="this.win.maximize()"></button>
+                    <button class="controls close" (click)="this.win.close()"></button>
                 </div>
             </div>
         </div>
