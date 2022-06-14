@@ -12,7 +12,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { OsConfigModel } from "../../models/OsConfig.model";
+import { StyleModel } from "../../models/Style.model";
 import { OsConfigService } from "../../services/os-config/os-config.service";
 
 //Button Selectors: Normal, Warn, Icon, FAB
@@ -29,7 +29,7 @@ import { OsConfigService } from "../../services/os-config/os-config.service";
 export class OsButtonComponent implements OnInit {
 
   //Stores data from OsThemeComponent
-  globalConfigData: OsConfigModel = {
+  globalConfigData: StyleModel = {
     theme: "arc",
     variant: "light"
   };

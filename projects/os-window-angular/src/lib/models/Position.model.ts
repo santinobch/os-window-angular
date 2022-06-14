@@ -1,5 +1,9 @@
+import { TwoPointModel } from "./TwoPoint.model";
+import { ZIndexModel } from "./ZIndex.model";
+
 export interface PositionModel {
-  x: number;
-  y: number;
-  z: number;
+    resize: TwoPointModel,
+    current: TwoPointModel,
+    next: TwoPointModel
+    zIndex: ZIndexModel
 }

@@ -3,9 +3,10 @@ import { ElementRef, Renderer2, SimpleChanges } from '@angular/core'
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { OsConfigService } from '../services/os-config/os-config.service';
-import { OsConfigModel } from './OsConfig.model';
-import { PointModel } from "./Point.model";
+import { TwoPointModel } from "./TwoPoint.model";
+import { PositionModel } from "./Position.model";
 import { ResizeModel } from "./Resize.model";
+import { StyleModel } from "./Style.model";
 
 export function clamp(v: Number, min = 0, max = Number.MAX_SAFE_INTEGER) {
   return Math.max(min, Math.min(max, coerceNumberProperty(v) ) );
@@ -16,17 +17,15 @@ export class OsWindow {
   
   public element!: ElementRef<HTMLElement>;
 
-  private globalConfigData!: OsConfigModel;
+  private globalConfigData!: StyleModel;
 
   private initialHeight!: number;
   private initialWidth!: number;
 
-  private mousePos: PointModel = {x: 0, y: 0};
+  private mousePos: TwoPointModel = {x: 0, y: 0};
 
-  //z-index of the current window
-  private lastZIndex: number = 1;
   //Anchor stores temporary point of the current resize CdkDragMove event
-  private anchor: PointModel = {x: 0, y: 0};
+  private anchor: TwoPointModel = {x: 0, y: 0};
   
 
 
@@ -36,14 +35,14 @@ export class OsWindow {
   public height: number = 200;
   public width: number = 200;
 
-  public position: {
-    resize: PointModel,
-    current: PointModel,
-    next: PointModel
-  } = {
+  public position: PositionModel = {
     resize: {x: 0, y: 0},
     current: {x: 0, y: 0},
-    next: {x: 0, y: 0}
+    next: {x: 0, y: 0},
+    zIndex: {
+      current: 0,
+      next: 1
+    }
   }
 
   public cdkAnchors: ResizeModel = {
@@ -58,7 +57,6 @@ export class OsWindow {
   };
 
   public state = {
-    zIndex: 0,
     minimized: false,
     maximized: false
   };
@@ -434,14 +432,15 @@ export class OsWindow {
   focus() {
 
     //First we increase the z-index of the clicked window
-    this.lastZIndex = this.globalConfigService.getZIndex();
+    this.position.zIndex.next = this.globalConfigService.getZIndex();
 
-    if (this.state.zIndex != this.lastZIndex) {
-      this.lastZIndex++;
-      this.globalConfigService.setZIndex(this.lastZIndex);
+    if (this.position.zIndex.current != this.position.zIndex.next) {
 
-      this.state.zIndex = this.lastZIndex;
-      this.setStyle(this.element, '--zIndex', `${this.state.zIndex}`)
+      this.position.zIndex.next++;
+      this.position.zIndex.current = this.position.zIndex.next;
+
+      this.globalConfigService.setZIndex(this.position.zIndex.current);
+      this.setStyle(this.element, '--zIndex', `${this.position.zIndex.current}`)
     }
 
     //After that we remove the 'focused' class from all the windows

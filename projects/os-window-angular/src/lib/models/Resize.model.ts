@@ -1,12 +1,12 @@
-import { PointModel } from "./Point.model";
+import { TwoPointModel } from "./TwoPoint.model";
 
 export interface ResizeModel {
-    n: PointModel,
-    ne: PointModel,
-    e: PointModel,
-    se: PointModel,
-    s: PointModel,
-    sw: PointModel,
-    w: PointModel,
-    nw: PointModel
+    n: TwoPointModel,
+    ne: TwoPointModel,
+    e: TwoPointModel,
+    se: TwoPointModel,
+    s: TwoPointModel,
+    sw: TwoPointModel,
+    w: TwoPointModel,
+    nw: TwoPointModel
 }
