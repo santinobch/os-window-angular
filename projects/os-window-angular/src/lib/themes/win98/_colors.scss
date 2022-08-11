@@ -1,0 +1,78 @@
+//
+// Basic colors
+// 
+
+//Classic colors
+$classic-base: #c0c0c0;
+$classic-disabled: #808080;
+$classic-shadows: #595856;
+
+$classic-light: white;
+$classic-dark: black;
+
+$classic-selected: #000080;
+
+//win98 vaporwave colors
+$vaporwave-base: #c1bac4;
+$vaporwave-disabled: #86758a;
+$vaporwave-shadows: #5b505e;
+
+$vaporwave-light: white;
+$vaporwave-dark: #210029;
+
+$vaporwave-selected: #d200ff;
+
+@function base($variant) { @return if($variant == "classic", $classic-base, $vaporwave-base) };
+@function disabled($variant) { @return if($variant == "classic", $classic-disabled, $vaporwave-disabled) };
+@function shadows($variant) { @return if($variant == "classic", $classic-shadows, $vaporwave-shadows) };
+
+@function light($variant) { @return if($variant == "classic", $classic-light, $vaporwave-light) };
+@function dark($variant) { @return if($variant == "classic", $classic-dark, $vaporwave-dark) };
+
+@function selected($variant) { @return if($variant == "classic", $classic-selected, $vaporwave-selected) };
+
+//
+// Background color pallete
+//
+$bg_red: hsl(0, 27%, 57%);
+$bg_orange: hsl(38, 15%, 54%);
+$bg_yellow: hsl(82, 27%, 53%);
+$bg_lime: hsl(100, 27%, 51%);
+$bg_green: hsl(120, 23%, 49%);
+$bg_aqua: hsl(174, 22%, 48%);
+$bg_blue: hsl(213, 32%, 52%);
+$bg_purple: hsl(278, 26%, 55%);
+$bg_magenta: hsl(322, 24%, 53%);
+
+@function bg_red() { @return $bg_red };
+@function bg_orange() { @return $bg_orange };
+@function bg_yellow() { @return $bg_yellow };
+@function bg_lime() { @return $bg_lime };
+@function bg_green() { @return $bg_green };
+@function bg_aqua() { @return $bg_aqua };
+@function bg_blue() { @return $bg_blue };
+@function bg_purple() { @return $bg_purple };
+@function bg_magenta() { @return $bg_magenta };
+
+//
+// Selected background color pallete
+//
+$focus_red: hsl(0, 30%, 45%);
+$focus_orange: hsl(38, 35%, 42%);
+$focus_yellow: hsl(82, 34%, 41%);
+$focus_lime: hsl(100, 30%, 41%);
+$focus_green: hsl(120, 30%, 40%);
+$focus_aqua: hsl(174, 28%, 37%);
+$focus_blue: hsl(213, 37%, 43%);
+$focus_purple: hsl(278, 40%, 42%);
+$focus_magenta: hsl(322, 25%, 46%);
+
+@function focus_red() { @return $focus_red };
+@function focus_orange() { @return $focus_orange };
+@function focus_yellow() { @return $focus_yellow };
+@function focus_lime() { @return $focus_lime };
+@function focus_green() { @return $focus_green };
+@function focus_aqua() { @return $focus_aqua };
+@function focus_blue() { @return $focus_blue };
+@function focus_purple() { @return $focus_purple };
+@function focus_magenta() { @return $focus_magenta };

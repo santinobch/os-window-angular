@@ -123,13 +123,18 @@ export class OsWindow {
   }
 
   getGlobalConfig() {
-    this.globalConfigData = this.globalConfigService.getConfig();
+    this.globalConfigData = this.globalConfigService.getGlobal();
   }
 
   setDimesions() {
     this.width = this.setWidth(this.element, this.width, this.minWidth);
     this.height = this.setHeight(this.element, this.height, this.minHeight);
   }
+  
+
+  ////////////////////////
+  //      Position      //
+  ////////////////////////
 
   setPosition(positionStr: string[]) {
     switch (positionStr[0]) {
@@ -172,6 +177,96 @@ export class OsWindow {
 
     this.position.current = this.position.next;
   }
+
+
+  ////////////////////////
+  //       Style        //
+  ////////////////////////
+
+  loadGlobalStyles() {
+
+    this.getGlobalConfig();
+
+    if (this.style.theme != this.globalConfigData.theme || this.style.variant != this.globalConfigData.variant) {
+      this.renderer.removeClass(this.element.nativeElement, this.getStyleStr());
+    }
+
+    this.style.theme = this.globalConfigData.theme;
+    this.style.variant = this.globalConfigData.variant;
+
+    //Adds theme class
+    this.renderer.addClass(this.element.nativeElement, this.getStyleStr());
+  }
+
+  loadStyles(_theme: string, _variant: string) {
+
+    if (_theme !== "" && _theme !== undefined && _variant !== "" && _variant !== undefined) {
+
+      //Removes old theme class
+      if (this.style.theme !== "" && this.style.theme !== undefined && this.style.variant !== "" && this.style.variant !== undefined) {
+        this.renderer.removeClass(this.element.nativeElement, this.getStyleStr());
+      }
+
+      this.style.theme = _theme;
+      this.style.variant = _variant;
+
+      //Adds theme class
+      this.renderer.addClass(this.element.nativeElement, this.getStyleStr());
+    } else {
+
+      this.loadGlobalStyles()
+    }
+  }
+
+  subscribeStyles(changes: SimpleChanges) {
+    
+    if (changes != undefined && changes.theme != undefined && changes.variant != undefined) {
+      this.loadStyles(changes.theme.currentValue, changes.variant.currentValue);
+    }
+    //Only variant has changed
+    else if (changes.variant != undefined ) {
+      this.loadStyles(this.style.theme, changes.variant.currentValue);
+    } 
+  }
+
+
+  ////////////////////////
+  //       Rules        //
+  ////////////////////////
+
+  loadRules() {
+    //Minimizable?
+    if (!this.rules.minimizable) {
+      this.setStyle(this.element, '--minimizeButton', 'none');
+    }
+
+    //Maximizable?
+    if (!this.rules.maximizable) {
+      this.setStyle(this.element, '--maximizeButton', 'none');
+    }
+
+    //Closable?
+    if (!this.rules.closable) {
+      this.setStyle(this.element, '--closeButton', 'none');
+    }
+
+    //Resizable?
+    if (this.rules.disableResize) {
+      this.setStyle(this.element, '--cursorN', 'auto')
+      this.setStyle(this.element, '--cursorNE', 'auto')
+      this.setStyle(this.element, '--cursorE', 'auto')
+      this.setStyle(this.element, '--cursorSE', 'auto')
+      this.setStyle(this.element, '--cursorS', 'auto')
+      this.setStyle(this.element, '--cursorSW', 'auto')
+      this.setStyle(this.element, '--cursorW', 'auto')
+      this.setStyle(this.element, '--cursorNW', 'auto')
+    }
+  }
+
+
+  ////////////////////////
+  //      Controls      //
+  ////////////////////////
 
   minimize() {
     //TODO
@@ -217,89 +312,7 @@ export class OsWindow {
 
 
   ////////////////////////
-  //       Style        //
-  ////////////////////////
-
-  
-  loadGlobalStyles() {
-
-    this.getGlobalConfig();
-
-    if (this.style.theme != this.globalConfigData.theme || this.style.variant != this.globalConfigData.variant) {
-      this.renderer.removeClass(this.element.nativeElement, this.getStyleStr());
-    }
-
-    this.style.theme = this.globalConfigData.theme;
-    this.style.variant = this.globalConfigData.variant;
-
-    //Adds theme class
-    this.renderer.addClass(this.element.nativeElement, this.getStyleStr());
-  }
-
-  loadStyles(_theme: string, _variant: string) {
-
-    if (_theme !== "" && _theme !== undefined && _variant !== "" && _variant !== undefined) {
-
-      //Removes old theme class
-      if (this.style.theme !== "" && this.style.theme !== undefined && this.style.variant !== "" && this.style.variant !== undefined) {
-        this.renderer.removeClass(this.element.nativeElement, this.getStyleStr());
-      }
-
-      this.style.theme = _theme;
-      this.style.variant = _variant;
-
-      //Adds theme class
-      this.renderer.addClass(this.element.nativeElement, this.getStyleStr());
-    } else {
-
-      this.loadGlobalStyles()
-    }
-  }
-
-  subscribeStyles(changes: SimpleChanges) {
-    
-    if (changes != undefined && changes.theme != undefined && changes.variant != undefined) {
-      
-      this.loadStyles(changes.theme.currentValue, changes.variant.currentValue);
-    }
-  }
-
-  ////////////////////////
-  //       Rules        //
-  ////////////////////////
-
-  loadRules() {
-    //Minimizable?
-    if (!this.rules.minimizable) {
-      this.setStyle(this.element, '--minimizeButton', 'none');
-    }
-
-    //Maximizable?
-    if (!this.rules.maximizable) {
-      this.setStyle(this.element, '--maximizeButton', 'none');
-    }
-
-    //Closable?
-    if (!this.rules.closable) {
-      this.setStyle(this.element, '--closeButton', 'none');
-    }
-
-    //Resizable?
-    if (this.rules.disableResize) {
-      this.setStyle(this.element, '--cursorN', 'auto')
-      this.setStyle(this.element, '--cursorNE', 'auto')
-      this.setStyle(this.element, '--cursorE', 'auto')
-      this.setStyle(this.element, '--cursorSE', 'auto')
-      this.setStyle(this.element, '--cursorS', 'auto')
-      this.setStyle(this.element, '--cursorSW', 'auto')
-      this.setStyle(this.element, '--cursorW', 'auto')
-      this.setStyle(this.element, '--cursorNW', 'auto')
-    }
-  }
-
-
-  ////////////////////////
-  //      Resize       //
+  // Resize & movement  //
   ////////////////////////
 
   storeMousePos(event: MouseEvent) {
@@ -418,9 +431,38 @@ export class OsWindow {
     }
   }
 
-
   endResize() {
     this.position.next = this.position.current;
+  }
+
+  //When releasing the os-window the user may leave it outside of the browser window
+  //which would make it imposible to interact with the component again,
+  //this makes the window 'bounce' back into sight
+  correctEndPosition(event: CdkDragEnd) {
+
+    this.position.next = event.source.getFreeDragPosition();
+
+    //Fix for Y position, the window-bar will always be visible
+    if (this.position.next.y < window.innerHeight) {
+
+      this.position.next.y = window.innerHeight;
+    }
+    else if (this.position.next.y > ( window.innerHeight * 2 - 40) ) {
+
+      this.position.next.y = ( window.innerHeight * 2 - 40);
+    }
+
+    //Fix for X position, a quarter of the window will always be visible
+    if (this.position.next.x < -(this.width / 4 * 3) ) {
+
+      this.position.next.x = -(this.width / 4 * 3);
+    }
+    else if (this.position.next.x > (window.innerWidth - this.width / 4) ) {
+
+      this.position.next.x = (window.innerWidth - this.width / 4);
+    }
+
+    this.position.current = this.position.next;
   }
 
 
@@ -453,35 +495,5 @@ export class OsWindow {
 
     //We add the 'focused' class to the current window
     this.renderer.addClass(this.element.nativeElement.firstChild, "focused");
-  }
-
-  //When releasing the os-window the user may leave it outside of the browser window
-  //which would make it imposible to interact with the component again,
-  //this makes the window 'bounce' back into sight
-  correctEndPosition(event: CdkDragEnd) {
-
-    this.position.next = event.source.getFreeDragPosition();
-
-    //Fix for Y position, the window-bar will always be visible
-    if (this.position.next.y < window.innerHeight) {
-
-      this.position.next.y = window.innerHeight;
-    }
-    else if (this.position.next.y > ( window.innerHeight * 2 - 40) ) {
-
-      this.position.next.y = ( window.innerHeight * 2 - 40);
-    }
-
-    //Fix for X position, a quarter of the window will always be visible
-    if (this.position.next.x < -(this.width / 4 * 3) ) {
-
-      this.position.next.x = -(this.width / 4 * 3);
-    }
-    else if (this.position.next.x > (window.innerWidth - this.width / 4) ) {
-
-      this.position.next.x = (window.innerWidth - this.width / 4);
-    }
-
-    this.position.current = this.position.next;
   }
 }

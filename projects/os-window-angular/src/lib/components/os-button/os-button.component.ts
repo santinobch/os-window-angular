@@ -1,38 +1,46 @@
+import { CssSelector } from '@angular/compiler';
 import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Inject,
   Input,
-  OnDestroy,
+  OnChanges,
   OnInit,
-  Optional,
   Renderer2,
-  ViewChild,
+  SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 import { StyleModel } from "../../models/Style.model";
 import { OsConfigService } from "../../services/os-config/os-config.service";
+import { HSLA, hexToHSL } from "../../utils/hexToHsl";
+import { theme_list } from "../../themes/theme_list";
 
-//Button Selectors: Normal, Warn, Icon, FAB
+//Button Selectors: Normal, Warn, Icon
 //Button States: Normal, Pressed, Disabled, Focused
 
 @Component({
-  selector: `button[os-button], button[os-circle-button], button[os-fab-button], button[os-warn-button],
-              a[os-button], a[os-circle-button], a[os-fab-button], a[os-warn-button]`,
+  selector: `button[os-button], button[os-icon-button], button[os-warn-button],
+              a[os-button], a[os-icon-button], a[os-warn-button]`,
   templateUrl: './os-button.component.html',
-  styleUrls: ['./os-button.component.scss'],
+  styleUrls: [
+    './os-button.component.scss',
+    '../../themes/_buttons.scss'
+  ],
   encapsulation: ViewEncapsulation.None
-  //changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OsButtonComponent implements OnInit {
+export class OsButtonComponent implements OnInit, OnChanges {
 
   //Stores data from OsThemeComponent
   globalConfigData: StyleModel = {
-    theme: "arc",
-    variant: "light"
+    theme: "",
+    variant: ""
   };
+
+  style: StyleModel = {
+    theme: "",
+    variant: ""
+  }
+
+  buttonColor: string = "";
 
   constructor(
     public componentElement: ElementRef, 
@@ -48,32 +56,96 @@ export class OsButtonComponent implements OnInit {
   //
   //  Component theme  //
   //
-  _theme!: string;
   @Input()
-  get theme(): string { return this._theme; }
-  set theme(v: string) { this._theme = v; };
+  get theme(): string { return this.style.theme; }
+  set theme(v: string) { };
 
-  _variant!: string;
   @Input()
-  get variant(): string { return this._variant; }
-  set variant(v: string) { this._variant = v; };
+  get variant(): string { return this.style.variant; }
+  set variant(v: string) { };
+
+  @Input()
+  get color(): string { return this.buttonColor }
+  set color(v: string) { this.buttonColor = v };
+
+  _src!: string;
+  @Input()
+  get src(): string { return this._src; }
+  set src(v: string) { this._src = v; };
+
+  _imgHeight!: string;
+  @Input()
+  get imgHeight(): string { return this._imgHeight; }
+  set imgHeight(v: string) { this._imgHeight = v; };
+
+  _imgWidth!: string;
+  @Input()
+  get imgWidth(): string { return this._imgWidth; }
+  set imgWidth(v: string) { this._imgWidth = v; };
+
+  
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
 
-    //Global theme config
-    this.globalConfigData = this.globalConfigService.getConfig();
-    
-    //Setting theme of component
-    if (this._theme !== "" && this._theme !== undefined && this._variant !== "" && this._variant !== undefined) {
+    this.loadStyles(this.style.theme, this.style.variant);
 
-      this.renderer.addClass(this.componentElement.nativeElement, `${this._theme}-${this._variant}-button`);
+    //Checks if the color is a valid color in the theme palette
+    theme_list.forEach(t => {
+      if (t.theme == this.style.theme) {
+
+        t.palette.forEach(p => {
+          if (this.buttonColor == p) {
+            
+            this.renderer.addClass(this.componentElement.nativeElement, 
+              this.buttonColor + "-os-button");
+          }
+        })
+      }
+    })
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes != undefined) {
+      if (changes.theme != undefined && changes.variant != undefined ) {
+        this.loadStyles(changes.theme.currentValue, changes.variant.currentValue);
+      } 
+      //Only variant has changed
+      else if (changes.variant != undefined ) {
+        this.loadStyles(this.style.theme, changes.variant.currentValue);
+      } 
+    } 
+  }
+
+  getStyleStr(): string {
+    return `${this.style.theme}-${this.style.variant}-button`;
+  }
+
+  loadStyles(_theme: string, _variant: string) {
+    if (_theme !== "" && _theme !== undefined && _variant !== "" && _variant !== undefined) {
+
+      //Removes old theme class
+      if (this.style.theme !== "" && this.style.theme !== undefined && this.style.variant !== "" && this.style.variant !== undefined) {
+        this.renderer.removeClass(this.componentElement.nativeElement, this.getStyleStr());
+      }
+
+      this.style.theme = _theme;
+      this.style.variant = _variant;
+
+      //Adds theme class
+      this.renderer.addClass(this.componentElement.nativeElement, this.getStyleStr());
     } else {
-      
-      this.renderer.addClass(this.componentElement.nativeElement, `${this.globalConfigData.theme}-${this.globalConfigData.variant}-button`);
+
+      this.loadGlobalStyles()
     }
   }
 
+  loadGlobalStyles() {
+    //Global theme config
+    this.globalConfigData = this.globalConfigService.getGlobal();
+    this.style = this.globalConfigData;
+    this.renderer.addClass(this.componentElement.nativeElement, this.getStyleStr());
+  }
 }

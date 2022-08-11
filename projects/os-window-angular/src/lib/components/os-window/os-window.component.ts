@@ -45,7 +45,6 @@ export class OsWindowComponent implements OnInit, OnChanges {
   @ViewChild('osWindowParent') osWindowParent!: ElementRef<HTMLElement>;
 
 
-
   constructor(
     private componentElement: ElementRef<HTMLElement>,
     private renderer: Renderer2,

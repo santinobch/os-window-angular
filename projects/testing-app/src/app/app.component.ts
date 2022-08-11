@@ -9,17 +9,16 @@ export class AppComponent implements AfterViewInit {
   title = 'testing-app';
 
   theme: boolean = true;
+  variant: boolean = true;
 
   ngAfterViewInit(): void {
-    this.timeOut()
   }
 
+  toggleTheme() {
+    this.theme = !this.theme;
+  }
 
-  timeOut() {
-    setTimeout(() => {
-      this.theme = !this.theme;
-
-      this.timeOut();
-    }, 2000);
+  toggleVariant() {
+    this.variant = !this.variant;
   }
 }

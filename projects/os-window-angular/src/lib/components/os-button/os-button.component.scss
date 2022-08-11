@@ -1,20 +1,28 @@
 a[os-button], 
-a[os-circle-button], 
-a[os-fab-button], 
+a[os-icon-button], 
 a[os-warn-button],
 button[os-button], 
-button[os-circle-button], 
-button[os-fab-button], 
+button[os-icon-button],
 button[os-warn-button] {
     outline: 0;
-    border: none;
     text-decoration: none;
 
-    border-radius: 5px;
-    line-height: 36px;
     max-height: 64px;
-    padding: 0 16px;
+    padding: 10px;
     margin: 5px;
 
     display: inline-block;
+}
+
+
+
+a[os-icon-button],
+button[os-icon-button] {
+    img {
+        --imgWidth: 16px;
+        --imgHeight: 16px;
+
+        width: var(--imgWidth);
+        height: var(--imgHeight);
+    }
 }

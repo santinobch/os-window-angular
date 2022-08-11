@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SharedModel } from '../../models/Shared.model';
 import { StyleModel } from "../../models/Style.model";
 
 @Injectable({
@@ -8,27 +9,37 @@ export class OsConfigService {
 
   constructor() { }
 
-  private _config: StyleModel = {
+  private globalStyles: StyleModel = {
     theme: "arc",
     variant: "light"
   };
 
-  getConfig(): StyleModel {
-    return this._config;
+  private sharedData!: SharedModel[];
+
+  setShared(shared: SharedModel) {
+    this.sharedData.push(shared);
   }
 
-  setConfig(config: StyleModel) {
-    this._config = config;
+  getShared(): SharedModel[] {
+    return this.sharedData;
+  }
+
+  getGlobal(): StyleModel {
+    return this.globalStyles;
+  }
+
+  setGlobal(config: StyleModel) {
+    this.globalStyles = config;
   }
 
 
-  private _zIndex: number = 1;
+  private zIndex: number = 1;
 
   getZIndex(): number {
-    return this._zIndex;
+    return this.zIndex;
   }
 
   setZIndex(zIndex: number) {
-    this._zIndex = zIndex;
+    this.zIndex = zIndex;
   }
 }

@@ -1,5 +1,3 @@
-
-
 @import './fonts';
 
 // provide font size in rem, with px fallback
@@ -40,12 +38,15 @@
     $disabled_color: if($variant !='vaporwave', $classic-disabled, $vaporwave-disabled);
     $shadow_color: if($variant !='vaporwave', $classic-shadows, $vaporwave-shadows);
 
+
     $text_color: if($variant !='vaporwave', $classic-dark, $vaporwave-dark);
     $light_color: if($variant !='vaporwave', $classic-light, $vaporwave-light);
     $dark_color: if($variant !='vaporwave', $classic-dark, $vaporwave-dark);
 
     $selected_fg_color: white;
     $selected_bg_color: if($variant !='vaporwave', $classic-selected, $vaporwave-selected);
+
+    $unselected: if($variant !='vaporwave', $classic-unselected, $vaporwave-unselected);
 
     //Links
     $link_color: if($variant =='vaporwave', darken($selected_bg_color,10%),
@@ -303,6 +304,22 @@
             height: 14px;
             width: 14px;
         }
+    }
+
+    //
+    // Buttons
+    //
+
+    .window-content ::ng-deep {
+        a[os-button],
+        a[os-fab-button],
+        a[os-warn-button]
+        { color: $text_color; }
+
+        a[os-button][disabled],
+        a[os-fab-button][disabled],
+        a[os-warn-button][disabled]
+        { color: $unselected; }
     }
 }
 
