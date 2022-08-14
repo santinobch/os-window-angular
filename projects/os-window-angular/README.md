@@ -8,29 +8,30 @@ Read the wiki on how to [get started](https://github.com/santinobch/os-window-an
 
 ## Yes it works :D ! Here are some features:
 
-### Movement
+### Multiple Themes!
 
-![Movement](https://imgur.com/b82u1rS.gif)
-
-### Bounce
-
-![Bounce](https://imgur.com/U9LVqQa.gif)
+![Multiple Windows](https://i.imgur.com/c9pwlUR.gif)
 
 ### Resize
 
-![Resize](https://imgur.com/uiC5B74.gif)
+![Resize](https://i.imgur.com/3xcHM7j.gif)
+
+### Movement
+
+![Movement](https://i.imgur.com/CGX0C3A.gif)
+
+### Bounce
+
+![Bounce](https://i.imgur.com/z5CDnW9.gif)
 
 ### Maximize
 
-![Maximize](https://imgur.com/una0RIr.gif)
+![Maximize](https://i.imgur.com/gFmpKBB.gif)
 
 ### Close
 
-![Close](https://imgur.com/LXcAj0B.gif)
+![Close](https://i.imgur.com/I7ZlKEY.gif)
 
-### Multiple Windows
-
-![Multiple Windows](https://imgur.com/UYRctFE.gif)
 
 ## Roadmap
 
@@ -38,7 +39,7 @@ At the moment, im working on this alone in my free time, using this to build my 
 
 If i have enough time i will keep this updated periodically. 
 
-If you want to help me, start by reading [Compiling the Library](https://github.com/santinobch/os-window-angular/wiki/Compiling-the-library), and please contact me directly (@VitoDraws on twitter) or start an **issue**.
+If you want to help me, start by reading [Compiling the Library](https://github.com/santinobch/os-window-angular/wiki/Compiling-the-library), and please start an **issue**.
 
 (づ｡◕‿‿◕｡)づ
 
