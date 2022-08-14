@@ -1,16 +1,10 @@
 # OS window like, component for Angular
 
+Demo: https://santinobch.github.io/os-window-angular/
+
 ## Getting started
 
 Read the wiki on how to [get started](https://github.com/santinobch/os-window-angular/wiki/Getting-Started), i promise it's a light read ;)
-
-## Compiling the library
-
-I have made a custom npm script that compiles the library automatically: 
-
-```npm run compile```
-
-This will delete `./dist`. After that run `ng serve` to start the App Demo/Testing App
 
 ## Yes it works :D ! Here are some features:
 
@@ -44,14 +38,15 @@ At the moment, im working on this alone in my free time, using this to build my 
 
 If i have enough time i will keep this updated periodically. 
 
-If you want to help please contact me directly (@VitoDraws on twitter) or start an **issue** 
+If you want to help me, start by reading [Compiling the Library](https://github.com/santinobch/os-window-angular/wiki/Compiling-the-library), and please contact me directly (@VitoDraws on twitter) or start an **issue**.
 
- (づ｡◕‿‿◕｡)づ
+(づ｡◕‿‿◕｡)づ
 
-Things i want to implement:
+Things i want to implement/fix before 1.0:
 
 - At the moment changing for example the theme of a window at runtime will not work, themes can only be applyed at component initialization.
 - Zoom fix (At the moment zooming a maximized window will make some weird behavior)
+- Resize Z-Index fix (Resizing a window will not change it's z-index value)
 - The Win98 Vaporwave theme needs some love
 - Buttons, all of them: Radio, Switches, Checkboxes, etc...
 - Text inputs

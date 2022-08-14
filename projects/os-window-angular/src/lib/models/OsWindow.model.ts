@@ -7,6 +7,7 @@ import { TwoPointModel } from "./TwoPoint.model";
 import { PositionModel } from "./Position.model";
 import { ResizeModel } from "./Resize.model";
 import { StyleModel } from "./Style.model";
+import { SizeModel } from './Size.model';
 
 export function clamp(v: Number, min = 0, max = Number.MAX_SAFE_INTEGER) {
   return Math.max(min, Math.min(max, coerceNumberProperty(v) ) );
@@ -19,21 +20,33 @@ export class OsWindow {
 
   private globalConfigData!: StyleModel;
 
-  private initialHeight!: number;
-  private initialWidth!: number;
-
   private mousePos: TwoPointModel = {x: 0, y: 0};
 
   //Anchor stores temporary point of the current resize CdkDragMove event
   private anchor: TwoPointModel = {x: 0, y: 0};
   
-
-
   public minHeight: number = 200;
   public minWidth: number = 200;
 
-  public height: number = 200;
-  public width: number = 200;
+
+  // private initialHeight!: number;
+  // private initialWidth!: number;
+
+  //public height: number = 200;
+  //public width: number = 200;
+
+  public size: SizeModel = {
+    height: {
+      previous: 200,
+      current: 200,
+      unit: 'px'
+    },
+    width: {
+      previous: 200,
+      current: 200,
+      unit: 'px'
+    }
+  }
 
   public position: PositionModel = {
     resize: {x: 0, y: 0},
@@ -84,12 +97,6 @@ export class OsWindow {
 
 
 
-  private highest(input: number, max: number) {
-      let n: number = input >= max ? input : max;
-      return n;
-  }
-
-
   private setStyle(_elementRef: ElementRef, property: string, value: string)  {
       _elementRef.nativeElement.style.setProperty(property, value);
   }
@@ -97,23 +104,26 @@ export class OsWindow {
   private getStyle(_elementRef: ElementRef, property: string) {
       return getComputedStyle(_elementRef.nativeElement).getPropertyValue(property);
   }
+
+  private clamp(input: number, max: number) {
+    let n: number = input >= max ? input : max;
+    return n;
+  }
   
-  private setHeight(_elementRef: ElementRef, _height: number, _minHeight?: number) {
+  private clampHeight(_elementRef: ElementRef, _height: number, _minHeight?: number) {
   
       if (_minHeight) {
-          _height = this.highest(_height, _minHeight)
+          _height = this.clamp(_height, _minHeight)
       }
-      this.setStyle(_elementRef, '--winHeight', `${_height}px`);
       
       return _height;
   }
   
-  private setWidth(_elementRef: ElementRef, _width: number, _minWidth?: number) {
+  private clampWidth(_elementRef: ElementRef, _width: number, _minWidth?: number) {
   
       if (_minWidth) {
-          _width = this.highest(_width, _minWidth)
+          _width = this.clamp(_width, _minWidth)
       }
-      this.setStyle(_elementRef, '--winWidth', `${_width}px`);
       
       return _width;
   }
@@ -127,8 +137,8 @@ export class OsWindow {
   }
 
   setDimesions() {
-    this.width = this.setWidth(this.element, this.width, this.minWidth);
-    this.height = this.setHeight(this.element, this.height, this.minHeight);
+    this.size.width.current = this.clampWidth(this.element, this.size.width.current, this.minWidth);
+    this.size.height.current = this.clampHeight(this.element, this.size.height.current, this.minHeight);
   }
   
 
@@ -143,11 +153,11 @@ export class OsWindow {
         break;
 
       case 'center':
-        this.position.next.x = (window.innerWidth / 2 - this.width / 2);
+        this.position.next.x = (window.innerWidth / 2 - this.size.width.current / 2);
         break;
 
       case 'right':
-        this.position.next.x = (window.innerWidth - this.width);
+        this.position.next.x = (window.innerWidth - this.size.width.current);
           break;
 
       default:
@@ -163,11 +173,11 @@ export class OsWindow {
         break;
 
       case 'center':
-        this.position.next.y = window.innerHeight + (window.innerHeight / 2 - this.height / 2);
+        this.position.next.y = window.innerHeight + (window.innerHeight / 2 - this.size.height.current / 2);
         break;
 
       case 'bottom':
-        this.position.next.y = window.innerHeight + (window.innerHeight - this.height);
+        this.position.next.y = window.innerHeight + (window.innerHeight - this.size.height.current);
         break;
 
       default:
@@ -275,16 +285,26 @@ export class OsWindow {
   maximize() {
     if (this.rules.maximizable) {
       if (this.state.maximized == false) {
+        //Saving value for later
+        this.size.height.previous = this.size.height.current;
+        this.size.width.previous = this.size.width.current;
 
-        this.renderer.addClass(this.element.nativeElement.firstChild, 'maximized');
-
+        this.size.height.current = 100;
+        this.size.height.unit = 'vh';
+        this.size.width.current = 100;
+        this.size.width.unit = 'vw';
+        
         this.position.current = {x: 0, y: window.innerHeight};
 
         this.state.maximized = true;
         this.rules.disableResize = true;
       }
       else {
-        this.renderer.removeClass(this.element.nativeElement.firstChild, 'maximized');
+        //Restoring window size
+        this.size.height.current = this.size.height.previous;
+        this.size.height.unit = 'px';
+        this.size.width.current = this.size.width.previous;
+        this.size.width.unit = 'px';
 
         this.position.current = this.position.next;
 
@@ -299,7 +319,7 @@ export class OsWindow {
   demaximize() {
     if (this.state.maximized == true) {
       this.position.next = {
-        x: (this.mousePos.x - this.width / 2),
+        x: (this.mousePos.x - this.size.width.current / 2),
         y: ( this.mousePos.y + window.innerHeight - 20)
       }
       this.maximize();
@@ -324,8 +344,8 @@ export class OsWindow {
 
   //Sets some variables when the resize drag starts, we use them later
   startResize() {
-    this.initialHeight = this.height;
-    this.initialWidth = this.width;
+    this.size.height.previous = this.size.height.current;
+    this.size.width.previous = this.size.width.current;
   }
 
   resize(dragEvent: CdkDragMove, direction: string) {
@@ -381,15 +401,15 @@ export class OsWindow {
     switch (direction) {
       case "n":
         //Checks that the new position and dimesions produce a minHeight lower than the required
-        if ( (this.initialHeight - this.anchor.y) >= this.minHeight) {
+        if ( (this.size.height.previous - this.anchor.y) >= this.minHeight) {
 
           this.position.resize = {
             x: this.position.resize.x,
             y: this.position.next.y + this.anchor.y
           }
 
-          this.height = this.initialHeight - this.anchor.y;
-          this.height = this.setHeight(this.element, this.height, this.minHeight);
+          this.size.height.current = this.size.height.previous - this.anchor.y;
+          this.size.height.current = this.clampHeight(this.element, this.size.height.current, this.minHeight);
 
           this.position.current = {
             x: this.position.current.x,
@@ -399,28 +419,28 @@ export class OsWindow {
         break;
 
       case "e":
-        this.width = (this.initialWidth + this.anchor.x);
-        this.width = this.setWidth(this.element, this.width, this.minWidth);
+        this.size.width.current = (this.size.width.previous + this.anchor.x);
+        this.size.width.current = this.clampWidth(this.element, this.size.width.current, this.minWidth);
 
         break;
 
       case "s":
-        this.height = this.initialHeight + this.anchor.y;
-        this.height = this.setHeight(this.element, this.height, this.minHeight);
+        this.size.height.current = this.size.height.previous + this.anchor.y;
+        this.size.height.current = this.clampHeight(this.element, this.size.height.current, this.minHeight);
 
         break;
 
       case "w":
         //Checks that the new position and dimesions produce a minHeight lower than the required
-        if ( (this.initialWidth - this.anchor.x) >= this.minWidth) {
+        if ( (this.size.width.previous - this.anchor.x) >= this.minWidth) {
 
           this.position.resize = {
             x: this.position.next.x + this.anchor.x,
             y: this.position.resize.y
           }
 
-          this.width = this.initialWidth - this.anchor.x;
-          this.width = this.setWidth(this.element, this.width, this.minWidth);
+          this.size.width.current = this.size.width.previous - this.anchor.x;
+          this.size.width.current = this.clampWidth(this.element, this.size.width.current, this.minWidth);
 
           this.position.current = {
             x: this.position.resize.x,
@@ -453,13 +473,13 @@ export class OsWindow {
     }
 
     //Fix for X position, a quarter of the window will always be visible
-    if (this.position.next.x < -(this.width / 4 * 3) ) {
+    if (this.position.next.x < -(this.size.width.current / 4 * 3) ) {
 
-      this.position.next.x = -(this.width / 4 * 3);
+      this.position.next.x = -(this.size.width.current / 4 * 3);
     }
-    else if (this.position.next.x > (window.innerWidth - this.width / 4) ) {
+    else if (this.position.next.x > (window.innerWidth - this.size.width.current / 4) ) {
 
-      this.position.next.x = (window.innerWidth - this.width / 4);
+      this.position.next.x = (window.innerWidth - this.size.width.current / 4);
     }
 
     this.position.current = this.position.next;
@@ -473,16 +493,17 @@ export class OsWindow {
   //When a window is clicked we want to change it's z-index value and apply some styles
   focus() {
 
-    //First we increase the z-index of the clicked window
+    //We get the current global z-index
     this.position.zIndex.next = this.globalConfigService.getZIndex();
 
+    //This will be unequal if another window has been focused on
     if (this.position.zIndex.current != this.position.zIndex.next) {
 
       this.position.zIndex.next++;
       this.position.zIndex.current = this.position.zIndex.next;
 
+      //Updating global z-index
       this.globalConfigService.setZIndex(this.position.zIndex.current);
-      this.setStyle(this.element, '--zIndex', `${this.position.zIndex.current}`)
     }
 
     //After that we remove the 'focused' class from all the windows

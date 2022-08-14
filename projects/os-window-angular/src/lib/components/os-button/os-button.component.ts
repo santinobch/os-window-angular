@@ -11,19 +11,19 @@ import {
 } from '@angular/core';
 import { StyleModel } from "../../models/Style.model";
 import { OsConfigService } from "../../services/os-config/os-config.service";
-import { HSLA, hexToHSL } from "../../utils/hexToHsl";
 import { theme_list } from "../../themes/theme_list";
 
 //Button Selectors: Normal, Warn, Icon
 //Button States: Normal, Pressed, Disabled, Focused
 
 @Component({
-  selector: `button[os-button], button[os-icon-button], button[os-warn-button],
-              a[os-button], a[os-icon-button], a[os-warn-button]`,
+  selector: `button[os-button], button[os-icon-button],
+              a[os-button], a[os-icon-button]`,
   templateUrl: './os-button.component.html',
   styleUrls: [
     './os-button.component.scss',
-    '../../themes/_buttons.scss'
+    '../../themes/arc/_buttons.scss',
+    '../../themes/win98/_buttons.scss'
   ],
   encapsulation: ViewEncapsulation.None
 })

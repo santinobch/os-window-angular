@@ -1,5 +1,5 @@
 {
-  "name": "os-window-angular",
+  "name": "os-window-angular-workspace",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
@@ -7,9 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "compile": "rimraf ./dist && ng build os-window-angular && npm link ./dist/os-window-angular",
+    "compile": "del-cli ./dist && ng build os-window-angular && npm link ./dist/os-window-angular",
     "compileserve": "npm run compile && ng serve",
-    "buildweb": "npm run compile && ng build testing-app && rimraf ./dist/os-window-angular",
+    "buildweb": "npm run compile && ng build testing-app && del-cli ./dist/os-window-angular",
     "publishweb": "angular-cli-ghpages"
   },
   "private": true,
@@ -25,9 +25,9 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "del-cli": "^5.0.0",
     "ng-packagr": "^12.2.5",
     "ngx-scrollbar": "^8.0.0",
-    "rimraf": "^3.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

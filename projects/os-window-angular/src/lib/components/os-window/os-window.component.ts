@@ -7,8 +7,9 @@ import {
   OnChanges,
   Renderer2,
   SimpleChanges,
-  ViewChild,
-  Directive
+  Directive,
+  ViewEncapsulation,
+  HostBinding
 } from '@angular/core';
 
 //Models
@@ -35,15 +36,13 @@ export class OsWindowContent {}
   templateUrl: './os-window.component.html',
   styleUrls: [
     './os-window.component.scss',
-    '../../themes/main.scss'
-  ]
+    '../../themes/arc/arc.scss',
+    '../../themes/win98/win98.scss'
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class OsWindowComponent implements OnInit, OnChanges {
-
-  //References parent html element from component
-  @ViewChild('osWindowParent') osWindowParent!: ElementRef<HTMLElement>;
-
 
   constructor(
     private componentElement: ElementRef<HTMLElement>,
@@ -53,6 +52,14 @@ export class OsWindowComponent implements OnInit, OnChanges {
   }
 
   win: OsWindow = new OsWindow(this.componentElement, this.renderer, this.globalConfigService);
+
+  /////////////////////////
+  ////  Host bindings  ////
+  /////////////////////////
+  
+  //Giving the component a class, i could use :host but this seems prettier
+  @HostBinding('class.os-window') lol = true;
+  @HostBinding('style.z-index') get zIndex() { return this.win.position.zIndex.current };
 
   //////////////////////
   ////    Inputs    ////
@@ -81,15 +88,15 @@ export class OsWindowComponent implements OnInit, OnChanges {
   };
 
   @Input()
-  get height(): Number { return this.win.height; }
+  get height(): Number { return this.win.size.height.current; }
   set height(v: Number) {
-    this.win.height = clamp(v || this.win.minHeight);
+    this.win.size.height.current = clamp(v || this.win.minHeight);
   };
 
   @Input()
-  get width(): Number { return this.win.width; }
+  get width(): Number { return this.win.size.width.current; }
   set width(v: Number) {
-    this.win.width = clamp(v || this.win.minWidth);
+    this.win.size.width.current = clamp(v || this.win.minWidth);
   };
 
   //TODO implement PointModel return
@@ -124,15 +131,13 @@ export class OsWindowComponent implements OnInit, OnChanges {
     this.win.rules.closable = v;
   };
 
+  
 
   ngOnInit(): void {
+    
   }
 
   ngAfterViewInit() {
-    
-    //Getting element reference (see @ViewChild)
-    this.win.element = this.osWindowParent;
-
     /* We first care about the dimensions and position of the window */
     //Initial width & height, also returns corrected value if bellow minimal
     this.win.setDimesions();
@@ -148,6 +153,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    //Changing styles on runtime
     this.win.subscribeStyles(changes);
   }
 }

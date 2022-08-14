@@ -1,6 +1,6 @@
 export const theme_list = [
     {
-        theme: ["arc"],
+        theme: "arc",
         variants: ["light", "dark"],
         palette: ["red", "orange", "yellow", "lime", "green", "aqua", "blue", "purple", "magenta"]
     },

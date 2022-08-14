@@ -6,57 +6,6 @@
     font-size: round($size) + pt;
 }
 
-//Okay this code may look very bad there are some reasons 
-//as to why i decided to do it like this.
-//My initial idea was to pass a css variable var() with the Hex value of the color
-//you want (using @Input in the component), but you cant use some sass functions
-//with css variables, like transparentize, lighten, darken. A work around
-//would be to pass 3 variables with Hue, Saturation and Light to make a hsl() color value.
-//But then you may input a color that is too bright or too dark for the theme.
-//So a small color palette is the way to go i have tried using if() and @if to minimize
-//the code i write but those don't seem to work properlly, you can check an example bellow.
-
-//This should return a value depending on the --color var but it instead always returns $normal_button
-/*
-@function button_bg_color($variant) {
-    $red: if($variant == 'light', hsl(0, 71%, 50%), hsl(0, 12%, 31%));
-    $orange: if($variant == 'light', hsl(38, 71%, 50%), hsl(38, 12%, 31%));
-    $yellow: if($variant == 'light', hsl(82, 71%, 50%), hsl(82, 12%, 31%));
-    $lime: if($variant == 'light', hsl(100, 71%, 50%), hsl(100, 12%, 31%));
-    $green: if($variant == 'light', hsl(120, 71%, 50%), hsl(120, 12%, 31%));
-    $aqua: if($variant == 'light', hsl(174, 71%, 50%), hsl(174, 12%, 31%));
-    $blue: if($variant == 'light', hsl(213, 71%, 50%), hsl(213, 12%, 31%));
-    $purple: if($variant == 'light', hsl(278, 71%, 50%), hsl(278, 12%, 31%));
-    $magenta: if($variant == 'light', hsl(322, 71%, 50%), hsl(322, 12%, 31%));
-
-    $base_color: if($variant =='light', #ffffff, #404552);
-    $bg_color: if($variant =='light', #F5F6F7, #383C4A);
-
-    $normal_button: if($variant == 'light', lighten($bg_color, 2%), lighten($base_color, 2%));
-
-    @if var(--color) == "red" {
-        @return $red;
-    } @else if var(--color) == "orange" {
-        @return $orange;
-    } @else if var(--color) == "yellow" {
-        @return $yellow;
-    } @else if var(--color) == "lime" {
-        @return $lime;
-    } @else if var(--color) == "green" {
-        @return $green;
-    } @else if var(--color) == "aqua" {
-        @return $aqua;
-    } @else if var(--color) == "blue" {
-        @return $blue;
-    } @else if var(--color) == "purple" {
-        @return $purple;
-    } @else if var(--color) == "magenta" {
-        @return $magenta;
-    } @else {
-        @return $normal_button;
-    }
-}
-*/
 
 @mixin button_bg_shadow_box_95($variant) {
     &.red-os-button {
@@ -342,7 +291,7 @@ $font-family: Futura Bk bt, 'Open Sans', sans, Sans-Serif;
     &:focus { @include button("focus", "light"); }
     &:hover { @include button("hover", "light"); }
     &:hover:focus { @include button("focus-hover", "light"); }
-    &:active, &:active:focus { @include button("active", "light"); }
+    &:not([disabled]):active, &:not([disabled]):active:focus { @include button("active", "light"); }
     &[disabled] { @include button("disabled", "light"); }
 
     &[os-icon-button] {
@@ -369,7 +318,7 @@ $font-family: Futura Bk bt, 'Open Sans', sans, Sans-Serif;
     &:focus { @include button("focus", "dark"); }
     &:hover { @include button("hover", "dark"); }
     &:hover:focus { @include button("focus-hover", "dark"); }
-    &:active, &:active:focus { @include button("active", "dark"); }
+    &:not([disabled]):active, &:not([disabled]):active:focus { @include button("active", "dark"); }
     &[disabled] { @include button("disabled", "dark"); }
 
     &[os-icon-button] {

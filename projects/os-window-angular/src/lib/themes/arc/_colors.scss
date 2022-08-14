@@ -5,32 +5,6 @@
 
 
 /* Not sure i need these ones */
-// $header_bg: red;
-// @if $transparency=='true' and $variant=='light' { $header_bg: transparentize(#e7e8eb, 0.05); }
-// @if $transparency=='false' and $variant=='light' { $header_bg: #e7e8eb; }
-// @if $transparency=='true' and ($variant=='dark' or $darker=='true') { $header_bg: transparentize(#2f343f, 0.03); }
-// @if $transparency=='false' and ($variant=='dark' or $darker=='true') { $header_bg: #2f343f; }
-
-// $header_bg_backdrop: if($darker == 'true' or $variant == 'dark', lighten($header_bg, 1.5%), lighten($header_bg, 3%));
-
-// $header_border: if($variant == 'light' and $darker=='false', darken($header_bg, 7%), darken($header_bg, 4%));
-
-// $header_fg: if($variant == 'light', saturate(transparentize($fg_color, 0.2), 10%), saturate(transparentize($fg_color, 0.2), 10%));
-// $header_fg: if($darker == 'true', saturate(transparentize(#D3DAE3, 0.2), 10%), $header_fg);
-
-// $dark_sidebar_bg: if($transparency == 'true', transparentize(#353945, 0.05), #353945);
-// $dark_sidebar_fg: #BAC3CF;
-// $dark_sidebar_border: if($variant == 'light', $dark_sidebar_bg, darken($dark_sidebar_bg, 5%));
-
-// $panel_bg: darken($dark_sidebar_bg, 4.7%);
-// $panel_fg: $dark_sidebar_fg;
-
-// $header_entry_bg: if($darker == 'true' or $variant == 'dark', transparentize(lighten($header_bg, 22%), 0.6), transparentize($base_color, 0.1));
-// $header_entry_border: if($darker == 'true' or $variant == 'dark', transparentize(darken($header_bg, 12%), 0.6), transparentize($header_fg, 0.7));
-
-// $header_button_bg: if($darker == 'true' or $variant == 'dark', transparentize(lighten($header_bg, 22%), 0.6), transparentize($button_bg, 0.1));
-// $header_button_border: if($darker == 'true' or $variant == 'dark', transparentize(darken($header_bg, 12%), 0.6), transparentize($header_fg, 0.7));
-
 //WM Buttons
 
 // Close
@@ -143,6 +117,42 @@ $button_border_light: $entry_border_light;
 
 @function button_bg($variant) { @return if($variant == "dark", $button_bg_dark, $button_bg_light) };
 @function button_border($variant) { @return if($variant == "dark", $button_border_dark, $button_border_light) };
+
+@function window_shadow($variant) { @return if($variant =='dark', transparentize(black, 0.45), transparentize(black, 0.9)) };
+
+//Header
+@function header_bg($variant) {
+    @return if($variant == 'dark', transparentize(#2f343f, 0.03), transparentize(#e7e8eb, 0.05));
+}
+@function header_bg_backdrop($variant) {
+    @return if($variant == 'dark', lighten(header_bg($variant), 1.5%), lighten(header_bg($variant), 3%));
+}
+@function header_border($variant) {
+    @return if($variant == 'light', darken(header_bg($variant), 7%), darken(header_bg($variant), 4%));
+}
+@function header_fg($variant){
+    @return if($variant == 'light', saturate(transparentize(fg($variant), 0.2), 10%), saturate(transparentize(fg($variant), 0.2), 10%));
+}
+@function header_entry_bg($variant) {
+    @return if($variant == 'dark', transparentize(lighten(header_bg($variant), 22%), 0.6), transparentize(base($variant), 0.1));
+}
+@function header_entry_border($variant) {
+    @return if($variant == 'dark', transparentize(darken(header_bg($variant), 12%), 0.6), transparentize(header_fg($variant), 0.7));
+}
+@function header_button_bg($variant) {
+    @return if($variant == 'dark', transparentize(lighten(header_bg($variant), 22%), 0.6), transparentize(button_bg($variant), 0.1));
+}
+@function header_button_border($variant) {
+    @return if($variant == 'dark', transparentize(darken(header_bg($variant), 12%), 0.6), transparentize(header_fg($variant), 0.7));
+}
+
+@function dark_sidebar_bg() { @return transparentize(#353945, 0.05); }
+@function dark_sidebar_fg() { @return #BAC3CF; }
+@function dark_sidebar_border($variant) { @return if($variant == 'light', dark_sidebar_bg(), darken(dark_sidebar_bg(), 5%)); }
+
+@function panel_bg() { @return darken(dark_sidebar_bg(), 4.7%) };
+@function panel_fg() { @return dark_sidebar_fg() };
+
 
 
 //Custom colors

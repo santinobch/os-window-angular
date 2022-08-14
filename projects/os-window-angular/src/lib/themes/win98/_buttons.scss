@@ -80,8 +80,8 @@ $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
     background-color: base('classic');
 
     @include button("normal", "classic");
-    &:active { @include button("active", "classic"); }
-    &:focus { @include button("focus", "classic"); }
+    &:not([disabled]):active { @include button("active", "classic"); }
+    &:not([disabled]):focus { @include button("focus", "classic"); }
     &[disabled] { @include button("disabled", "classic"); }
 
     &[os-icon-button] {
@@ -102,8 +102,8 @@ $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
     background-color: base('vaporwave');
 
     @include button("normal", "vaporwave");
-    &:active { @include button("active", "vaporwave"); }
-    &:focus { @include button("focus", "vaporwave"); }
+    &:not([disabled]):active { @include button("active", "vaporwave"); }
+    &:not([disabled]):focus { @include button("focus", "vaporwave"); }
     &[disabled] { @include button("disabled", "vaporwave"); }
 
     &[os-icon-button] {
