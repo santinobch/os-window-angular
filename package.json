@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "compile": "del-cli ./dist && ng build os-window-angular && npm link ./dist/os-window-angular",
+    "compile": "del-cli ./dist && ng build --configuration production os-window-angular && npm link ./dist/os-window-angular",
     "compileserve": "npm run compile && ng serve",
     "buildweb": "npm run compile && ng build testing-app && del-cli ./dist/os-window-angular",
     "publishweb": "angular-cli-ghpages"
