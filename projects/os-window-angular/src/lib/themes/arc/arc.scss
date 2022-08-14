@@ -59,10 +59,7 @@
 
                 .window-title  {
                     margin-left: 30px;
-            
-                    span {
-                        color: header_fg($variant);
-                    }
+                    color: header_fg($variant);
                 }
             }
         }

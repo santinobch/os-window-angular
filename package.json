@@ -10,7 +10,7 @@
     "compile": "del-cli ./dist && ng build --configuration production os-window-angular && npm link ./dist/os-window-angular",
     "publish": "cd ./dist/os-window-angular && npm publish",
     "buildweb": "del-cli ./dist && ng build --configuration production testing-app",
-    "publishweb": "angular-cli-ghpages"
+    "publishweb": "ng deploy testing-app --base-href=/os-window-angular/"
   },
   "private": true,
   "dependencies": {
