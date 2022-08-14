@@ -5,8 +5,8 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import { osConfigData } from "./commons";
-import { OsConfigService } from "./os-config.service";
+import { StyleModel } from "../models/Style.model";
+import { OsConfigService } from "../services/os-config/os-config.service";
 
 
 @Directive({
@@ -26,17 +26,17 @@ export class OsConfigDirective implements OnInit {
   get variant(): string { return this._variant; }
   set variant(v: string) { v == "" ? this._variant = "light" : this._variant = v; };
 
-  _config: osConfigData = {
+  globalConfig: StyleModel = {
     theme:  "",
     variant: ""  
   };
 
   ngOnInit(): void {
-    this._config = {
+    this.globalConfig = {
       theme: this._theme,
       variant: this._variant
     };
 
-    this.themeService.setConfig(this._config);
+    this.themeService.setGlobal(this.globalConfig);
   }
 }

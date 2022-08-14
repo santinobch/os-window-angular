@@ -1,0 +1,217 @@
+//Fonts imports
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import './colors';
+
+// provide font size in rem, with px fallback
+@mixin font($font, $size: 24, $base: 16) {
+    font-family: $font;
+    font-size: round($size) + pt;
+    //font-size: ($size / $base) * 1rem;
+}
+
+// provide font size in rem, with px fallback
+@mixin fontsize($size: 24, $base: 16) {
+    font-size: round($size) + pt;
+    //font-size: ($size / $base) * 1rem;
+}
+
+@mixin theme($variant, $transparency) {
+    //
+    // CSS Variables (We may change this ones in runtime)
+    //
+
+    //Border of the window
+    --winBorder: 1px;
+    --winRadius: 5px;
+
+    //
+    // Fonts
+    //
+    $font-size: 9;
+    $font-family: Futura Bk bt, 'Open Sans', sans, Sans-Serif;
+
+    //
+    // General styles
+    // 
+    .os-window-wrapper {
+        border-radius: var(--winRadius);
+        border: var(--winBorder) solid header_border($variant);
+
+        box-shadow: 0 0 0 1px if($variant == 'dark', darken(header_bg($variant), 7%), window_shadow($variant)),
+                    0 8px 8px 0 if($variant !='dark', opacify(window_shadow($variant), 0.1), transparentize(window_shadow($variant), 0.2));
+
+        @include font($font-family, $font-size);
+
+        .window-bar {
+            height: 44px;
+
+            background-color: header_bg($variant);
+    
+            border-color: header_border($variant);
+            border-bottom: 1px solid header_border($variant);
+    
+            border-top-left-radius: var(--winRadius);
+            border-top-right-radius: var(--winRadius);
+            
+            .window-bar-anchor {
+                height: 36px;
+                width: 100%;
+
+                .window-title  {
+                    margin-left: 30px;
+            
+                    span {
+                        color: header_fg($variant);
+                    }
+                }
+            }
+        }
+
+        .window-content {
+            background-color: base($variant);
+            color: text($variant);
+        }
+    }
+
+    //
+    // Focused window styles
+    //
+    .focused {
+        .window-bar {
+            background-color: opacify(header_bg($variant), 1);
+        }
+    }
+
+    //
+    // Maximized window styles
+    //
+    .maximized {
+        border: 0px;
+        border-radius: 0px;
+
+        .window-bar {
+            border: 0px;
+            border-radius: 0px;
+            
+            background-color: opacify(header_bg($variant), 1);
+        }
+    }
+
+    //
+    // Separators
+    //
+    .controls-separator {
+        margin-right: 14px;
+        transform: translate(4px, -1px);
+        width: 1px;
+        height: 15px;
+        background: transparentize(header_fg($variant), 0.65);
+    }
+
+    //
+    // Window control buttons
+    //
+    .controls-container {
+        margin-right: 8px;
+        width: 76px;
+        height: auto;
+
+        .controls {
+    
+            padding: 0;
+            min-height: 16px;
+            width: 16px;
+            height: 16px;
+            border: 0px;
+            background-color: rgba(0,0,0,0);
+            box-shadow: none;
+            outline: 0;
+        }
+    }
+
+    //
+    // Links
+    //
+    a { color: link($variant); }
+    a:visited { color: link_visited($variant); }
+    a:visited:hover { color: lighten(link_visited($variant), 10%); }
+    a:hover { color: lighten(link($variant), 10%); }
+
+    //
+    // Scrollbars
+    //
+    .os-scrollbar-track {
+        background-color: transparentize(base($variant), 0.9);
+        margin-bottom: 5px;
+    }
+
+    .os-scrollbar-thumb {
+        background-color: transparentize( mix(fg($variant), bg($variant), 40%), 0.4);
+    }
+}
+
+@mixin lightAssets {
+    $asset_path: './assets/light-assets/controls';
+
+    .minimize {
+        background: url("#{$asset_path}/light-titlebutton-minimize.png");
+        &:hover { background: url("#{$asset_path}/light-titlebutton-minimize-hover.png"); }
+        &:active { background: url("#{$asset_path}/light-titlebutton-minimize-active.png"); }
+    }
+
+    .maximize {
+        background: url("#{$asset_path}/light-titlebutton-maximize.png");
+        &:hover { background: url("#{$asset_path}/light-titlebutton-maximize-hover.png"); }
+        &:active { background: url("#{$asset_path}/light-titlebutton-maximize-active.png"); }
+    }
+
+    .close {
+        background: url("#{$asset_path}/light-titlebutton-close.png");
+        &:hover { background: url("#{$asset_path}/light-titlebutton-close-hover.png"); }
+        &:active { background: url("#{$asset_path}/light-titlebutton-close-active.png"); }
+    }
+}
+
+@mixin darkAssets {
+    $asset_path: './assets/dark-assets/controls';
+
+    .minimize {
+        background: url("#{$asset_path}/dark-titlebutton-minimize.png");
+        &:hover { background: url("#{$asset_path}/dark-titlebutton-minimize-hover.png"); }
+        &:active { background: url("#{$asset_path}/dark-titlebutton-minimize-active.png"); }
+    }
+
+    .maximize {
+        background: url("#{$asset_path}/dark-titlebutton-maximize.png");
+        &:hover { background: url("#{$asset_path}/dark-titlebutton-maximize-hover.png"); }
+        &:active { background: url("#{$asset_path}/dark-titlebutton-maximize-active.png"); }
+    }
+
+    .close {
+        background: url("#{$asset_path}/dark-titlebutton-close.png");
+        &:hover { background: url("#{$asset_path}/dark-titlebutton-close-hover.png"); }
+        &:active { background: url("#{$asset_path}/dark-titlebutton-close-active.png"); }
+    }
+}
+
+.arc-light {
+    @include theme('light', 'true');
+    @include lightAssets();
+}
+
+.arc-dark {
+    @include theme('dark', 'true');
+    @include darkAssets();
+}
+
+// These seemed like too much work for some styles im not really into, may revisit in he future
+
+// .arc-lighter {
+//     @include theme('lighter', 'true');
+//     @include lightAssets();
+// }
+
+// .arc-darker {
+//     @include theme('darker', 'true');
+//     @include darkAssets();
+// }

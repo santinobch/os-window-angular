@@ -1,19 +1,8 @@
 
-.os-window-parent {
+.os-window {
     //
     //Variables
     //
-
-    //Size of window
-    --winWidth: 200px;
-    --winHeight: 200px;
-
-    //z-index of this window
-    --zIndex: 0;
-
-    //This is used in the window-bar-filler, 
-    //--winRadius and --winBorder are declared in the main theme .scss
-    --topRadius: calc( var(--winRadius) - var(--winBorder) );
 
     //Hides & shows controls buttons
     --minimizeButton: block;
@@ -30,15 +19,14 @@
     --cursorW: w-resize;
     --cursorNW: nw-resize;
 
+    //Why is this fixed 'instead' of 'absolute'?
     position: fixed;
     top: -100%;
     left: 0;
 }
 
 //Universal theming
-.os-window {
-    width: var(--winWidth);
-    height: var(--winHeight);
+.os-window-wrapper {
 
     .window-resize {
         position: absolute;

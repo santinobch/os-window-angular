@@ -1,0 +1,133 @@
+<!--
+TO DO:
+- Maximized change screen   DELAYED
+- Arc Theme                 HALF DONE
+- Win98 Theme               Check inner shadow scroll right & bottom, next release
+- Revise code
+- Documentation
+- Licencing
+- Release
+
+-->
+
+<div class="os-window-wrapper"
+    [style.width]="win.size.width.current + win.size.width.unit"
+    [style.height]="win.size.height.current + win.size.height.unit"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+    cdkDrag
+    (cdkDragStarted)="this.win.demaximize()"
+    (cdkDragEnded)="this.win.correctEndPosition($event)"
+    [cdkDragFreeDragPosition]="this.win.position.current"
+    (mousedown)="this.win.storeMousePos($event)"
+    (mousedown)="this.win.focus()">
+
+    <div cdkDrag
+        cdkDragLockAxis="y"
+        (cdkDragStarted)="this.win.startResize()"
+        (cdkDragMoved)="this.win.resize($event, 'n')"
+        (cdkDragEnded)="this.win.endResize()"
+        [cdkDragFreeDragPosition]="this.win.cdkAnchors.n"
+        [cdkDragDisabled]="this.win.rules.disableResize"
+        (mousedown)="this.win.focus()"
+        class="window-resize n"></div>
+    <div
+        cdkDrag
+        (cdkDragStarted)="this.win.startResize()"
+        (cdkDragMoved)="this.win.resize($event, 'ne')"
+        [cdkDragFreeDragPosition]="this.win.cdkAnchors.ne"
+        [cdkDragDisabled]="this.win.rules.disableResize"
+        (mousedown)="this.win.focus()"
+        class="window-resize ne"></div>
+    <div
+        cdkDrag
+        cdkDragLockAxis="x"
+        (cdkDragStarted)="this.win.startResize()"
+        (cdkDragMoved)="this.win.resize($event, 'e')"
+        [cdkDragFreeDragPosition]="this.win.cdkAnchors.e"
+        [cdkDragDisabled]="this.win.rules.disableResize"
+        (mousedown)="this.win.focus()"
+        class="window-resize e"></div>
+    <div
+        cdkDrag
+        (cdkDragStarted)="this.win.startResize()"
+        (cdkDragMoved)="this.win.resize($event, 'se')"
+        [cdkDragFreeDragPosition]="this.win.cdkAnchors.se"
+        [cdkDragDisabled]="this.win.rules.disableResize"
+        (mousedown)="this.win.focus()"
+        class="window-resize se"></div>
+    <div
+        cdkDrag
+        cdkDragLockAxis="y"
+        (cdkDragStarted)="this.win.startResize()"
+        (cdkDragMoved)="this.win.resize($event, 's')"
+        [cdkDragFreeDragPosition]="this.win.cdkAnchors.s"
+        [cdkDragDisabled]="this.win.rules.disableResize"
+        (mousedown)="this.win.focus()"
+        class="window-resize s"></div>
+    <div
+        cdkDrag
+        (cdkDragStarted)="this.win.startResize()"
+        (cdkDragMoved)="this.win.resize($event, 'sw')"
+        (cdkDragEnded)="this.win.endResize()"
+        [cdkDragFreeDragPosition]="this.win.cdkAnchors.sw"
+        [cdkDragDisabled]="this.win.rules.disableResize"
+        (mousedown)="this.win.focus()"
+        class="window-resize sw"></div>
+    <div
+        cdkDrag
+        cdkDragLockAxis="x"
+        (cdkDragStarted)="this.win.startResize()"
+        (cdkDragMoved)="this.win.resize($event, 'w')"
+        (cdkDragEnded)="this.win.endResize()"
+        [cdkDragFreeDragPosition]="this.win.cdkAnchors.w"
+        [cdkDragDisabled]="this.win.rules.disableResize"
+        (mousedown)="this.win.focus()"
+        class="window-resize w"></div>
+    <div
+        cdkDrag
+        (cdkDragStarted)="this.win.startResize()"
+        (cdkDragMoved)="this.win.resize($event, 'nw')"
+        (cdkDragEnded)="this.win.endResize()"
+        [cdkDragFreeDragPosition]="this.win.cdkAnchors.nw"
+        [cdkDragDisabled]="this.win.rules.disableResize"
+        (mousedown)="this.win.focus()"
+        class="window-resize nw"></div>
+
+
+    <div class="window-bar">
+
+        <div class="window-bar-anchor"
+            cdkDragHandle
+            fxLayout="row"
+            fxLayoutAlign="space-evenly center"
+            (dblclick)="this.win.maximize()">
+
+            <div class="window-title"
+                fxFlex>
+                <ng-content select="window-title, [window-title], [windowTitle]"></ng-content>
+            </div>
+
+            <div class="controls-separator"></div>
+
+            <div class="controls-container"
+                fxLayoutAlign="space-between center">
+
+                <button class="controls minimize" (click)="this.win.minimize()"></button>
+                <button class="controls maximize" (click)="this.win.maximize()"></button>
+                <button class="controls close" (click)="this.win.close()"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="window-content">
+
+        <ng-scrollbar class="win98-scrollbar" track="all" trackClass="os-scrollbar-track" thumbClass="os-scrollbar-thumb">
+
+            <ng-content fxFlex select="window-content, [window-content], [windowContent]">
+
+            </ng-content>
+
+        </ng-scrollbar>
+    </div>
+</div>

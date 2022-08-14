@@ -1,0 +1,221 @@
+//Cinnamon colors from: https://github.com/horst3180/arc-theme/blob/master/common/cinnamon/sass/_colors.scss
+//I have reorganized or deleted them but not changed them
+//Ihave added the 9 color palette
+//THIS PALETTE IS VERY COMPLEX
+
+
+/* Not sure i need these ones */
+//WM Buttons
+
+// Close
+// $wm_button_close_bg: if($variant == 'light' and $darker == 'false', #f46067, #cc575d);
+// $wm_button_close_hover_bg: if($variant == 'light' and $darker == 'false', #f68086, #d7787d);
+// $wm_button_close_active_bg: if($variant == 'light' and $darker == 'false', #f13039, #be3841);
+
+// $wm_icon_close_bg: if($variant == 'light' and $darker == 'false',#F8F8F9 , #2f343f);
+
+// Minimize, Maximize
+// $wm_button_hover_bg: if($variant == 'light' and $darker == 'false', #fdfdfd, #454C5C);
+// $wm_button_active_bg: $selected_bg_color;
+
+// $wm_button_hover_border: if($variant == 'light' and $darker == 'false', #D1D3DA, #262932);
+
+// $wm_icon_bg: if($variant == 'light' and $darker == 'false', #90949E, #90939B);
+// $wm_icon_unfocused_bg: if($variant == 'light' and $darker == 'false', #B6B8C0, #666A74);
+// $wm_icon_hover_bg: if($variant == 'light' and $darker == 'false', #7A7F8B, #C4C7CC);
+// $wm_icon_active_bg: $selected_fg_color;
+
+
+//Shared palette
+$selected_fg: #ffffff;
+$selected_bg: #5294e2;
+
+$selected_borders: darken($selected_bg, 20%);
+
+// // May need in the future
+// // make function
+// $selection_mode_bg: if($transparency == 'true', transparentize($selected_bg, 0.05), $selected_bg);
+// $selection_mode_fg: $selected_fg
+// $warning_color: #F27835;
+// $error_color: #FC4138;
+// $warning_fg_color: white;
+// $error_fg_color: white;
+// $success_color: #73d216;
+// $destructive_color: #F04A50;
+// $suggested_color: #4DADD4;
+// $destructive_fg_color: white;
+// $suggested_fg_color: white;
+
+// $drop_target_color: #F08437;
+
+
+//Dark palette
+$base_dark: #404552;
+$text_dark: #D3DAE3;
+$bg_dark: #383C4A;
+$fg_dark: #D3DAE3;
+
+$borders_dark: darken($base_dark,6%);
+
+$link_dark: lighten($selected_bg,20%);
+$link_visited_dark: lighten($selected_bg,10%);
+
+//insensitive state derived colors
+$insensitive_fg_dark: transparentize($fg_dark, 0.55);
+$insensitive_bg_dark: lighten($bg_dark, 2%);
+
+$entry_bg_dark: lighten($base_dark, 0%);
+$entry_border_dark: darken($borders_dark, 0%);
+
+$button_bg_dark: lighten($base_dark, 2%);
+$button_border_dark: $entry_border_dark;
+
+
+//Light palette
+$base_light: #ffffff;
+$text_light: #5c616c;
+$bg_light: #F5F6F7;
+$fg_light: #5c616c;
+
+$borders_light: darken($bg_light,9%);
+
+$link_light: darken($selected_bg,10%);
+$link_visited_light: darken($selected_bg,20%);
+
+//insensitive state derived colors
+$insensitive_fg_light: transparentize($fg_light, 0.45);
+$insensitive_bg_light: mix($bg_light, $base_light, 40%);
+
+$entry_bg_light: $base_light;
+$entry_border_light: #cfd6e6;
+
+$button_bg_light: lighten($bg_light, 2%);
+$button_border_light: $entry_border_light;
+
+
+//Shared
+@function selected_fg() { @return $selected_fg };
+@function selected_bg() { @return $selected_bg };
+@function selected_borders() { @return $selected_borders };
+
+//Not shared
+@function base($variant) { @return if($variant == "dark", $base_dark, $base_light) };
+@function text($variant) { @return if($variant == "dark", $text_dark, $text_light) };
+@function bg($variant) { @return if($variant == "dark", $bg_dark, $bg_light) };
+@function fg($variant) { @return if($variant == "dark", $fg_dark, $fg_light) };
+
+@function borders($variant) { @return if($variant == "dark", $borders_dark, $borders_light) };
+
+@function link($variant) { @return if($variant == "dark", $link_dark, $link_light) };
+@function link_visited($variant) { @return if($variant == "dark", $link_visited_dark, $link_visited_light) };
+
+@function insensitive_fg($variant) { @return if($variant == "dark", $insensitive_fg_dark, $insensitive_fg_light) };
+@function insensitive_bg($variant) { @return if($variant == "dark", $insensitive_bg_dark, $insensitive_bg_light) };
+
+@function entry_bg($variant) { @return if($variant == "dark", $entry_bg_dark, $entry_bg_light) };
+@function entry_border($variant) { @return if($variant == "dark", $entry_border_dark, $entry_border_light) };
+
+@function button_bg($variant) { @return if($variant == "dark", $button_bg_dark, $button_bg_light) };
+@function button_border($variant) { @return if($variant == "dark", $button_border_dark, $button_border_light) };
+
+@function window_shadow($variant) { @return if($variant =='dark', transparentize(black, 0.45), transparentize(black, 0.9)) };
+
+//Header
+@function header_bg($variant) {
+    @return if($variant == 'dark', transparentize(#2f343f, 0.03), transparentize(#e7e8eb, 0.05));
+}
+@function header_bg_backdrop($variant) {
+    @return if($variant == 'dark', lighten(header_bg($variant), 1.5%), lighten(header_bg($variant), 3%));
+}
+@function header_border($variant) {
+    @return if($variant == 'light', darken(header_bg($variant), 7%), darken(header_bg($variant), 4%));
+}
+@function header_fg($variant){
+    @return if($variant == 'light', saturate(transparentize(fg($variant), 0.2), 10%), saturate(transparentize(fg($variant), 0.2), 10%));
+}
+@function header_entry_bg($variant) {
+    @return if($variant == 'dark', transparentize(lighten(header_bg($variant), 22%), 0.6), transparentize(base($variant), 0.1));
+}
+@function header_entry_border($variant) {
+    @return if($variant == 'dark', transparentize(darken(header_bg($variant), 12%), 0.6), transparentize(header_fg($variant), 0.7));
+}
+@function header_button_bg($variant) {
+    @return if($variant == 'dark', transparentize(lighten(header_bg($variant), 22%), 0.6), transparentize(button_bg($variant), 0.1));
+}
+@function header_button_border($variant) {
+    @return if($variant == 'dark', transparentize(darken(header_bg($variant), 12%), 0.6), transparentize(header_fg($variant), 0.7));
+}
+
+@function dark_sidebar_bg() { @return transparentize(#353945, 0.05); }
+@function dark_sidebar_fg() { @return #BAC3CF; }
+@function dark_sidebar_border($variant) { @return if($variant == 'light', dark_sidebar_bg(), darken(dark_sidebar_bg(), 5%)); }
+
+@function panel_bg() { @return darken(dark_sidebar_bg(), 4.7%) };
+@function panel_fg() { @return dark_sidebar_fg() };
+
+
+
+//Custom colors
+
+//Background colors
+$bg_red_dark: hsl(0, 30%, 45%);
+$bg_orange_dark: hsl(38, 35%, 42%);
+$bg_yellow_dark: hsl(82, 34%, 41%);
+$bg_lime_dark: hsl(100, 30%, 41%);
+$bg_green_dark: hsl(120, 30%, 40%);
+$bg_aqua_dark: hsl(174, 28%, 37%);
+$bg_blue_dark: hsl(213, 37%, 43%);
+$bg_purple_dark: hsl(278, 40%, 42%);
+$bg_magenta_dark: hsl(322, 25%, 46%);
+
+$bg_red_light: hsl(0, 65%, 76%);
+$bg_orange_light: hsl(38, 79%, 67%);
+$bg_yellow_light: hsl(82, 93%, 67%);
+$bg_lime_light: hsl(100, 74%, 63%);
+$bg_green_light: hsl(120, 80%, 73%);
+$bg_aqua_light: hsl(174, 84%, 66%);
+$bg_blue_light: hsl(213, 85%, 80%);
+$bg_purple_light: hsl(278, 65%, 76%);
+$bg_magenta_light: hsl(322, 70%, 71%);
+
+@function bg_red($variant) { @return if($variant == 'dark', $bg_red_dark, $bg_red_light) };
+@function bg_orange($variant) { @return if($variant == 'dark', $bg_orange_dark, $bg_orange_light) };
+@function bg_yellow($variant) { @return if($variant == 'dark', $bg_yellow_dark, $bg_yellow_light) };
+@function bg_lime($variant) { @return if($variant == 'dark', $bg_lime_dark, $bg_lime_light) };
+@function bg_green($variant) { @return if($variant == 'dark', $bg_green_dark, $bg_green_light) };
+@function bg_aqua($variant) { @return if($variant == 'dark', $bg_aqua_dark, $bg_aqua_light) };
+@function bg_blue($variant) { @return if($variant == 'dark', $bg_blue_dark, $bg_blue_light) };
+@function bg_purple($variant) { @return if($variant == 'dark', $bg_purple_dark, $bg_purple_light) };
+@function bg_magenta($variant) { @return if($variant == 'dark', $bg_magenta_dark, $bg_magenta_light) };
+
+
+//Focus colors
+$focus_red_dark: hsl(0, 46%, 61%);
+$focus_orange_dark: hsl(38, 53%, 57%);
+$focus_yellow_dark: hsl(82, 51%, 47%);
+$focus_lime_dark: hsl(100, 62%, 57%);
+$focus_green_dark: hsl(120, 34%, 54%);
+$focus_aqua_dark: hsl(174, 43%, 52%);
+$focus_blue_dark: hsl(213, 71%, 60%);
+$focus_purple_dark: hsl(278, 62%, 59%);
+$focus_magenta_dark: hsl(322, 62%, 57%);
+
+$focus_red_light: hsl(0, 48%, 64%);
+$focus_orange_light: hsl(38, 53%, 50%);
+$focus_yellow_light: hsl(82, 47%, 49%);
+$focus_lime_light: hsl(100, 55%, 53%);
+$focus_green_light: hsl(120, 53%, 62%);
+$focus_aqua_light: hsl(174, 66%, 51%);
+$focus_blue_light: hsl(213, 68%, 66%);
+$focus_purple_light: hsl(278, 57%, 67%);
+$focus_magenta_light: hsl(322, 65%, 61%);
+
+@function focus_red($variant) { @return if($variant == 'dark', $focus_red_dark, $focus_red_light) };
+@function focus_orange($variant) { @return if($variant == 'dark', $focus_orange_dark, $focus_orange_light) };
+@function focus_yellow($variant) { @return if($variant == 'dark', $focus_yellow_dark, $focus_yellow_light) };
+@function focus_lime($variant) { @return if($variant == 'dark', $focus_lime_dark, $focus_lime_light) };
+@function focus_green($variant) { @return if($variant == 'dark', $focus_green_dark, $focus_green_light) };
+@function focus_aqua($variant) { @return if($variant == 'dark', $focus_aqua_dark, $focus_aqua_light) };
+@function focus_blue($variant) { @return if($variant == 'dark', $focus_blue_dark, $focus_blue_light) };
+@function focus_purple($variant) { @return if($variant == 'dark', $focus_purple_dark, $focus_purple_light) };
+@function focus_magenta($variant) { @return if($variant == 'dark', $focus_magenta_dark, $focus_magenta_light) };
