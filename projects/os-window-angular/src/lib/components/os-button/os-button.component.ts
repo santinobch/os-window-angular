@@ -68,21 +68,6 @@ export class OsButtonComponent implements OnInit, OnChanges {
   get color(): string { return this.buttonColor }
   set color(v: string) { this.buttonColor = v };
 
-  _src!: string;
-  @Input()
-  get src(): string { return this._src; }
-  set src(v: string) { this._src = v; };
-
-  _imgHeight!: string;
-  @Input()
-  get imgHeight(): string { return this._imgHeight; }
-  set imgHeight(v: string) { this._imgHeight = v; };
-
-  _imgWidth!: string;
-  @Input()
-  get imgWidth(): string { return this._imgWidth; }
-  set imgWidth(v: string) { this._imgWidth = v; };
-
   
 
   ngOnInit(): void {
