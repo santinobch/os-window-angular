@@ -39,7 +39,10 @@ export class OsWindowContent {}
     '../../themes/arc/arc.scss',
     '../../themes/win98/win98.scss'
   ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'os-window'
+  }
 })
 
 export class OsWindowComponent implements OnInit, OnChanges {
@@ -57,8 +60,6 @@ export class OsWindowComponent implements OnInit, OnChanges {
   ////  Host bindings  ////
   /////////////////////////
   
-  //Giving the component a class, i could use :host but this seems prettier
-  @HostBinding('class.os-window') lol = true;
   @HostBinding('style.z-index') get zIndex() { return this.win.position.zIndex.current };
 
   //////////////////////

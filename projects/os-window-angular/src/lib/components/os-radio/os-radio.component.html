@@ -1,0 +1,17 @@
+<label [attr.for]="inputId">
+    <input type="radio"
+        [id]="inputId"
+        [checked]="checked"
+        [disabled]="disabled"
+        [attr.name]="name"
+        [attr.value]="value"
+        [required]="required"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-labelledby]="ariaLabelledby"
+        [attr.aria-describedby]="ariaDescribedby">
+
+    <span [class.os-radio-before]="labelPosition == 'before'">
+        <ng-content></ng-content>
+    </span>
+</label>
+
