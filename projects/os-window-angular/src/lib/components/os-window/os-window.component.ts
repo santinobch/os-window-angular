@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 
 //Models
-import { OsWindow, clamp } from "../../models/OsWindow.model";
+import { clamp, OsWindowClass } from "../../models/OsWindow.model";
 
 //Services
 import { OsConfigService } from '../../services/os-config/os-config.service';
@@ -54,7 +54,7 @@ export class OsWindowComponent implements OnInit, OnChanges {
     ) {
   }
 
-  win: OsWindow = new OsWindow(this.componentElement, this.renderer, this.globalConfigService);
+  win: OsWindowClass = new OsWindowClass(this.componentElement, this.renderer, this.globalConfigService);
 
   /////////////////////////
   ////  Host bindings  ////

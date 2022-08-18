@@ -19,12 +19,12 @@ export class OsConfigDirective implements OnInit {
   _theme: string = "";
   @Input()
   get theme(): string { return this._theme; }
-  set theme(v: string) { v == "" ? this._theme = "arc" : this._theme = v; };
+  set theme(v: string) { v == "" ? this._theme = "win98" : this._theme = v; };
 
   _variant: string = "";
   @Input()
   get variant(): string { return this._variant; }
-  set variant(v: string) { v == "" ? this._variant = "light" : this._variant = v; };
+  set variant(v: string) { v == "" ? this._variant = "classic" : this._variant = v; };
 
   globalConfig: StyleModel = {
     theme:  "",

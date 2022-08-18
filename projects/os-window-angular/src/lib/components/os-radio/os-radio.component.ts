@@ -9,7 +9,7 @@ import {
   SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
-import { StyleModel } from "../../models/Style.model";
+import { StyleModel, StyleClass } from "../../models/Style.model";
 import { OsConfigService } from "../../services/os-config/os-config.service";
 import { theme_list } from "../../themes/theme_list";
 
@@ -24,24 +24,15 @@ import { theme_list } from "../../themes/theme_list";
 })
 export class OsRadioComponent implements OnInit, OnChanges {
 
-  //Stores data from OsThemeComponent
-  globalConfigData: StyleModel = {
-    theme: "",
-    variant: ""
-  };
-
-  style: StyleModel = {
-    theme: "",
-    variant: ""
-  }
-
-  buttonColor: string = "";
-
   constructor(
     public componentElement: ElementRef, 
     public renderer: Renderer2,
     public globalConfigService: OsConfigService
     ) {}
+
+
+  styleConfig: StyleClass = new StyleClass(this.componentElement, this.renderer, this.globalConfigService, "radio");
+
 
 
   //////////////////////
@@ -52,25 +43,27 @@ export class OsRadioComponent implements OnInit, OnChanges {
   //  Component theme  //
   //
   @Input()
-  get theme(): string { return this.style.theme; }
+  get theme(): string { return this.styleConfig.style.theme; }
   set theme(v: string) { };
 
   @Input()
-  get variant(): string { return this.style.variant; }
+  get variant(): string { return this.styleConfig.style.variant; }
   set variant(v: string) { };
 
   @Input()
-  get color(): string { return this.buttonColor }
-  set color(v: string) { this.buttonColor = v };
+  get color(): string { return this.styleConfig.color }
+  set color(v: string) { this.styleConfig.color = v };
 
-  _uniqueId: string = "";
-  _name: string = "";
-  _ariaLabel: string = "";
-  _ariaLabelledby: string = "";
-  _ariaDescribedby: string = "";
-  _checked: boolean = false;
-  _value: any = null;
+  private _uniqueId: string = "";
+  private _name: string = "";
+  private _ariaLabel: string = "";
+  private _ariaLabelledby: string = "";
+  private _ariaDescribedby: string = "";
+  private _checked: boolean = false;
+  private _value: any = null;
   private _labelPosition: 'before' | 'after' = 'after';
+  private _disabled: boolean = false;
+  private _required: boolean = false;
 
   
   @Input() 
@@ -115,82 +108,24 @@ export class OsRadioComponent implements OnInit, OnChanges {
 
   /** Whether the radio button is disabled. */
   @Input()
-  get disabled(): boolean {
-  }
-  set disabled(value: BooleanInput) {
-  }
+  get disabled(): boolean { return this._disabled; }
+  set disabled(v: BooleanInput) { this._disabled = coerceBooleanProperty(v); }
 
   /** Whether the radio button is required. */
   @Input()
-  get required(): boolean {
-  }
-  set required(value: BooleanInput) {
-  }
+  get required(): boolean { return this._required; }
+  set required(v: BooleanInput) { this._required = coerceBooleanProperty(v); }
 
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-
-    this.renderer.setAttribute(this.componentElement, "type", "radio");
-
-    this.loadStyles(this.style.theme, this.style.variant);
-
-    //Checks if the color is a valid color in the theme palette
-    theme_list.forEach(t => {
-      if (t.theme == this.style.theme) {
-
-        t.palette.forEach(p => {
-          if (this.buttonColor == p) {
-            
-            this.renderer.addClass(this.componentElement.nativeElement, 
-              this.buttonColor + "-os-radio");
-          }
-        })
-      }
-    })
+    this.styleConfig.loadStyles();
+    this.styleConfig.loadColor();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes != undefined) {
-      if (changes.theme != undefined && changes.variant != undefined ) {
-        this.loadStyles(changes.theme.currentValue, changes.variant.currentValue);
-      } 
-      //Only variant has changed
-      else if (changes.variant != undefined ) {
-        this.loadStyles(this.style.theme, changes.variant.currentValue);
-      } 
-    } 
-  }
-
-  getStyleStr(): string {
-    return `${this.style.theme}-${this.style.variant}-radio`;
-  }
-
-  loadStyles(_theme: string, _variant: string) {
-    if (_theme !== "" && _theme !== undefined && _variant !== "" && _variant !== undefined) {
-
-      //Removes old theme class
-      if (this.style.theme !== "" && this.style.theme !== undefined && this.style.variant !== "" && this.style.variant !== undefined) {
-        this.renderer.removeClass(this.componentElement.nativeElement, this.getStyleStr());
-      }
-
-      this.style.theme = _theme;
-      this.style.variant = _variant;
-
-      //Adds theme class
-      this.renderer.addClass(this.componentElement.nativeElement, this.getStyleStr());
-    } else {
-
-      this.loadGlobalStyles()
-    }
-  }
-
-  loadGlobalStyles() {
-    //Global theme config
-    this.globalConfigData = this.globalConfigService.getGlobal();
-    this.style = this.globalConfigData;
-    this.renderer.addClass(this.componentElement.nativeElement, this.getStyleStr());
+    this.styleConfig.onChanges(changes);
   }
 }

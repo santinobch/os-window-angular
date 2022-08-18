@@ -14,7 +14,7 @@ export function clamp(v: Number, min = 0, max = Number.MAX_SAFE_INTEGER) {
 }
 
 
-export class OsWindow {
+export class OsWindowClass {
   
   public element!: ElementRef<HTMLElement>;
 

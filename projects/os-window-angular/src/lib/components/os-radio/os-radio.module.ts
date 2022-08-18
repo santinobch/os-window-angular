@@ -11,4 +11,4 @@ import { OsRadioComponent } from './os-radio.component';
   ],
   exports: [OsRadioComponent]
 })
-export class OsButtonModule { }
+export class OsRadioModule { }
