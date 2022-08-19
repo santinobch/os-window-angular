@@ -6,7 +6,7 @@ import { OsConfigService } from '../services/os-config/os-config.service';
 import { TwoPointModel } from "./TwoPoint.model";
 import { PositionModel } from "./Position.model";
 import { ResizeModel } from "./Resize.model";
-import { StyleModel } from "./Style.model";
+import { StyleClass } from "./Style.model";
 import { SizeModel } from './Size.model';
 
 export function clamp(v: Number, min = 0, max = Number.MAX_SAFE_INTEGER) {
@@ -18,8 +18,6 @@ export class OsWindowClass {
   
   public element!: ElementRef<HTMLElement>;
 
-  private globalConfigData!: StyleModel;
-
   private mousePos: TwoPointModel = {x: 0, y: 0};
 
   //Anchor stores temporary point of the current resize CdkDragMove event
@@ -27,13 +25,6 @@ export class OsWindowClass {
   
   public minHeight: number = 200;
   public minWidth: number = 200;
-
-
-  // private initialHeight!: number;
-  // private initialWidth!: number;
-
-  //public height: number = 200;
-  //public width: number = 200;
 
   public size: SizeModel = {
     height: {
@@ -81,12 +72,6 @@ export class OsWindowClass {
     closable: true
   };
 
-  public style = {
-    theme: "",
-    variant: ""
-  };
-
-
   constructor(
     private componentElement: ElementRef,
     private renderer: Renderer2,
@@ -126,14 +111,6 @@ export class OsWindowClass {
       }
       
       return _width;
-  }
-
-  private getStyleStr(): string {
-    return `${this.style.theme}-${this.style.variant}`;
-  }
-
-  getGlobalConfig() {
-    this.globalConfigData = this.globalConfigService.getGlobal();
   }
 
   setDimesions() {
@@ -193,51 +170,7 @@ export class OsWindowClass {
   //       Style        //
   ////////////////////////
 
-  loadGlobalStyles() {
-
-    this.getGlobalConfig();
-
-    if (this.style.theme != this.globalConfigData.theme || this.style.variant != this.globalConfigData.variant) {
-      this.renderer.removeClass(this.element.nativeElement, this.getStyleStr());
-    }
-
-    this.style.theme = this.globalConfigData.theme;
-    this.style.variant = this.globalConfigData.variant;
-
-    //Adds theme class
-    this.renderer.addClass(this.element.nativeElement, this.getStyleStr());
-  }
-
-  loadStyles(_theme: string, _variant: string) {
-
-    if (_theme !== "" && _theme !== undefined && _variant !== "" && _variant !== undefined) {
-
-      //Removes old theme class
-      if (this.style.theme !== "" && this.style.theme !== undefined && this.style.variant !== "" && this.style.variant !== undefined) {
-        this.renderer.removeClass(this.element.nativeElement, this.getStyleStr());
-      }
-
-      this.style.theme = _theme;
-      this.style.variant = _variant;
-
-      //Adds theme class
-      this.renderer.addClass(this.element.nativeElement, this.getStyleStr());
-    } else {
-
-      this.loadGlobalStyles()
-    }
-  }
-
-  subscribeStyles(changes: SimpleChanges) {
-    
-    if (changes != undefined && changes.theme != undefined && changes.variant != undefined) {
-      this.loadStyles(changes.theme.currentValue, changes.variant.currentValue);
-    }
-    //Only variant has changed
-    else if (changes.variant != undefined ) {
-      this.loadStyles(this.style.theme, changes.variant.currentValue);
-    } 
-  }
+  public styleConfig: StyleClass = new StyleClass(this.componentElement, this.renderer, this.globalConfigService, "window");
 
 
   ////////////////////////

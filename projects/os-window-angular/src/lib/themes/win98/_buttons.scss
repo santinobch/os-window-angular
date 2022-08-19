@@ -73,7 +73,7 @@
 $font-size: 10;
 $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
 
-.win98-classic-button {
+.win98-classic-os-button {
     @include font($font-family, $font-size);
 
     border: 0;
@@ -95,7 +95,7 @@ $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
     }
 }
 
-.win98-vaporwave-button {
+.win98-vaporwave-os-button {
     @include font($font-family, $font-size);
 
     border: 0;

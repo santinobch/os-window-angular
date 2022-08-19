@@ -28,13 +28,15 @@ export class OsConfigDirective implements OnInit {
 
   globalConfig: StyleModel = {
     theme:  "",
-    variant: ""  
+    variant: "",
+    color: ""
   };
 
   ngOnInit(): void {
     this.globalConfig = {
       theme: this._theme,
-      variant: this._variant
+      variant: this._variant,
+      color: ""
     };
 
     this.themeService.setGlobal(this.globalConfig);

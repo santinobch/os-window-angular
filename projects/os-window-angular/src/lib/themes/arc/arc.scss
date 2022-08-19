@@ -191,12 +191,12 @@
     }
 }
 
-.arc-light {
+.arc-light-os-window {
     @include theme('light', 'true');
     @include lightAssets();
 }
 
-.arc-dark {
+.arc-dark-os-window {
     @include theme('dark', 'true');
     @include darkAssets();
 }

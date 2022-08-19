@@ -34,7 +34,6 @@ export class OsRadioComponent implements OnInit, OnChanges {
   styleConfig: StyleClass = new StyleClass(this.componentElement, this.renderer, this.globalConfigService, "radio");
 
 
-
   //////////////////////
   ////    Inputs    ////
   //////////////////////
@@ -44,15 +43,15 @@ export class OsRadioComponent implements OnInit, OnChanges {
   //
   @Input()
   get theme(): string { return this.styleConfig.style.theme; }
-  set theme(v: string) { };
+  set theme(v: string) { this.styleConfig.style.theme = v};
 
   @Input()
   get variant(): string { return this.styleConfig.style.variant; }
-  set variant(v: string) { };
+  set variant(v: string) { this.styleConfig.style.variant = v };
 
   @Input()
-  get color(): string { return this.styleConfig.color }
-  set color(v: string) { this.styleConfig.color = v };
+  get color(): string { return this.styleConfig.style.color }
+  set color(v: string) { this.styleConfig.style.color = v };
 
   private _uniqueId: string = "";
   private _name: string = "";

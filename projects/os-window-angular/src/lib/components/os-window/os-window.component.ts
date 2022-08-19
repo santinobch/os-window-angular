@@ -68,12 +68,12 @@ export class OsWindowComponent implements OnInit, OnChanges {
 
   //  Component theme  //
   @Input()
-  get theme(): String { return this.win.style.theme; }
-  set theme(v: String) { };
+  get theme(): string { return this.win.styleConfig.style.theme; }
+  set theme(v: string) { this.win.styleConfig.style.theme = v; };
 
   @Input()
-  get variant(): String { return this.win.style.variant; }
-  set variant(v: String) { };
+  get variant(): string { return this.win.styleConfig.style.variant; }
+  set variant(v: string) { this.win.styleConfig.style.variant = v; };
 
   //  Size & position  ///
   @Input()
@@ -135,7 +135,6 @@ export class OsWindowComponent implements OnInit, OnChanges {
   
 
   ngOnInit(): void {
-    
   }
 
   ngAfterViewInit() {
@@ -148,13 +147,15 @@ export class OsWindowComponent implements OnInit, OnChanges {
 
     /* After dimensions & position we set the themes and rules */
     //Setting theme of component
-    this.win.loadStyles(this.win.style.theme, this.win.style.variant);
+    this.win.styleConfig.loadStyles();
+    //Colored windows someday?
+    //this.win.styleConfig.loadColor();
 
     this.win.loadRules();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     //Changing styles on runtime
-    this.win.subscribeStyles(changes);
+    this.win.styleConfig.onChanges(changes);
   }
 }

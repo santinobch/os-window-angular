@@ -2,40 +2,42 @@ import { ElementRef, Renderer2, SimpleChanges } from "@angular/core";
 import { OsConfigService } from "../services/os-config/os-config.service";
 import { theme_list } from "../themes/theme_list";
 
-export interface StyleModel {
+export interface SimpleStyleModel {
     theme: string;
     variant: string;
 }
 
+export interface StyleModel {
+    theme: string;
+    variant: string;
+    color: string;
+}
+
 export class StyleClass {
 
-    private globalConfigData: StyleModel = {
+    private globalConfigData: SimpleStyleModel = {
         theme: "",
         variant: ""
     };
 
     public style: StyleModel = {
         theme: "",
-        variant: ""
+        variant: "",
+        color: ""
     }
 
     private previousStyle: StyleModel = {
         theme: "",
-        variant: ""
+        variant: "",
+        color: ""
     }
-
-    public color: string = "";
-    private previousColor: string = "";
-
-    public element!: ElementRef<HTMLElement>;
-
+    
     constructor(
         private componentElement: ElementRef,
         private renderer: Renderer2,
         private globalConfigService: OsConfigService,
         private componentName: string
     ) {
-        this.element = componentElement;
     }
 
 
@@ -51,57 +53,59 @@ export class StyleClass {
                             return true;
                         }
                     }
-                    console.error("Invalid variant at component: " + this.componentElement);
+                    console.error("Invalid variant at " + this.componentName + " component: " + this.style.variant);
                     return false;
                 }
             }
-            console.error("Invalid Theme at component: " + this.componentElement);
+            console.error("Invalid Theme at " + this.componentName + " component: " + this.style.theme);
             return false;
         }
         return false;
     }
 
     private isValidColor(): boolean {
-        if (this.style.theme !== "" && this.style.theme !== undefined) {
+        if (this.style.theme !== "" && this.style.theme !== undefined &&
+            this.style.color !== "" && this.style.color !== undefined) {
 
             for (const i of theme_list) {
                 if (i.theme == this.style.theme) {
                     for (const p of i.palette) {
-                        if (p == this.color) {
+                        if (p == this.style.color) {
                             
                             return true;
                         }
                     }
-                    console.error("Invalid color at component: " + this.componentElement);
+                    console.error("Invalid color at " + this.componentName + " component: " + this.style.color);
                     return false;
                 }
             }
-            console.error("Invalid Theme at component: " + this.componentElement);
+            console.error("Invalid Theme at " + this.componentName + " component: " + this.style.theme);
             return false;
         }
         return false;
     }
 
     private getStyle(): string {
-        return this.style.theme + "-" + this.style.variant + "-" + this.componentName;
+        return this.style.theme + "-" + this.style.variant + "-os-" + this.componentName;
     }
 
     private getPreviousStyle(): string {
-        return this.previousStyle.theme + "-" + this.previousStyle.variant + "-" + this.componentName;
+        return this.previousStyle.theme + "-" + this.previousStyle.variant + "-os-" + this.componentName;
     }
 
     private getColor() {
-        return this.color + "-os-" + this.componentName;
+        return this.style.color + "-os-" + this.componentName;
     }
 
     private getPreviousColor() {
-        return this.previousColor + "-os-" + this.componentName;
+        return this.previousStyle.color + "-os-" + this.componentName;
     }
 
     public loadGlobalStyles() {
         //Global theme config
         this.globalConfigData = this.globalConfigService.getGlobal();
-        this.style = this.globalConfigData;
+        this.style.theme = this.globalConfigData.theme;
+        this.style.variant = this.globalConfigData.variant;
         this.renderer.addClass(this.componentElement.nativeElement, this.getStyle());
     }
 
@@ -128,10 +132,10 @@ export class StyleClass {
 
     public loadColor() {
         if (this.isValidColor()) {
-            if (this.previousColor !== "" && this.previousColor !== undefined) {
+            if (this.previousStyle.color !== "" && this.previousStyle.color !== undefined) {
                 this.renderer.removeClass(this.componentElement.nativeElement, this.getPreviousColor());
             }
-            this.previousColor = this.color;
+            this.previousStyle.color = this.style.color;
 
             this.renderer.addClass(this.componentElement.nativeElement, this.getColor());
         }

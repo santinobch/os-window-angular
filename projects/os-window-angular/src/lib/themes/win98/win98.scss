@@ -190,11 +190,11 @@
 }
 
 //Actual declaration of themes
-.win98-classic {
+.win98-classic-os-window {
     @include theme('classic', 'false');
 
 }
 
-.win98-vaporwave {
+.win98-vaporwave-os-window {
     @include theme('vaporwave', 'false');
 }
