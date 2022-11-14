@@ -20,8 +20,8 @@ import { theme_list } from "../../themes/theme_list";
   templateUrl: './os-button.component.html',
   styleUrls: [
     './os-button.component.scss',
-    '../../themes/arc/_buttons.scss',
-    '../../themes/win98/_buttons.scss'
+    '../../themes/arc/components/buttons.scss',
+    '../../themes/win98/components/buttons.scss'
   ],
   encapsulation: ViewEncapsulation.None
 })

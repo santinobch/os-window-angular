@@ -18,7 +18,8 @@ import { theme_list } from "../../themes/theme_list";
   selector: `os-radio`,
   templateUrl: './os-radio.component.html',
   styleUrls: [
-    './os-radio.component.scss'
+    './os-radio.component.scss',
+    '../../themes/win98/components/radio.scss',
   ],
   encapsulation: ViewEncapsulation.None
 })
@@ -126,5 +127,10 @@ export class OsRadioComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.styleConfig.onChanges(changes);
+  }
+
+  check(input: HTMLInputElement, text: HTMLSpanElement) {
+    input.checked = true;
+    this.renderer.addClass(text, 'focused');
   }
 }

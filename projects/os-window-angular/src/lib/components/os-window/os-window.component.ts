@@ -36,8 +36,8 @@ export class OsWindowContent {}
   templateUrl: './os-window.component.html',
   styleUrls: [
     './os-window.component.scss',
-    '../../themes/arc/arc.scss',
-    '../../themes/win98/win98.scss'
+    '../../themes/arc/components/window.scss',
+    '../../themes/win98/components/window.scss'
   ],
   encapsulation: ViewEncapsulation.None,
   host: {

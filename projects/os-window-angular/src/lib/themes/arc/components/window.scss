@@ -1,6 +1,6 @@
 //Fonts imports
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import './colors';
+@import '../colors';
 
 // provide font size in rem, with px fallback
 @mixin font($font, $size: 24, $base: 16) {
@@ -148,7 +148,7 @@
 }
 
 @mixin lightAssets {
-    $asset_path: './assets/light-assets/controls';
+    $asset_path: '../assets/light-assets/controls';
 
     .minimize {
         background: url("#{$asset_path}/light-titlebutton-minimize.png");
@@ -170,7 +170,7 @@
 }
 
 @mixin darkAssets {
-    $asset_path: './assets/dark-assets/controls';
+    $asset_path: '../assets/dark-assets/controls';
 
     .minimize {
         background: url("#{$asset_path}/dark-titlebutton-minimize.png");

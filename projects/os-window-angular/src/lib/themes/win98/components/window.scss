@@ -1,6 +1,6 @@
-@import './fonts';
-@import './colors';
-@import './mixins';
+@import '../fonts/fonts';
+@import '../colors';
+@import '../mixins';
 
 // provide font size in rem, with px fallback
 @mixin font($font, $size: 24, $base: 16) {
@@ -126,7 +126,7 @@
         image-rendering: pixelated;
     }
 
-    $asset_path: './assets';
+    $asset_path: '../assets';
 
     .minimize {
         background-image: url("#{$asset_path}/minimize.png");

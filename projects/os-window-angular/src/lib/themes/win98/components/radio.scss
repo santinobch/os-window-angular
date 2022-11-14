@@ -1,0 +1,91 @@
+@import '../colors';
+@import '../mixins';
+@import '../fonts/fonts';
+
+$font-size: 10;
+$font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
+
+// input[type="radio"],
+// input[type="checkbox"] {
+//   appearance: none;
+//   -webkit-appearance: none;
+//   -moz-appearance: none;
+//   margin: 0;
+//   background: 0;
+//   position: fixed;
+//   opacity: 0;
+//   border: none;
+// }
+
+// input[type="radio"] + label,
+// input[type="checkbox"] + label {
+//   line-height: 13px;
+// }
+
+// input[type="radio"] + label {
+//   position: relative;
+//   margin-left: var(--radio-total-width);
+// }
+
+// input[type="radio"] + label::before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: calc(-1 * (var(--radio-total-width-precalc)));
+//   display: inline-block;
+//   width: var(--radio-width);
+//   height: var(--radio-width);
+//   margin-right: var(--radio-label-spacing);
+//   background: svg-load("./icon/radio-border.svg");
+// }
+
+// input[type="radio"]:active + label::before {
+//   background: svg-load("./icon/radio-border-disabled.svg");
+// }
+
+// input[type="radio"]:checked + label::after {
+//   content: "";
+//   display: block;
+//   width: var(--radio-dot-width);
+//   height: var(--radio-dot-width);
+//   top: var(--radio-dot-top);
+//   left: var(--radio-dot-left);
+//   position: absolute;
+//   background: svg-load("./icon/radio-dot.svg");
+// }
+
+// input[type="radio"]:focus + label,
+// input[type="checkbox"]:focus + label {
+//   outline: 1px dotted #000000;
+// }
+
+// input[type="radio"][disabled] + label::before {
+//   background: svg-load("./icon/radio-border-disabled.svg");
+// }
+
+// input[type="radio"][disabled]:checked + label::after {
+//   background: svg-load("./icon/radio-dot-disabled.svg");
+// }
+
+@mixin test {
+  .focused {
+    outline: 1px dotted #000000;
+  }
+
+}
+
+
+
+.win98-classic-os-radio {
+    @include font($font-family, $font-size);
+
+    @include test();
+}
+
+.win98-vaporwave-os-radio {
+    @include font($font-family, $font-size);
+
+}
+
+
+

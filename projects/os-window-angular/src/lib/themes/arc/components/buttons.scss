@@ -1,4 +1,4 @@
-@import './colors';
+@import '../colors';
 
 // provide font size in rem, with px fallback
 @mixin font($font, $size: 24, $base: 16) {
