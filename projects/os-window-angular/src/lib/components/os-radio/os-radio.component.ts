@@ -9,9 +9,10 @@ import {
   SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
-import { StyleModel, StyleClass } from "../../models/Style.model";
+import { StyleModel } from "../../models/Style.model";
 import { OsConfigService } from "../../services/os-config/os-config.service";
 import { theme_list } from "../../themes/theme_list";
+import { StyleClass } from '../../classes/Style.class';
 
 
 @Component({
@@ -54,6 +55,14 @@ export class OsRadioComponent implements OnInit, OnChanges {
   get color(): string { return this.styleConfig.style.color }
   set color(v: string) { this.styleConfig.style.color = v };
 
+
+  /** Where the label should appear */
+  private _labelPosition: 'before' | 'after' = 'after';
+  public flexDirection: string = 'row';
+
+  @Input()
+  set labelPosition(v: 'before' | 'after') { this._labelPosition = v; }
+
   private _uniqueId: string = "";
   private _name: string = "";
   private _ariaLabel: string = "";
@@ -61,7 +70,6 @@ export class OsRadioComponent implements OnInit, OnChanges {
   private _ariaDescribedby: string = "";
   private _checked: boolean = false;
   private _value: any = null;
-  private _labelPosition: 'before' | 'after' = 'after';
   private _disabled: boolean = false;
   private _required: boolean = false;
 
@@ -100,12 +108,6 @@ export class OsRadioComponent implements OnInit, OnChanges {
   get value(): any { return this._value; }
   set value(v: any) { this._value = v; }
 
-  /** Whether the label should appear after or before the radio button. Defaults to 'after' */
-  @Input()
-  get labelPosition(): 'before' | 'after' { return this._labelPosition; }
-  set labelPosition(v) { this._labelPosition = v === 'before' ? 'before' : 'after'; }
-  
-
   /** Whether the radio button is disabled. */
   @Input()
   get disabled(): boolean { return this._disabled; }
@@ -118,6 +120,14 @@ export class OsRadioComponent implements OnInit, OnChanges {
 
 
   ngOnInit(): void {
+
+    //This chooses the flex direction of the container
+
+    if (this._labelPosition == "after") {
+      this.flexDirection = "row";
+    } else {
+      this.flexDirection = "row-reverse";
+    }
   }
 
   ngAfterViewInit(): void {

@@ -3,11 +3,11 @@ import { ElementRef, Renderer2, SimpleChanges } from '@angular/core'
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { OsConfigService } from '../services/os-config/os-config.service';
-import { TwoPointModel } from "./TwoPoint.model";
-import { PositionModel } from "./Position.model";
-import { ResizeModel } from "./Resize.model";
-import { StyleClass } from "./Style.model";
-import { SizeModel } from './Size.model';
+import { TwoPointModel } from "../models/TwoPoint.model";
+import { PositionModel } from "../models/Position.model";
+import { ResizeModel } from "../models/Resize.model";
+import { StyleClass } from './Style.class';
+import { SizeModel } from '../models/Size.model';
 
 export function clamp(v: Number, min = 0, max = Number.MAX_SAFE_INTEGER) {
   return Math.max(min, Math.min(max, coerceNumberProperty(v) ) );

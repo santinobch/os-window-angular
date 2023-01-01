@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 
 //Models
-import { clamp, OsWindowClass } from "../../models/OsWindow.model";
+import { clamp, OsWindowClass } from "../../classes/OsWindow.class";
 
 //Services
 import { OsConfigService } from '../../services/os-config/os-config.service';

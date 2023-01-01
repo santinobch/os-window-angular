@@ -1,26 +1,20 @@
+<div class="radio-container" 
+    [style.flex-direction]="flexDirection">
 
+    <input type="radio" #radio
+        [id]="id"
+        [checked]="checked"
+        [disabled]="disabled"
+        [attr.name]="name"
+        [attr.value]="value"
+        [required]="required"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-labelledby]="ariaLabelledby"
+        [attr.aria-describedby]="ariaDescribedby">
 
-<label [attr.for]="id" *ngIf="this.labelPosition == 'before'">
-    <span #span (click)="check(radio, span)">
-        <ng-content></ng-content>
-    </span>
-</label>
-
-<input type="radio" #radio
-    [id]="id"
-    [checked]="checked"
-    [disabled]="disabled"
-    [attr.name]="name"
-    [attr.value]="value"
-    [required]="required"
-    [attr.aria-label]="ariaLabel"
-    [attr.aria-labelledby]="ariaLabelledby"
-    [attr.aria-describedby]="ariaDescribedby">
-
-
-<label [attr.for]="id" *ngIf="this.labelPosition == 'after'">
-    <span #span (click)="check(radio, span)">
-        <ng-content></ng-content>
-    </span>
-</label>
-
+    <label [attr.for]="id">
+        <span #span (click)="radio.disabled ? undefined : check(radio, span)">
+            <ng-content></ng-content>
+        </span>
+    </label>
+</div>
