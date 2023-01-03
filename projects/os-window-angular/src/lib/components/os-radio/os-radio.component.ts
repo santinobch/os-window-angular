@@ -21,6 +21,7 @@ import { StyleClass } from '../../classes/Style.class';
   styleUrls: [
     './os-radio.component.scss',
     '../../themes/win98/components/radio.scss',
+    '../../themes/arc/components/radio.scss'
   ],
   encapsulation: ViewEncapsulation.None
 })
@@ -139,8 +140,8 @@ export class OsRadioComponent implements OnInit, OnChanges {
     this.styleConfig.onChanges(changes);
   }
 
-  check(input: HTMLInputElement, text: HTMLSpanElement) {
+  check(input: HTMLInputElement) {
     input.checked = true;
-    this.renderer.addClass(text, 'focused');
+    input.focus();
   }
 }

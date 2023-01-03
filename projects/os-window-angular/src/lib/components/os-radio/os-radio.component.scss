@@ -5,14 +5,21 @@
     label {
         display: flex;
         align-items: center;
-    
-        span {
-            cursor: pointer;
-        }
+        cursor: pointer;
+    }
+
+    .disabled {
+        cursor: default;
     }
 
     input {
-        margin-top: 0;
-        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        margin: 0;
+        background: 0;
+        position: fixed;
+        opacity: 0;
+        border: none;
     }
 }

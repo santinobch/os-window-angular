@@ -1,5 +1,6 @@
 <div class="radio-container" 
-    [style.flex-direction]="flexDirection">
+    [style.flex-direction]="flexDirection"
+    (click)="radio.disabled ? undefined : check(radio)">
 
     <input type="radio" #radio
         [id]="id"
@@ -12,8 +13,8 @@
         [attr.aria-labelledby]="ariaLabelledby"
         [attr.aria-describedby]="ariaDescribedby">
 
-    <label [attr.for]="id">
-        <span #span (click)="radio.disabled ? undefined : check(radio, span)">
+    <label [attr.for]="id" [class.disabled]="disabled">
+        <span>
             <ng-content></ng-content>
         </span>
     </label>

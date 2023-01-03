@@ -262,11 +262,37 @@
 
         <br />
 
-        <os-radio name="test" color="red">Test 1</os-radio>
+        <os-radio name="test1" 
+            [theme]="theme ? 'arc' : 'win98'"
+            [variant]="theme ? (variant ? 'dark' : 'light') : (variant ? 'classic' : 'vaporwave')">Test 1</os-radio>
         <br />
-        <os-radio name="test" color="red">Test 2</os-radio>
+        <os-radio name="test1" 
+            [theme]="theme ? 'arc' : 'win98'"
+            [variant]="theme ? (variant ? 'dark' : 'light') : (variant ? 'classic' : 'vaporwave')">Test 1</os-radio>
         <br />
-        <os-radio name="test" color="red">Test 3</os-radio>
+        <os-radio name="test2" labelPosition="before"
+            [theme]="theme ? 'arc' : 'win98'"
+            [variant]="theme ? (variant ? 'dark' : 'light') : (variant ? 'classic' : 'vaporwave')">Test 2</os-radio>
+        <br />
+        <os-radio name="test2" labelPosition="before"
+            [theme]="theme ? 'arc' : 'win98'"
+            [variant]="theme ? (variant ? 'dark' : 'light') : (variant ? 'classic' : 'vaporwave')">Test 2</os-radio>
+        <br />
+        <os-radio name="test3" disabled
+            [theme]="theme ? 'arc' : 'win98'"
+            [variant]="theme ? (variant ? 'dark' : 'light') : (variant ? 'classic' : 'vaporwave')">Test 3</os-radio>
+        <br />
+        <os-radio name="test3" disabled checked
+            [theme]="theme ? 'arc' : 'win98'"
+            [variant]="theme ? (variant ? 'dark' : 'light') : (variant ? 'classic' : 'vaporwave')">Test 3</os-radio>
+        <br />
+        <os-radio name="test4" disabled labelPosition="before"
+            [theme]="theme ? 'arc' : 'win98'"
+            [variant]="theme ? (variant ? 'dark' : 'light') : (variant ? 'classic' : 'vaporwave')">Test 4</os-radio>
+        <br />
+        <os-radio name="test4" disabled checked labelPosition="before"
+            [theme]="theme ? 'arc' : 'win98'"
+            [variant]="theme ? (variant ? 'dark' : 'light') : (variant ? 'classic' : 'vaporwave')">Test 4</os-radio>
 
         <br />
 

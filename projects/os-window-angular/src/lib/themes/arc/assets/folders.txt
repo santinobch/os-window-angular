@@ -1,0 +1,11 @@
+light/radio
+light/checkbox
+light/switch
+light/titlebutton
+dark/radio
+dark/checkbox
+dark/switch
+dark/titlebutton
+selected/radio
+selected/checkbox
+selected/switch

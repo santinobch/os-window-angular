@@ -147,58 +147,36 @@
     }
 }
 
-@mixin lightAssets {
-    $asset_path: '../assets/light-assets/controls';
+@mixin assets($theme) {
+    $asset_path: '../assets/#{$theme}/titlebutton';
 
     .minimize {
-        background: url("#{$asset_path}/light-titlebutton-minimize.png");
-        &:hover { background: url("#{$asset_path}/light-titlebutton-minimize-hover.png"); }
-        &:active { background: url("#{$asset_path}/light-titlebutton-minimize-active.png"); }
+        background: url("#{$asset_path}/titlebutton-minimize.svg");
+        &:hover { background: url("#{$asset_path}/titlebutton-minimize-hover.svg"); }
+        &:active { background: url("#{$asset_path}/titlebutton-minimize-active.svg"); }
     }
 
     .maximize {
-        background: url("#{$asset_path}/light-titlebutton-maximize.png");
-        &:hover { background: url("#{$asset_path}/light-titlebutton-maximize-hover.png"); }
-        &:active { background: url("#{$asset_path}/light-titlebutton-maximize-active.png"); }
+        background: url("#{$asset_path}/titlebutton-maximize.svg");
+        &:hover { background: url("#{$asset_path}/titlebutton-maximize-hover.svg"); }
+        &:active { background: url("#{$asset_path}/titlebutton-maximize-active.svg"); }
     }
 
     .close {
-        background: url("#{$asset_path}/light-titlebutton-close.png");
-        &:hover { background: url("#{$asset_path}/light-titlebutton-close-hover.png"); }
-        &:active { background: url("#{$asset_path}/light-titlebutton-close-active.png"); }
-    }
-}
-
-@mixin darkAssets {
-    $asset_path: '../assets/dark-assets/controls';
-
-    .minimize {
-        background: url("#{$asset_path}/dark-titlebutton-minimize.png");
-        &:hover { background: url("#{$asset_path}/dark-titlebutton-minimize-hover.png"); }
-        &:active { background: url("#{$asset_path}/dark-titlebutton-minimize-active.png"); }
-    }
-
-    .maximize {
-        background: url("#{$asset_path}/dark-titlebutton-maximize.png");
-        &:hover { background: url("#{$asset_path}/dark-titlebutton-maximize-hover.png"); }
-        &:active { background: url("#{$asset_path}/dark-titlebutton-maximize-active.png"); }
-    }
-
-    .close {
-        background: url("#{$asset_path}/dark-titlebutton-close.png");
-        &:hover { background: url("#{$asset_path}/dark-titlebutton-close-hover.png"); }
-        &:active { background: url("#{$asset_path}/dark-titlebutton-close-active.png"); }
+        background: url("#{$asset_path}/titlebutton-close.svg");
+        &:hover { background: url("#{$asset_path}/titlebutton-close-hover.svg"); }
+        &:active { background: url("#{$asset_path}/titlebutton-close-active.svg"); }
     }
 }
 
 .arc-light-os-window {
     @include theme('light', 'true');
-    @include lightAssets();
+    @include assets('light');
 }
 
 .arc-dark-os-window {
     @include theme('dark', 'true');
-    @include darkAssets();
+    @include assets('dark');
 }
 
 // These seemed like too much work for some styles im not really into, may revisit in he future
