@@ -2,7 +2,7 @@
 
 ## Getting started
 
-Read the wiki on how to [getting started](https://github.com/santinobch/os-window-angular/wiki/Getting-Started), i promise it's a light read ;)
+Read the wiki on how to [getting started](https://github.com/santinobch/os-window-angular/wiki/1.--Getting-Started), i promise it's a light read ;)
 
 
 ## Yes it works :D ! Here are some features:
