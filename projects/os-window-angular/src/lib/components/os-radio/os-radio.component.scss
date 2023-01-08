@@ -1,0 +1,25 @@
+.radio-container {
+    display: flex;
+    width: fit-content;
+
+    label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .disabled {
+        cursor: default;
+    }
+
+    input {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        margin: 0;
+        background: 0;
+        position: fixed;
+        opacity: 0;
+        border: none;
+    }
+}

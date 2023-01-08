@@ -27,3 +27,8 @@
                 inset 1px 1px dark($variant), 
                 inset 2px 2px disabled($variant);
 }
+
+@mixin font($font, $size: 24, $base: 16) {
+    font-family: $font;
+    font-size: round($size) + pt;
+}

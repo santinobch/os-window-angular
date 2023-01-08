@@ -10,3 +10,6 @@ export * from './lib/components/os-window/os-window.module';
 
 export * from './lib/components/os-button/os-button.component';
 export * from './lib/components/os-button/os-button.module';
+
+export * from './lib/components/os-radio/os-radio.component';
+export * from './lib/components/os-radio/os-radio.module';
