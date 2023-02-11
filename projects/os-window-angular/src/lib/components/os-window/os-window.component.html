@@ -10,11 +10,9 @@ TO DO:
 
 -->
 
-<div class="os-window-wrapper"
+<div class="window-child"
     [style.width]="win.size.width.current + win.size.width.unit"
     [style.height]="win.size.height.current + win.size.height.unit"
-    fxLayout="column"
-    fxLayoutAlign="start stretch"
     cdkDrag
     (cdkDragStarted)="this.win.demaximize()"
     (cdkDragEnded)="this.win.correctEndPosition($event)"
@@ -99,23 +97,19 @@ TO DO:
 
         <div class="window-bar-anchor"
             cdkDragHandle
-            fxLayout="row"
-            fxLayoutAlign="space-evenly center"
             (dblclick)="this.win.maximize()">
 
-            <div class="window-title"
-                fxFlex>
+            <div class="window-title">
                 <ng-content select="window-title, [window-title], [windowTitle]"></ng-content>
             </div>
 
             <div class="controls-separator"></div>
 
-            <div class="controls-container"
-                fxLayoutAlign="space-between center">
+            <div class="controls-container">
 
-                <button class="controls minimize" (click)="this.win.minimize()"></button>
-                <button class="controls maximize" (click)="this.win.maximize()"></button>
-                <button class="controls close" (click)="this.win.close()"></button>
+                <button class="control minimize" (click)="this.win.minimize()"></button>
+                <button class="control maximize" (click)="this.win.maximize()"></button>
+                <button class="control close" (click)="this.win.close()"></button>
             </div>
         </div>
     </div>
@@ -124,7 +118,7 @@ TO DO:
 
         <ng-scrollbar class="win98-scrollbar" track="all" trackClass="os-scrollbar-track" thumbClass="os-scrollbar-thumb">
 
-            <ng-content fxFlex select="window-content, [window-content], [windowContent]">
+            <ng-content select="window-content, [window-content], [windowContent]">
 
             </ng-content>
 

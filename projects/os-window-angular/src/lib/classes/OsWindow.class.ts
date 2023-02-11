@@ -15,8 +15,25 @@ export function clamp(v: Number, min = 0, max = Number.MAX_SAFE_INTEGER) {
 
 
 export class OsWindowClass {
+
+  public componentElement!: ElementRef<HTMLElement>;
+  private renderer!: Renderer2;
+  private globalConfigService!: OsConfigService
+  public styleConfig!: StyleClass;
+
+  constructor(
+    private _componentElement: ElementRef,
+    private _renderer: Renderer2,
+    private _globalConfigService: OsConfigService
+  ) {
+    this.componentElement = _componentElement;
+    this.renderer = _renderer;
+    this.globalConfigService = _globalConfigService;
+
+    this.styleConfig = new StyleClass(_componentElement, _renderer, _globalConfigService, "window");
+  }
   
-  public element!: ElementRef<HTMLElement>;
+  
 
   private mousePos: TwoPointModel = {x: 0, y: 0};
 
@@ -72,15 +89,6 @@ export class OsWindowClass {
     closable: true
   };
 
-  constructor(
-    private componentElement: ElementRef,
-    private renderer: Renderer2,
-    private globalConfigService: OsConfigService
-  ) {
-    this.element = componentElement;
-  }
-
-
 
   private setStyle(_elementRef: ElementRef, property: string, value: string)  {
       _elementRef.nativeElement.style.setProperty(property, value);
@@ -114,8 +122,8 @@ export class OsWindowClass {
   }
 
   setDimesions() {
-    this.size.width.current = this.clampWidth(this.element, this.size.width.current, this.minWidth);
-    this.size.height.current = this.clampHeight(this.element, this.size.height.current, this.minHeight);
+    this.size.width.current = this.clampWidth(this.componentElement, this.size.width.current, this.minWidth);
+    this.size.height.current = this.clampHeight(this.componentElement, this.size.height.current, this.minHeight);
   }
   
 
@@ -170,7 +178,7 @@ export class OsWindowClass {
   //       Style        //
   ////////////////////////
 
-  public styleConfig: StyleClass = new StyleClass(this.componentElement, this.renderer, this.globalConfigService, "window");
+  
 
 
   ////////////////////////
@@ -180,29 +188,29 @@ export class OsWindowClass {
   loadRules() {
     //Minimizable?
     if (!this.rules.minimizable) {
-      this.setStyle(this.element, '--minimizeButton', 'none');
+      this.setStyle(this.componentElement, '--minimizeButton', 'none');
     }
 
     //Maximizable?
     if (!this.rules.maximizable) {
-      this.setStyle(this.element, '--maximizeButton', 'none');
+      this.setStyle(this.componentElement, '--maximizeButton', 'none');
     }
 
     //Closable?
     if (!this.rules.closable) {
-      this.setStyle(this.element, '--closeButton', 'none');
+      this.setStyle(this.componentElement, '--closeButton', 'none');
     }
 
     //Resizable?
     if (this.rules.disableResize) {
-      this.setStyle(this.element, '--cursorN', 'auto')
-      this.setStyle(this.element, '--cursorNE', 'auto')
-      this.setStyle(this.element, '--cursorE', 'auto')
-      this.setStyle(this.element, '--cursorSE', 'auto')
-      this.setStyle(this.element, '--cursorS', 'auto')
-      this.setStyle(this.element, '--cursorSW', 'auto')
-      this.setStyle(this.element, '--cursorW', 'auto')
-      this.setStyle(this.element, '--cursorNW', 'auto')
+      this.setStyle(this.componentElement, '--cursorN', 'auto')
+      this.setStyle(this.componentElement, '--cursorNE', 'auto')
+      this.setStyle(this.componentElement, '--cursorE', 'auto')
+      this.setStyle(this.componentElement, '--cursorSE', 'auto')
+      this.setStyle(this.componentElement, '--cursorS', 'auto')
+      this.setStyle(this.componentElement, '--cursorSW', 'auto')
+      this.setStyle(this.componentElement, '--cursorW', 'auto')
+      this.setStyle(this.componentElement, '--cursorNW', 'auto')
     }
   }
 
@@ -342,7 +350,7 @@ export class OsWindowClass {
           }
 
           this.size.height.current = this.size.height.previous - this.anchor.y;
-          this.size.height.current = this.clampHeight(this.element, this.size.height.current, this.minHeight);
+          this.size.height.current = this.clampHeight(this.componentElement, this.size.height.current, this.minHeight);
 
           this.position.current = {
             x: this.position.current.x,
@@ -353,13 +361,13 @@ export class OsWindowClass {
 
       case "e":
         this.size.width.current = (this.size.width.previous + this.anchor.x);
-        this.size.width.current = this.clampWidth(this.element, this.size.width.current, this.minWidth);
+        this.size.width.current = this.clampWidth(this.componentElement, this.size.width.current, this.minWidth);
 
         break;
 
       case "s":
         this.size.height.current = this.size.height.previous + this.anchor.y;
-        this.size.height.current = this.clampHeight(this.element, this.size.height.current, this.minHeight);
+        this.size.height.current = this.clampHeight(this.componentElement, this.size.height.current, this.minHeight);
 
         break;
 
@@ -373,7 +381,7 @@ export class OsWindowClass {
           }
 
           this.size.width.current = this.size.width.previous - this.anchor.x;
-          this.size.width.current = this.clampWidth(this.element, this.size.width.current, this.minWidth);
+          this.size.width.current = this.clampWidth(this.componentElement, this.size.width.current, this.minWidth);
 
           this.position.current = {
             x: this.position.resize.x,
@@ -448,6 +456,6 @@ export class OsWindowClass {
     }
 
     //We add the 'focused' class to the current window
-    this.renderer.addClass(this.element.nativeElement.firstChild, "focused");
+    this.renderer.addClass(this.componentElement.nativeElement.firstChild, "focused");
   }
 }

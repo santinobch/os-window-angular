@@ -27,13 +27,22 @@ import { StyleClass } from '../../classes/Style.class';
 })
 export class OsButtonComponent implements OnInit, OnChanges {
 
-  constructor(
-    public componentElement: ElementRef, 
-    public renderer: Renderer2,
-    public globalConfigService: OsConfigService
-    ) {}
+  public componentElement!: ElementRef<HTMLElement>;
+  private renderer!: Renderer2;
+  private globalConfigService!: OsConfigService
+  public styleConfig!: StyleClass;
 
-  styleConfig: StyleClass = new StyleClass(this.componentElement, this.renderer, this.globalConfigService, "button");
+  constructor(
+    private _componentElement: ElementRef,
+    private _renderer: Renderer2,
+    private _globalConfigService: OsConfigService
+  ) {
+    this.componentElement = _componentElement;
+    this.renderer = _renderer;
+    this.globalConfigService = _globalConfigService;
+
+    this.styleConfig = new StyleClass(_componentElement, _renderer, _globalConfigService, "button");
+  }
 
   //////////////////////
   ////    Inputs    ////

@@ -26,7 +26,10 @@
 }
 
 //Universal theming
-.os-window-wrapper {
+.window-child {
+
+    display: flex;
+    flex-direction: column;
 
     .window-resize {
         position: absolute;
@@ -118,18 +121,31 @@
         padding-top: 4px;
         padding-right: 4px;
         padding-left: 4px;
-    
+
         .window-bar-anchor {
-            .minimize {
-                display: var(--minimizeButton);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .window-title {
+                flex: 1 1 0%;
             }
-            
-            .maximize {
-                display: var(--maximizeButton);
-            }
-            
-            .close {
-                display: var(--closeButton);
+
+            .controls-container {
+                display: flex;
+                align-items: center;
+
+                .minimize {
+                    display: var(--minimizeButton);
+                }
+                
+                .maximize {
+                    display: var(--maximizeButton);
+                }
+                
+                .close {
+                    display: var(--closeButton);
+                }
             }
         }
     }
@@ -138,6 +154,12 @@
         height: 100%;
         width: 100%;
         overflow: auto;
+
+        ng-scrollbar {
+            ng-content {
+                flex: 1 1 0%;
+            }
+        }
     }
 }
 

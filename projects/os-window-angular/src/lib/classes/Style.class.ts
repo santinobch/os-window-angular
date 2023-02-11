@@ -5,6 +5,23 @@ import { theme_list } from "../themes/theme_list";
 
 export class StyleClass {
 
+    private componentElement!: ElementRef;
+    private renderer!: Renderer2;
+    private globalConfigService!: OsConfigService;
+    private componentName!: string;
+    
+    constructor(
+        private _componentElement: ElementRef,
+        private _renderer: Renderer2,
+        private _globalConfigService: OsConfigService,
+        private _componentName: string
+    ) {
+        this.componentElement = _componentElement;
+        this.renderer = _renderer;
+        this.globalConfigService = _globalConfigService;
+        this.componentName = _componentName;
+    }
+
     private globalConfigData: SimpleStyleModel = {
         theme: "",
         variant: ""
@@ -20,14 +37,6 @@ export class StyleClass {
         theme: "",
         variant: "",
         color: ""
-    }
-    
-    constructor(
-        private componentElement: ElementRef,
-        private renderer: Renderer2,
-        private globalConfigService: OsConfigService,
-        private componentName: string
-    ) {
     }
 
 
@@ -133,18 +142,18 @@ export class StyleClass {
 
     public onChanges(changes: SimpleChanges) {
         if (changes != undefined) {
-            if (changes.theme != undefined) {
-                this.style.theme = changes.theme.currentValue;
+            if (changes["theme"] != undefined) {
+                this.style.theme = changes["theme"].currentValue;
             } 
             if (changes.variant != undefined) {
-                this.style.variant = changes.variant.currentValue;
+                this.style.variant = changes["variant"].currentValue;
             } 
 
-            if (changes.theme != undefined || changes.variant != undefined) {
+            if (changes["theme"] != undefined || changes["variant"] != undefined) {
                 this.loadStyles();
             }
 
-            if (changes.color != undefined) {
+            if (changes["color"] != undefined) {
                 this.loadColor();
             }
         }

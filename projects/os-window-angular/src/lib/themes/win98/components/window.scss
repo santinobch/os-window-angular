@@ -20,15 +20,13 @@
     // we still need to declare them for correct javascript functionality.
     //
     --winBorder: 1px;
-    --winRadius: 0px;
-
 
     // Maximized styles > Focused styles > Normal style
 
     //
     // General styles
     // 
-    .os-window-wrapper {
+    .window-child {
         @include win98_box($variant);
         @include font($font-family, $font-size);
 
@@ -110,7 +108,7 @@
         height: auto;
     }
 
-    .controls {
+    .control {
         @include win98_control_box($variant);
 
         padding-left: 0;
@@ -192,7 +190,6 @@
 //Actual declaration of themes
 .win98-classic-os-window {
     @include theme('classic', 'false');
-
 }
 
 .win98-vaporwave-os-window {

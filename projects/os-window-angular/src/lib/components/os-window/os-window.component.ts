@@ -31,6 +31,7 @@ export class OsWindowTitle {}
 })
 export class OsWindowContent {}
 
+
 @Component({
   selector: 'os-window',
   templateUrl: './os-window.component.html',
@@ -44,17 +45,26 @@ export class OsWindowContent {}
     'class': 'os-window'
   }
 })
-
 export class OsWindowComponent implements OnInit, OnChanges {
 
-  constructor(
-    private componentElement: ElementRef<HTMLElement>,
-    private renderer: Renderer2,
-    private globalConfigService: OsConfigService
-    ) {
-  }
+  private componentElement!: ElementRef<HTMLElement>;
+  private renderer!: Renderer2;
+  private globalConfigService!: OsConfigService
 
-  win: OsWindowClass = new OsWindowClass(this.componentElement, this.renderer, this.globalConfigService);
+  public win!: OsWindowClass;
+
+  constructor(
+    private _componentElement: ElementRef<HTMLElement>,
+    public _renderer: Renderer2,
+    private _globalConfigService: OsConfigService
+    ) {
+      this.componentElement = _componentElement;
+      this.renderer = _renderer;
+      this.globalConfigService = _globalConfigService;
+
+      this.win = new OsWindowClass(this.componentElement, this.renderer, this.globalConfigService);
+  }
+  
 
   /////////////////////////
   ////  Host bindings  ////

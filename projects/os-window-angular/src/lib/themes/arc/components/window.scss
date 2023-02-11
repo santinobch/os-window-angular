@@ -33,7 +33,7 @@
     //
     // General styles
     // 
-    .os-window-wrapper {
+    .window-child {
         border-radius: var(--winRadius);
         border: var(--winBorder) solid header_border($variant);
 
@@ -113,7 +113,7 @@
         width: 76px;
         height: auto;
 
-        .controls {
+        .control {
     
             padding: 0;
             min-height: 16px;

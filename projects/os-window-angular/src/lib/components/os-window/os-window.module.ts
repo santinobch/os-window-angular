@@ -7,9 +7,6 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 //Component
 import { OsWindowComponent, OsWindowContent, OsWindowTitle } from './os-window.component';
 
-//Flex Layout
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 //cdk
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -22,7 +19,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   ],
   imports: [
     CommonModule,
-    FlexLayoutModule,
     DragDropModule,
     NgScrollbarModule
   ],
