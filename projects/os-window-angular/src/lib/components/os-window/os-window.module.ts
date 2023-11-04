@@ -5,27 +5,18 @@ import { CommonModule } from '@angular/common';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 //Component
-import { OsWindowComponent, OsWindowContent, OsWindowTitle } from './os-window.component';
+import {
+  OsWindowComponent,
+  OsWindowContent,
+  OsWindowTitle,
+} from './os-window.component';
 
 //cdk
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-
 @NgModule({
-  declarations: [
-    OsWindowComponent, 
-    OsWindowContent, 
-    OsWindowTitle
-  ],
-  imports: [
-    CommonModule,
-    DragDropModule,
-    NgScrollbarModule
-  ],
-  exports: [
-    OsWindowComponent,
-    OsWindowContent,
-    OsWindowTitle
-  ]
+  declarations: [OsWindowComponent, OsWindowContent, OsWindowTitle],
+  imports: [CommonModule, DragDropModule, NgScrollbarModule],
+  exports: [OsWindowComponent, OsWindowContent, OsWindowTitle],
 })
-export class OsWindowModule { }
+export class OsWindowModule {}

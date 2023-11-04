@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { SharedModel } from '../../models/Shared.model';
-import { SimpleStyleModel } from "../../models/Style.model";
+import { SimpleStyleModel } from '../../models/Style.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OsConfigService {
-
-  constructor() { }
+  constructor() {}
 
   private globalStyles: SimpleStyleModel = {
-    theme: "arc",
-    variant: "light"
+    theme: 'arc',
+    variant: 'light',
   };
 
   private sharedData!: SharedModel[];
@@ -31,7 +30,6 @@ export class OsConfigService {
   setGlobal(config: SimpleStyleModel) {
     this.globalStyles = config;
   }
-
 
   private zIndex: number = 1;
 

@@ -4,179 +4,213 @@
 
 // provide font size in rem, with px fallback
 @mixin font($font, $size: 24, $base: 16) {
-    font-family: $font;
-    font-size: round($size) + pt;
-    //font-size: ($size / $base) * 1rem;
+  font-family: $font;
+  font-size: round($size) + pt;
+  //font-size: ($size / $base) * 1rem;
 }
 
 // provide font size in rem, with px fallback
 @mixin fontsize($size: 24, $base: 16) {
-    font-size: round($size) + pt;
-    //font-size: ($size / $base) * 1rem;
+  font-size: round($size) + pt;
+  //font-size: ($size / $base) * 1rem;
 }
 
 @mixin theme($variant, $transparency) {
-    //
-    // CSS Variables (We may change this ones in runtime)
-    //
+  //
+  // CSS Variables (We may change this ones in runtime)
+  //
 
-    //Border of the window
-    --winBorder: 1px;
-    --winRadius: 5px;
+  //Border of the window
+  --winBorder: 1px;
+  --winRadius: 5px;
 
-    //
-    // Fonts
-    //
-    $font-size: 9;
-    $font-family: Futura Bk bt, 'Open Sans', sans, Sans-Serif;
+  //
+  // Fonts
+  //
+  $font-size: 9;
+  $font-family:
+    Futura Bk bt,
+    'Open Sans',
+    sans,
+    Sans-Serif;
 
-    //
-    // General styles
-    // 
-    .window-child {
-        border-radius: var(--winRadius);
-        border: var(--winBorder) solid header_border($variant);
+  //
+  // General styles
+  //
+  .window-child {
+    border-radius: var(--winRadius);
+    border: var(--winBorder) solid header_border($variant);
 
-        box-shadow: 0 0 0 1px if($variant == 'dark', darken(header_bg($variant), 7%), window_shadow($variant)),
-                    0 8px 8px 0 if($variant !='dark', opacify(window_shadow($variant), 0.1), transparentize(window_shadow($variant), 0.2));
+    box-shadow:
+      0 0 0 1px
+        if(
+          $variant == 'dark',
+          darken(header_bg($variant), 7%),
+          window_shadow($variant)
+        ),
+      0 8px 8px 0
+        if(
+          $variant != 'dark',
+          opacify(window_shadow($variant), 0.1),
+          transparentize(window_shadow($variant), 0.2)
+        );
 
-        @include font($font-family, $font-size);
+    @include font($font-family, $font-size);
 
-        .window-bar {
-            height: 44px;
+    .window-bar {
+      height: 44px;
 
-            background-color: header_bg($variant);
-    
-            border-color: header_border($variant);
-            border-bottom: 1px solid header_border($variant);
-    
-            border-top-left-radius: var(--winRadius);
-            border-top-right-radius: var(--winRadius);
-            
-            .window-bar-anchor {
-                height: 36px;
-                width: 100%;
+      background-color: header_bg($variant);
 
-                .window-title  {
-                    margin-left: 30px;
-                    color: header_fg($variant);
-                }
-            }
+      border-color: header_border($variant);
+      border-bottom: 1px solid header_border($variant);
+
+      border-top-left-radius: var(--winRadius);
+      border-top-right-radius: var(--winRadius);
+
+      .window-bar-anchor {
+        height: 36px;
+        width: 100%;
+
+        .window-title {
+          margin-left: 30px;
+          color: header_fg($variant);
         }
-
-        .window-content {
-            background-color: base($variant);
-            color: text($variant);
-        }
+      }
     }
 
-    //
-    // Focused window styles
-    //
-    .focused {
-        .window-bar {
-            background-color: opacify(header_bg($variant), 1);
-        }
+    .window-content {
+      background-color: base($variant);
+      color: text($variant);
     }
+  }
 
-    //
-    // Maximized window styles
-    //
-    .maximized {
-        border: 0px;
-        border-radius: 0px;
-
-        .window-bar {
-            border: 0px;
-            border-radius: 0px;
-            
-            background-color: opacify(header_bg($variant), 1);
-        }
+  //
+  // Focused window styles
+  //
+  .focused {
+    .window-bar {
+      background-color: opacify(header_bg($variant), 1);
     }
+  }
 
-    //
-    // Separators
-    //
-    .controls-separator {
-        margin-right: 14px;
-        transform: translate(4px, -1px);
-        width: 1px;
-        height: 15px;
-        background: transparentize(header_fg($variant), 0.65);
+  //
+  // Maximized window styles
+  //
+  .maximized {
+    border: 0px;
+    border-radius: 0px;
+
+    .window-bar {
+      border: 0px;
+      border-radius: 0px;
+
+      background-color: opacify(header_bg($variant), 1);
     }
+  }
 
-    //
-    // Window control buttons
-    //
-    .controls-container {
-        margin-right: 8px;
-        width: 76px;
-        height: auto;
+  //
+  // Separators
+  //
+  .controls-separator {
+    margin-right: 14px;
+    transform: translate(4px, -1px);
+    width: 1px;
+    height: 15px;
+    background: transparentize(header_fg($variant), 0.65);
+  }
 
-        .control {
-    
-            padding: 0;
-            min-height: 16px;
-            width: 16px;
-            height: 16px;
-            border: 0px;
-            background-color: rgba(0,0,0,0);
-            box-shadow: none;
-            outline: 0;
-        }
+  //
+  // Window control buttons
+  //
+  .controls-container {
+    margin-right: 8px;
+    width: 76px;
+    height: auto;
+
+    .control {
+      padding: 0;
+      min-height: 16px;
+      width: 16px;
+      height: 16px;
+      border: 0px;
+      background-color: rgba(0, 0, 0, 0);
+      box-shadow: none;
+      outline: 0;
     }
+  }
 
-    //
-    // Links
-    //
-    a { color: link($variant); }
-    a:visited { color: link_visited($variant); }
-    a:visited:hover { color: lighten(link_visited($variant), 10%); }
-    a:hover { color: lighten(link($variant), 10%); }
+  //
+  // Links
+  //
+  a {
+    color: link($variant);
+  }
+  a:visited {
+    color: link_visited($variant);
+  }
+  a:visited:hover {
+    color: lighten(link_visited($variant), 10%);
+  }
+  a:hover {
+    color: lighten(link($variant), 10%);
+  }
 
-    //
-    // Scrollbars
-    //
-    .os-scrollbar-track {
-        background-color: transparentize(base($variant), 0.9);
-        margin-bottom: 5px;
-    }
+  //
+  // Scrollbars
+  //
+  .os-scrollbar-track {
+    background-color: transparentize(base($variant), 0.9);
+    margin-bottom: 5px;
+  }
 
-    .os-scrollbar-thumb {
-        background-color: transparentize( mix(fg($variant), bg($variant), 40%), 0.4);
-    }
+  .os-scrollbar-thumb {
+    background-color: transparentize(mix(fg($variant), bg($variant), 40%), 0.4);
+  }
 }
 
 @mixin assets($theme) {
-    $asset_path: '../assets/#{$theme}/titlebutton';
+  $asset_path: '../assets/#{$theme}/titlebutton';
 
-    .minimize {
-        background: url("#{$asset_path}/titlebutton-minimize.svg");
-        &:hover { background: url("#{$asset_path}/titlebutton-minimize-hover.svg"); }
-        &:active { background: url("#{$asset_path}/titlebutton-minimize-active.svg"); }
+  .minimize {
+    background: url('#{$asset_path}/titlebutton-minimize.svg');
+    &:hover {
+      background: url('#{$asset_path}/titlebutton-minimize-hover.svg');
     }
+    &:active {
+      background: url('#{$asset_path}/titlebutton-minimize-active.svg');
+    }
+  }
 
-    .maximize {
-        background: url("#{$asset_path}/titlebutton-maximize.svg");
-        &:hover { background: url("#{$asset_path}/titlebutton-maximize-hover.svg"); }
-        &:active { background: url("#{$asset_path}/titlebutton-maximize-active.svg"); }
+  .maximize {
+    background: url('#{$asset_path}/titlebutton-maximize.svg');
+    &:hover {
+      background: url('#{$asset_path}/titlebutton-maximize-hover.svg');
     }
+    &:active {
+      background: url('#{$asset_path}/titlebutton-maximize-active.svg');
+    }
+  }
 
-    .close {
-        background: url("#{$asset_path}/titlebutton-close.svg");
-        &:hover { background: url("#{$asset_path}/titlebutton-close-hover.svg"); }
-        &:active { background: url("#{$asset_path}/titlebutton-close-active.svg"); }
+  .close {
+    background: url('#{$asset_path}/titlebutton-close.svg');
+    &:hover {
+      background: url('#{$asset_path}/titlebutton-close-hover.svg');
     }
+    &:active {
+      background: url('#{$asset_path}/titlebutton-close-active.svg');
+    }
+  }
 }
 
 .arc-light-os-window {
-    @include theme('light', 'true');
-    @include assets('light');
+  @include theme('light', 'true');
+  @include assets('light');
 }
 
 .arc-dark-os-window {
-    @include theme('dark', 'true');
-    @include assets('dark');
+  @include theme('dark', 'true');
+  @include assets('dark');
 }
 
 // These seemed like too much work for some styles im not really into, may revisit in he future

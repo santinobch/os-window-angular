@@ -1,34 +1,38 @@
 @import './colors';
 
 @mixin win98_box($variant) {
-    box-shadow: inset -1px -1px dark($variant), 
-                inset 1px 1px base($variant), 
-                inset -2px -2px disabled($variant), 
-                inset 2px 2px light($variant);
+  box-shadow:
+    inset -1px -1px dark($variant),
+    inset 1px 1px base($variant),
+    inset -2px -2px disabled($variant),
+    inset 2px 2px light($variant);
 }
 
 @mixin win98_inner_box($variant) {
-    padding: 1px;
+  padding: 1px;
 
-    box-shadow: inset -1px -1px light($variant), 
-                inset 1px 1px disabled($variant), 
-                inset -2px -2px base($variant), 
-                inset 2px 2px dark($variant);
+  box-shadow:
+    inset -1px -1px light($variant),
+    inset 1px 1px disabled($variant),
+    inset -2px -2px base($variant),
+    inset 2px 2px dark($variant);
 }
 
 @mixin win98_control_box($variant) {
-    box-shadow: inset -1px -1px dark($variant), 
-                inset 1px 1px #fff, 
-                inset -2px -2px disabled($variant);
+  box-shadow:
+    inset -1px -1px dark($variant),
+    inset 1px 1px #fff,
+    inset -2px -2px disabled($variant);
 }
 
 @mixin win98_control_box_active($variant) {
-    box-shadow: inset -1px -1px light($variant), 
-                inset 1px 1px dark($variant), 
-                inset 2px 2px disabled($variant);
+  box-shadow:
+    inset -1px -1px light($variant),
+    inset 1px 1px dark($variant),
+    inset 2px 2px disabled($variant);
 }
 
 @mixin font($font, $size: 24, $base: 16) {
-    font-family: $font;
-    font-size: round($size) + pt;
+  font-family: $font;
+  font-size: round($size) + pt;
 }

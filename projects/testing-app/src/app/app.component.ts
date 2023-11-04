@@ -3,7 +3,7 @@ import { AfterViewInit, Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements AfterViewInit {
   title = 'testing-app';
@@ -11,8 +11,7 @@ export class AppComponent implements AfterViewInit {
   theme: boolean = true;
   variant: boolean = true;
 
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void {}
 
   toggleTheme() {
     this.theme = !this.theme;

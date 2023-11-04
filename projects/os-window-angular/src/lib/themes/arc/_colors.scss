@@ -3,7 +3,6 @@
 //Ihave added the 9 color palette
 //THIS PALETTE IS VERY COMPLEX
 
-
 /* Not sure i need these ones */
 //WM Buttons
 
@@ -24,7 +23,6 @@
 // $wm_icon_unfocused_bg: if($variant == 'light' and $darker == 'false', #B6B8C0, #666A74);
 // $wm_icon_hover_bg: if($variant == 'light' and $darker == 'false', #7A7F8B, #C4C7CC);
 // $wm_icon_active_bg: $selected_fg_color;
-
 
 //Shared palette
 $selected_fg: #ffffff;
@@ -48,17 +46,16 @@ $selected_borders: darken($selected_bg, 20%);
 
 // $drop_target_color: #F08437;
 
-
 //Dark palette
 $base_dark: #404552;
-$text_dark: #D3DAE3;
-$bg_dark: #383C4A;
-$fg_dark: #D3DAE3;
+$text_dark: #d3dae3;
+$bg_dark: #383c4a;
+$fg_dark: #d3dae3;
 
-$borders_dark: darken($base_dark,6%);
+$borders_dark: darken($base_dark, 6%);
 
-$link_dark: lighten($selected_bg,20%);
-$link_visited_dark: lighten($selected_bg,10%);
+$link_dark: lighten($selected_bg, 20%);
+$link_visited_dark: lighten($selected_bg, 10%);
 
 //insensitive state derived colors
 $insensitive_fg_dark: transparentize($fg_dark, 0.55);
@@ -70,17 +67,16 @@ $entry_border_dark: darken($borders_dark, 0%);
 $button_bg_dark: lighten($base_dark, 2%);
 $button_border_dark: $entry_border_dark;
 
-
 //Light palette
 $base_light: #ffffff;
 $text_light: #5c616c;
-$bg_light: #F5F6F7;
+$bg_light: #f5f6f7;
 $fg_light: #5c616c;
 
-$borders_light: darken($bg_light,9%);
+$borders_light: darken($bg_light, 9%);
 
-$link_light: darken($selected_bg,10%);
-$link_visited_light: darken($selected_bg,20%);
+$link_light: darken($selected_bg, 10%);
+$link_visited_light: darken($selected_bg, 20%);
 
 //insensitive state derived colors
 $insensitive_fg_light: transparentize($fg_light, 0.45);
@@ -92,68 +88,149 @@ $entry_border_light: #cfd6e6;
 $button_bg_light: lighten($bg_light, 2%);
 $button_border_light: $entry_border_light;
 
-
 //Shared
-@function selected_fg() { @return $selected_fg };
-@function selected_bg() { @return $selected_bg };
-@function selected_borders() { @return $selected_borders };
+@function selected_fg() {
+  @return $selected_fg;
+}
+@function selected_bg() {
+  @return $selected_bg;
+}
+@function selected_borders() {
+  @return $selected_borders;
+}
 
 //Not shared
-@function base($variant) { @return if($variant == "dark", $base_dark, $base_light) };
-@function text($variant) { @return if($variant == "dark", $text_dark, $text_light) };
-@function bg($variant) { @return if($variant == "dark", $bg_dark, $bg_light) };
-@function fg($variant) { @return if($variant == "dark", $fg_dark, $fg_light) };
+@function base($variant) {
+  @return if($variant == 'dark', $base_dark, $base_light);
+}
+@function text($variant) {
+  @return if($variant == 'dark', $text_dark, $text_light);
+}
+@function bg($variant) {
+  @return if($variant == 'dark', $bg_dark, $bg_light);
+}
+@function fg($variant) {
+  @return if($variant == 'dark', $fg_dark, $fg_light);
+}
 
-@function borders($variant) { @return if($variant == "dark", $borders_dark, $borders_light) };
+@function borders($variant) {
+  @return if($variant == 'dark', $borders_dark, $borders_light);
+}
 
-@function link($variant) { @return if($variant == "dark", $link_dark, $link_light) };
-@function link_visited($variant) { @return if($variant == "dark", $link_visited_dark, $link_visited_light) };
+@function link($variant) {
+  @return if($variant == 'dark', $link_dark, $link_light);
+}
+@function link_visited($variant) {
+  @return if($variant == 'dark', $link_visited_dark, $link_visited_light);
+}
 
-@function insensitive_fg($variant) { @return if($variant == "dark", $insensitive_fg_dark, $insensitive_fg_light) };
-@function insensitive_bg($variant) { @return if($variant == "dark", $insensitive_bg_dark, $insensitive_bg_light) };
+@function insensitive_fg($variant) {
+  @return if($variant == 'dark', $insensitive_fg_dark, $insensitive_fg_light);
+}
+@function insensitive_bg($variant) {
+  @return if($variant == 'dark', $insensitive_bg_dark, $insensitive_bg_light);
+}
 
-@function entry_bg($variant) { @return if($variant == "dark", $entry_bg_dark, $entry_bg_light) };
-@function entry_border($variant) { @return if($variant == "dark", $entry_border_dark, $entry_border_light) };
+@function entry_bg($variant) {
+  @return if($variant == 'dark', $entry_bg_dark, $entry_bg_light);
+}
+@function entry_border($variant) {
+  @return if($variant == 'dark', $entry_border_dark, $entry_border_light);
+}
 
-@function button_bg($variant) { @return if($variant == "dark", $button_bg_dark, $button_bg_light) };
-@function button_border($variant) { @return if($variant == "dark", $button_border_dark, $button_border_light) };
+@function button_bg($variant) {
+  @return if($variant == 'dark', $button_bg_dark, $button_bg_light);
+}
+@function button_border($variant) {
+  @return if($variant == 'dark', $button_border_dark, $button_border_light);
+}
 
-@function window_shadow($variant) { @return if($variant =='dark', transparentize(black, 0.45), transparentize(black, 0.9)) };
+@function window_shadow($variant) {
+  @return if(
+    $variant == 'dark',
+    transparentize(black, 0.45),
+    transparentize(black, 0.9)
+  );
+}
 
 //Header
 @function header_bg($variant) {
-    @return if($variant == 'dark', transparentize(#2f343f, 0.03), transparentize(#e7e8eb, 0.05));
+  @return if(
+    $variant == 'dark',
+    transparentize(#2f343f, 0.03),
+    transparentize(#e7e8eb, 0.05)
+  );
 }
 @function header_bg_backdrop($variant) {
-    @return if($variant == 'dark', lighten(header_bg($variant), 1.5%), lighten(header_bg($variant), 3%));
+  @return if(
+    $variant == 'dark',
+    lighten(header_bg($variant), 1.5%),
+    lighten(header_bg($variant), 3%)
+  );
 }
 @function header_border($variant) {
-    @return if($variant == 'light', darken(header_bg($variant), 7%), darken(header_bg($variant), 4%));
+  @return if(
+    $variant == 'light',
+    darken(header_bg($variant), 7%),
+    darken(header_bg($variant), 4%)
+  );
 }
-@function header_fg($variant){
-    @return if($variant == 'light', saturate(transparentize(fg($variant), 0.2), 10%), saturate(transparentize(fg($variant), 0.2), 10%));
+@function header_fg($variant) {
+  @return if(
+    $variant == 'light',
+    saturate(transparentize(fg($variant), 0.2), 10%),
+    saturate(transparentize(fg($variant), 0.2), 10%)
+  );
 }
 @function header_entry_bg($variant) {
-    @return if($variant == 'dark', transparentize(lighten(header_bg($variant), 22%), 0.6), transparentize(base($variant), 0.1));
+  @return if(
+    $variant == 'dark',
+    transparentize(lighten(header_bg($variant), 22%), 0.6),
+    transparentize(base($variant), 0.1)
+  );
 }
 @function header_entry_border($variant) {
-    @return if($variant == 'dark', transparentize(darken(header_bg($variant), 12%), 0.6), transparentize(header_fg($variant), 0.7));
+  @return if(
+    $variant == 'dark',
+    transparentize(darken(header_bg($variant), 12%), 0.6),
+    transparentize(header_fg($variant), 0.7)
+  );
 }
 @function header_button_bg($variant) {
-    @return if($variant == 'dark', transparentize(lighten(header_bg($variant), 22%), 0.6), transparentize(button_bg($variant), 0.1));
+  @return if(
+    $variant == 'dark',
+    transparentize(lighten(header_bg($variant), 22%), 0.6),
+    transparentize(button_bg($variant), 0.1)
+  );
 }
 @function header_button_border($variant) {
-    @return if($variant == 'dark', transparentize(darken(header_bg($variant), 12%), 0.6), transparentize(header_fg($variant), 0.7));
+  @return if(
+    $variant == 'dark',
+    transparentize(darken(header_bg($variant), 12%), 0.6),
+    transparentize(header_fg($variant), 0.7)
+  );
 }
 
-@function dark_sidebar_bg() { @return transparentize(#353945, 0.05); }
-@function dark_sidebar_fg() { @return #BAC3CF; }
-@function dark_sidebar_border($variant) { @return if($variant == 'light', dark_sidebar_bg(), darken(dark_sidebar_bg(), 5%)); }
+@function dark_sidebar_bg() {
+  @return transparentize(#353945, 0.05);
+}
+@function dark_sidebar_fg() {
+  @return #bac3cf;
+}
+@function dark_sidebar_border($variant) {
+  @return if(
+    $variant == 'light',
+    dark_sidebar_bg(),
+    darken(dark_sidebar_bg(), 5%)
+  );
+}
 
-@function panel_bg() { @return darken(dark_sidebar_bg(), 4.7%) };
-@function panel_fg() { @return dark_sidebar_fg() };
-
-
+@function panel_bg() {
+  @return darken(dark_sidebar_bg(), 4.7%);
+}
+@function panel_fg() {
+  @return dark_sidebar_fg();
+}
 
 //Custom colors
 
@@ -178,16 +255,33 @@ $bg_blue_light: hsl(213, 85%, 80%);
 $bg_purple_light: hsl(278, 65%, 76%);
 $bg_magenta_light: hsl(322, 70%, 71%);
 
-@function bg_red($variant) { @return if($variant == 'dark', $bg_red_dark, $bg_red_light) };
-@function bg_orange($variant) { @return if($variant == 'dark', $bg_orange_dark, $bg_orange_light) };
-@function bg_yellow($variant) { @return if($variant == 'dark', $bg_yellow_dark, $bg_yellow_light) };
-@function bg_lime($variant) { @return if($variant == 'dark', $bg_lime_dark, $bg_lime_light) };
-@function bg_green($variant) { @return if($variant == 'dark', $bg_green_dark, $bg_green_light) };
-@function bg_aqua($variant) { @return if($variant == 'dark', $bg_aqua_dark, $bg_aqua_light) };
-@function bg_blue($variant) { @return if($variant == 'dark', $bg_blue_dark, $bg_blue_light) };
-@function bg_purple($variant) { @return if($variant == 'dark', $bg_purple_dark, $bg_purple_light) };
-@function bg_magenta($variant) { @return if($variant == 'dark', $bg_magenta_dark, $bg_magenta_light) };
-
+@function bg_red($variant) {
+  @return if($variant == 'dark', $bg_red_dark, $bg_red_light);
+}
+@function bg_orange($variant) {
+  @return if($variant == 'dark', $bg_orange_dark, $bg_orange_light);
+}
+@function bg_yellow($variant) {
+  @return if($variant == 'dark', $bg_yellow_dark, $bg_yellow_light);
+}
+@function bg_lime($variant) {
+  @return if($variant == 'dark', $bg_lime_dark, $bg_lime_light);
+}
+@function bg_green($variant) {
+  @return if($variant == 'dark', $bg_green_dark, $bg_green_light);
+}
+@function bg_aqua($variant) {
+  @return if($variant == 'dark', $bg_aqua_dark, $bg_aqua_light);
+}
+@function bg_blue($variant) {
+  @return if($variant == 'dark', $bg_blue_dark, $bg_blue_light);
+}
+@function bg_purple($variant) {
+  @return if($variant == 'dark', $bg_purple_dark, $bg_purple_light);
+}
+@function bg_magenta($variant) {
+  @return if($variant == 'dark', $bg_magenta_dark, $bg_magenta_light);
+}
 
 //Focus colors
 $focus_red_dark: hsl(0, 46%, 61%);
@@ -210,12 +304,30 @@ $focus_blue_light: hsl(213, 68%, 66%);
 $focus_purple_light: hsl(278, 57%, 67%);
 $focus_magenta_light: hsl(322, 65%, 61%);
 
-@function focus_red($variant) { @return if($variant == 'dark', $focus_red_dark, $focus_red_light) };
-@function focus_orange($variant) { @return if($variant == 'dark', $focus_orange_dark, $focus_orange_light) };
-@function focus_yellow($variant) { @return if($variant == 'dark', $focus_yellow_dark, $focus_yellow_light) };
-@function focus_lime($variant) { @return if($variant == 'dark', $focus_lime_dark, $focus_lime_light) };
-@function focus_green($variant) { @return if($variant == 'dark', $focus_green_dark, $focus_green_light) };
-@function focus_aqua($variant) { @return if($variant == 'dark', $focus_aqua_dark, $focus_aqua_light) };
-@function focus_blue($variant) { @return if($variant == 'dark', $focus_blue_dark, $focus_blue_light) };
-@function focus_purple($variant) { @return if($variant == 'dark', $focus_purple_dark, $focus_purple_light) };
-@function focus_magenta($variant) { @return if($variant == 'dark', $focus_magenta_dark, $focus_magenta_light) };
+@function focus_red($variant) {
+  @return if($variant == 'dark', $focus_red_dark, $focus_red_light);
+}
+@function focus_orange($variant) {
+  @return if($variant == 'dark', $focus_orange_dark, $focus_orange_light);
+}
+@function focus_yellow($variant) {
+  @return if($variant == 'dark', $focus_yellow_dark, $focus_yellow_light);
+}
+@function focus_lime($variant) {
+  @return if($variant == 'dark', $focus_lime_dark, $focus_lime_light);
+}
+@function focus_green($variant) {
+  @return if($variant == 'dark', $focus_green_dark, $focus_green_light);
+}
+@function focus_aqua($variant) {
+  @return if($variant == 'dark', $focus_aqua_dark, $focus_aqua_light);
+}
+@function focus_blue($variant) {
+  @return if($variant == 'dark', $focus_blue_dark, $focus_blue_light);
+}
+@function focus_purple($variant) {
+  @return if($variant == 'dark', $focus_purple_dark, $focus_purple_light);
+}
+@function focus_magenta($variant) {
+  @return if($variant == 'dark', $focus_magenta_dark, $focus_magenta_light);
+}

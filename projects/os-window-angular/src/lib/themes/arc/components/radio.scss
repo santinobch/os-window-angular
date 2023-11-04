@@ -1,90 +1,84 @@
 @import '../colors';
 
-
 $radio-width: 16px;
 $radio-label-spacing: 4px;
 
 @mixin radioIcon() {
-    content: "";
-    display: inline-block;
-    width: $radio-width;
-    height: $radio-width;
+  content: '';
+  display: inline-block;
+  width: $radio-width;
+  height: $radio-width;
 
-    margin-top: 2px;
-    margin-bottom: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 @mixin radio($theme) {
+  input[type='radio'] + label {
+    line-height: 16px;
+  }
 
-    input[type="radio"] + label {
-        line-height: 16px;
-    }
-
-    input[type="radio"]:focus + label {
-        outline: 1px dotted insensitive_fg($theme);
-    }
+  input[type='radio']:focus + label {
+    outline: 1px dotted insensitive_fg($theme);
+  }
 }
 
 @mixin assets($theme) {
-    $asset_path: '../assets/#{$theme}/radio';
+  $asset_path: '../assets/#{$theme}/radio';
 
-    .radio-container[style="flex-direction: row;"] {
+  .radio-container[style='flex-direction: row;'] {
+    input[type='radio'] + label::before {
+      @include radioIcon();
 
-        input[type="radio"] + label::before {
-            @include radioIcon();
+      margin-left: 1px;
+      margin-right: $radio-label-spacing;
 
-            margin-left: 1px;
-            margin-right: $radio-label-spacing;
-
-            background: url("#{$asset_path}/radio-unchecked.svg");
-        }
-
-        input[type="radio"]:checked + label::before {
-            background: url("#{$asset_path}/radio-checked.svg");
-        }
-
-        input[type="radio"]:disabled + label::before {
-            background: url("#{$asset_path}/radio-unchecked-insensitive.svg");
-        }
-
-        input[type="radio"]:disabled:checked + label::before {
-            background: url("#{$asset_path}/radio-checked-insensitive.svg");
-        }
+      background: url('#{$asset_path}/radio-unchecked.svg');
     }
 
-    .radio-container[style="flex-direction: row-reverse;"] {
-
-        input[type="radio"] + label::after {
-            @include radioIcon();
-            
-            margin-left: $radio-label-spacing;
-            margin-right: 1px;
-
-            background: url("#{$asset_path}/radio-unchecked.svg");
-        }
-
-        input[type="radio"]:checked + label::after {
-            background: url("#{$asset_path}/radio-checked.svg");
-        }
-
-        input[type="radio"]:disabled + label::after {
-            background: url("#{$asset_path}/radio-unchecked-insensitive.svg");
-        }
-
-        input[type="radio"]:disabled:checked + label::after {
-            background: url("#{$asset_path}/radio-checked-insensitive.svg");
-        }
+    input[type='radio']:checked + label::before {
+      background: url('#{$asset_path}/radio-checked.svg');
     }
+
+    input[type='radio']:disabled + label::before {
+      background: url('#{$asset_path}/radio-unchecked-insensitive.svg');
+    }
+
+    input[type='radio']:disabled:checked + label::before {
+      background: url('#{$asset_path}/radio-checked-insensitive.svg');
+    }
+  }
+
+  .radio-container[style='flex-direction: row-reverse;'] {
+    input[type='radio'] + label::after {
+      @include radioIcon();
+
+      margin-left: $radio-label-spacing;
+      margin-right: 1px;
+
+      background: url('#{$asset_path}/radio-unchecked.svg');
+    }
+
+    input[type='radio']:checked + label::after {
+      background: url('#{$asset_path}/radio-checked.svg');
+    }
+
+    input[type='radio']:disabled + label::after {
+      background: url('#{$asset_path}/radio-unchecked-insensitive.svg');
+    }
+
+    input[type='radio']:disabled:checked + label::after {
+      background: url('#{$asset_path}/radio-checked-insensitive.svg');
+    }
+  }
 }
 
 .arc-light-os-radio {
-    @include radio('light');
-    @include assets('light');
+  @include radio('light');
+  @include assets('light');
 }
 
 .arc-dark-os-radio {
-    @include radio('dark');
-    @include assets('dark');
+  @include radio('dark');
+  @include assets('dark');
 }
-
-

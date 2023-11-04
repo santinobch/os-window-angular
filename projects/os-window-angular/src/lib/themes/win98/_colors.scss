@@ -1,6 +1,6 @@
 //
 // Basic colors
-// 
+//
 
 //Classic colors
 $classic-base: #c0c0c0;
@@ -12,8 +12,8 @@ $classic-dark: black;
 
 $classic-selected: #000080;
 
-$link_classic: lighten($classic-selected,20%);
-$link_visited_classic: lighten($classic-selected,10%);
+$link_classic: lighten($classic-selected, 20%);
+$link_visited_classic: lighten($classic-selected, 10%);
 
 //win98 vaporwave colors
 $vaporwave-base: #c1bac4;
@@ -25,20 +25,40 @@ $vaporwave-dark: #210029;
 
 $vaporwave-selected: #d200ff;
 
-$link_vaporwave: darken($vaporwave-selected,10%);
-$link_visited_vaporwave: darken($vaporwave-selected,20%);
+$link_vaporwave: darken($vaporwave-selected, 10%);
+$link_visited_vaporwave: darken($vaporwave-selected, 20%);
 
-@function base($variant) { @return if($variant == "classic", $classic-base, $vaporwave-base) };
-@function disabled($variant) { @return if($variant == "classic", $classic-disabled, $vaporwave-disabled) };
-@function shadow($variant) { @return if($variant == "classic", $classic-shadow, $vaporwave-shadow) };
+@function base($variant) {
+  @return if($variant == 'classic', $classic-base, $vaporwave-base);
+}
+@function disabled($variant) {
+  @return if($variant == 'classic', $classic-disabled, $vaporwave-disabled);
+}
+@function shadow($variant) {
+  @return if($variant == 'classic', $classic-shadow, $vaporwave-shadow);
+}
 
-@function light($variant) { @return if($variant == "classic", $classic-light, $vaporwave-light) };
-@function dark($variant) { @return if($variant == "classic", $classic-dark, $vaporwave-dark) };
+@function light($variant) {
+  @return if($variant == 'classic', $classic-light, $vaporwave-light);
+}
+@function dark($variant) {
+  @return if($variant == 'classic', $classic-dark, $vaporwave-dark);
+}
 
-@function selected($variant) { @return if($variant == "classic", $classic-selected, $vaporwave-selected) };
+@function selected($variant) {
+  @return if($variant == 'classic', $classic-selected, $vaporwave-selected);
+}
 
-@function link($variant) { @return if($variant == "classic", $link_classic, $link_vaporwave) };
-@function link_visited($variant) { @return if($variant == "classic", $link_visited_classic, $link_visited_vaporwave) };
+@function link($variant) {
+  @return if($variant == 'classic', $link_classic, $link_vaporwave);
+}
+@function link_visited($variant) {
+  @return if(
+    $variant == 'classic',
+    $link_visited_classic,
+    $link_visited_vaporwave
+  );
+}
 
 //
 // Background color pallete
@@ -53,15 +73,33 @@ $bg_blue: hsl(213, 32%, 52%);
 $bg_purple: hsl(278, 26%, 55%);
 $bg_magenta: hsl(322, 24%, 53%);
 
-@function bg_red() { @return $bg_red };
-@function bg_orange() { @return $bg_orange };
-@function bg_yellow() { @return $bg_yellow };
-@function bg_lime() { @return $bg_lime };
-@function bg_green() { @return $bg_green };
-@function bg_aqua() { @return $bg_aqua };
-@function bg_blue() { @return $bg_blue };
-@function bg_purple() { @return $bg_purple };
-@function bg_magenta() { @return $bg_magenta };
+@function bg_red() {
+  @return $bg_red;
+}
+@function bg_orange() {
+  @return $bg_orange;
+}
+@function bg_yellow() {
+  @return $bg_yellow;
+}
+@function bg_lime() {
+  @return $bg_lime;
+}
+@function bg_green() {
+  @return $bg_green;
+}
+@function bg_aqua() {
+  @return $bg_aqua;
+}
+@function bg_blue() {
+  @return $bg_blue;
+}
+@function bg_purple() {
+  @return $bg_purple;
+}
+@function bg_magenta() {
+  @return $bg_magenta;
+}
 
 //
 // Selected background color pallete
@@ -76,12 +114,30 @@ $focus_blue: hsl(213, 37%, 43%);
 $focus_purple: hsl(278, 40%, 42%);
 $focus_magenta: hsl(322, 25%, 46%);
 
-@function focus_red() { @return $focus_red };
-@function focus_orange() { @return $focus_orange };
-@function focus_yellow() { @return $focus_yellow };
-@function focus_lime() { @return $focus_lime };
-@function focus_green() { @return $focus_green };
-@function focus_aqua() { @return $focus_aqua };
-@function focus_blue() { @return $focus_blue };
-@function focus_purple() { @return $focus_purple };
-@function focus_magenta() { @return $focus_magenta };
+@function focus_red() {
+  @return $focus_red;
+}
+@function focus_orange() {
+  @return $focus_orange;
+}
+@function focus_yellow() {
+  @return $focus_yellow;
+}
+@function focus_lime() {
+  @return $focus_lime;
+}
+@function focus_green() {
+  @return $focus_green;
+}
+@function focus_aqua() {
+  @return $focus_aqua;
+}
+@function focus_blue() {
+  @return $focus_blue;
+}
+@function focus_purple() {
+  @return $focus_purple;
+}
+@function focus_magenta() {
+  @return $focus_magenta;
+}

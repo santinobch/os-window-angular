@@ -8,10 +8,9 @@ describe('OsWindowComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [OsWindowComponent],
-    teardown: { destroyAfterEach: false }
-})
-    .compileComponents();
+      declarations: [OsWindowComponent],
+      teardown: { destroyAfterEach: false },
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -2,332 +2,361 @@
 
 // provide font size in rem, with px fallback
 @mixin font($font, $size: 24, $base: 16) {
-    font-family: $font;
-    font-size: round($size) + pt;
+  font-family: $font;
+  font-size: round($size) + pt;
 }
 
-
 @mixin button_bg_shadow_box_95($variant) {
-    &.red-os-button {
-        background-color: bg_red($variant);
-        box-shadow: inset 0 2px 4px transparentize(bg_red($variant), 0.95);
-    }
-    &.orange-os-button {
-        background-color: bg_orange($variant);
-        box-shadow: inset 0 2px 4px transparentize(bg_orange($variant), 0.95);
-    }
-    &.yellow-os-button {
-        background-color: bg_yellow($variant);
-        box-shadow: inset 0 2px 4px transparentize(bg_yellow($variant), 0.95);
-    }
-    &.lime-os-button {
-        background-color: bg_lime($variant);
-        box-shadow: inset 0 2px 4px transparentize(bg_lime($variant), 0.95);
-    }
-    &.green-os-button {
-        background-color: bg_green($variant);
-        box-shadow: inset 0 2px 4px transparentize(bg_green($variant), 0.95);
-    }
-    &.aqua-os-button {
-        background-color: bg_aqua($variant);
-        box-shadow: inset 0 2px 4px transparentize(bg_aqua($variant), 0.95);
-    }
-    &.blue-os-button {
-        background-color: bg_blue($variant);
-        box-shadow: inset 0 2px 4px transparentize(bg_blue($variant), 0.95);
-    }
-    &.purple-os-button {
-        background-color: bg_purple($variant);
-        box-shadow: inset 0 2px 4px transparentize(bg_purple($variant), 0.95);
-    }
-    &.magenta-os-button {
-        background-color: bg_magenta($variant);
-        box-shadow: inset 0 2px 4px transparentize(bg_magenta($variant), 0.95);
-    }
+  &.red-os-button {
+    background-color: bg_red($variant);
+    box-shadow: inset 0 2px 4px transparentize(bg_red($variant), 0.95);
+  }
+  &.orange-os-button {
+    background-color: bg_orange($variant);
+    box-shadow: inset 0 2px 4px transparentize(bg_orange($variant), 0.95);
+  }
+  &.yellow-os-button {
+    background-color: bg_yellow($variant);
+    box-shadow: inset 0 2px 4px transparentize(bg_yellow($variant), 0.95);
+  }
+  &.lime-os-button {
+    background-color: bg_lime($variant);
+    box-shadow: inset 0 2px 4px transparentize(bg_lime($variant), 0.95);
+  }
+  &.green-os-button {
+    background-color: bg_green($variant);
+    box-shadow: inset 0 2px 4px transparentize(bg_green($variant), 0.95);
+  }
+  &.aqua-os-button {
+    background-color: bg_aqua($variant);
+    box-shadow: inset 0 2px 4px transparentize(bg_aqua($variant), 0.95);
+  }
+  &.blue-os-button {
+    background-color: bg_blue($variant);
+    box-shadow: inset 0 2px 4px transparentize(bg_blue($variant), 0.95);
+  }
+  &.purple-os-button {
+    background-color: bg_purple($variant);
+    box-shadow: inset 0 2px 4px transparentize(bg_purple($variant), 0.95);
+  }
+  &.magenta-os-button {
+    background-color: bg_magenta($variant);
+    box-shadow: inset 0 2px 4px transparentize(bg_magenta($variant), 0.95);
+  }
 }
 
 @mixin button_bg_shadow_box_5_95($variant) {
-    &.red-os-button {
-        background-color: lighten(bg_red($variant), 5%);
-        box-shadow: inset 0 2px 4px transparentize(lighten(bg_red($variant), 5%), 0.95);
-    }
-    &.orange-os-button {
-        background-color: lighten(bg_orange($variant), 5%);
-        box-shadow: inset 0 2px 4px transparentize(lighten(bg_orange($variant), 5%), 0.95);
-    }
-    &.yellow-os-button {
-        background-color: lighten(bg_yellow($variant), 5%);
-        box-shadow: inset 0 2px 4px transparentize(lighten(bg_yellow($variant), 5%), 0.95);
-    }
-    &.lime-os-button {
-        background-color: lighten(bg_lime($variant), 5%);
-        box-shadow: inset 0 2px 4px transparentize(lighten(bg_lime($variant), 5%), 0.95);
-    }
-    &.green-os-button {
-        background-color: lighten(bg_green($variant), 5%);
-        box-shadow: inset 0 2px 4px transparentize(lighten(bg_green($variant), 5%), 0.95);
-    }
-    &.aqua-os-button {
-        background-color: lighten(bg_aqua($variant), 5%);
-        box-shadow: inset 0 2px 4px transparentize(lighten(bg_aqua($variant), 5%), 0.95);
-    }
-    &.blue-os-button {
-        background-color: lighten(bg_blue($variant), 5%);
-        box-shadow: inset 0 2px 4px transparentize(lighten(bg_blue($variant), 5%), 0.95);
-    }
-    &.purple-os-button {
-        background-color: lighten(bg_purple($variant), 5%);
-        box-shadow: inset 0 2px 4px transparentize(lighten(bg_purple($variant), 5%), 0.95);
-    }
-    &.magenta-os-button {
-        background-color: lighten(bg_magenta($variant), 5%);
-        box-shadow: inset 0 2px 4px transparentize(lighten(bg_magenta($variant), 5%), 0.95);
-    }
+  &.red-os-button {
+    background-color: lighten(bg_red($variant), 5%);
+    box-shadow: inset 0 2px 4px
+      transparentize(lighten(bg_red($variant), 5%), 0.95);
+  }
+  &.orange-os-button {
+    background-color: lighten(bg_orange($variant), 5%);
+    box-shadow: inset 0 2px 4px
+      transparentize(lighten(bg_orange($variant), 5%), 0.95);
+  }
+  &.yellow-os-button {
+    background-color: lighten(bg_yellow($variant), 5%);
+    box-shadow: inset 0 2px 4px
+      transparentize(lighten(bg_yellow($variant), 5%), 0.95);
+  }
+  &.lime-os-button {
+    background-color: lighten(bg_lime($variant), 5%);
+    box-shadow: inset 0 2px 4px
+      transparentize(lighten(bg_lime($variant), 5%), 0.95);
+  }
+  &.green-os-button {
+    background-color: lighten(bg_green($variant), 5%);
+    box-shadow: inset 0 2px 4px
+      transparentize(lighten(bg_green($variant), 5%), 0.95);
+  }
+  &.aqua-os-button {
+    background-color: lighten(bg_aqua($variant), 5%);
+    box-shadow: inset 0 2px 4px
+      transparentize(lighten(bg_aqua($variant), 5%), 0.95);
+  }
+  &.blue-os-button {
+    background-color: lighten(bg_blue($variant), 5%);
+    box-shadow: inset 0 2px 4px
+      transparentize(lighten(bg_blue($variant), 5%), 0.95);
+  }
+  &.purple-os-button {
+    background-color: lighten(bg_purple($variant), 5%);
+    box-shadow: inset 0 2px 4px
+      transparentize(lighten(bg_purple($variant), 5%), 0.95);
+  }
+  &.magenta-os-button {
+    background-color: lighten(bg_magenta($variant), 5%);
+    box-shadow: inset 0 2px 4px
+      transparentize(lighten(bg_magenta($variant), 5%), 0.95);
+  }
 }
 
 @mixin button_bg_shadow_box_45_95($variant) {
-    &.red-os-button {
-        background-color: transparentize(bg_red($variant), 0.45);
-        box-shadow: inset 0 2px 4px transparentize(bg_red($variant), 0.95);
-    }
-    &.orange-os-button {
-        background-color: transparentize(bg_orange($variant), 0.45);
-        box-shadow: inset 0 2px 4px transparentize(bg_orange($variant), 0.95);
-    }
-    &.yellow-os-button {
-        background-color: transparentize(bg_yellow($variant), 0.45);
-        box-shadow: inset 0 2px 4px transparentize(bg_yellow($variant), 0.95);
-    }
-    &.lime-os-button {
-        background-color: transparentize(bg_lime($variant), 0.45);
-        box-shadow: inset 0 2px 4px transparentize(bg_lime($variant), 0.95);
-    }
-    &.green-os-button {
-        background-color: transparentize(bg_green($variant), 0.45);
-        box-shadow: inset 0 2px 4px transparentize(bg_green($variant), 0.95);
-    }
-    &.aqua-os-button {
-        background-color: transparentize(bg_aqua($variant), 0.45);
-        box-shadow: inset 0 2px 4px transparentize(bg_aqua($variant), 0.95);
-    }
-    &.blue-os-button {
-        background-color: transparentize(bg_blue($variant), 0.45);
-        box-shadow: inset 0 2px 4px transparentize(bg_blue($variant), 0.95);
-    }
-    &.purple-os-button {
-        background-color: transparentize(bg_purple($variant), 0.45);
-        box-shadow: inset 0 2px 4px transparentize(bg_purple($variant), 0.95);
-    }
-    &.magenta-os-button {
-        background-color: transparentize(bg_magenta($variant), 0.45);
-        box-shadow: inset 0 2px 4px transparentize(bg_magenta($variant), 0.95);
-    }
+  &.red-os-button {
+    background-color: transparentize(bg_red($variant), 0.45);
+    box-shadow: inset 0 2px 4px transparentize(bg_red($variant), 0.95);
+  }
+  &.orange-os-button {
+    background-color: transparentize(bg_orange($variant), 0.45);
+    box-shadow: inset 0 2px 4px transparentize(bg_orange($variant), 0.95);
+  }
+  &.yellow-os-button {
+    background-color: transparentize(bg_yellow($variant), 0.45);
+    box-shadow: inset 0 2px 4px transparentize(bg_yellow($variant), 0.95);
+  }
+  &.lime-os-button {
+    background-color: transparentize(bg_lime($variant), 0.45);
+    box-shadow: inset 0 2px 4px transparentize(bg_lime($variant), 0.95);
+  }
+  &.green-os-button {
+    background-color: transparentize(bg_green($variant), 0.45);
+    box-shadow: inset 0 2px 4px transparentize(bg_green($variant), 0.95);
+  }
+  &.aqua-os-button {
+    background-color: transparentize(bg_aqua($variant), 0.45);
+    box-shadow: inset 0 2px 4px transparentize(bg_aqua($variant), 0.95);
+  }
+  &.blue-os-button {
+    background-color: transparentize(bg_blue($variant), 0.45);
+    box-shadow: inset 0 2px 4px transparentize(bg_blue($variant), 0.95);
+  }
+  &.purple-os-button {
+    background-color: transparentize(bg_purple($variant), 0.45);
+    box-shadow: inset 0 2px 4px transparentize(bg_purple($variant), 0.95);
+  }
+  &.magenta-os-button {
+    background-color: transparentize(bg_magenta($variant), 0.45);
+    box-shadow: inset 0 2px 4px transparentize(bg_magenta($variant), 0.95);
+  }
 }
 
 @mixin select_border($variant) {
-    &.red-os-button {
-        border: 1px solid focus_red($variant);
-    }
-    &.orange-os-button {
-        border: 1px solid focus_orange($variant);
-    }
-    &.yellow-os-button {
-        border: 1px solid focus_yellow($variant);
-    }
-    &.lime-os-button {
-        border: 1px solid focus_lime($variant);
-    }
-    &.green-os-button {
-        border: 1px solid focus_green($variant);
-    }
-    &.aqua-os-button {
-        border: 1px solid focus_aqua($variant);
-    }
-    &.blue-os-button {
-        border: 1px solid focus_blue($variant);
-    }
-    &.purple-os-button {
-        border: 1px solid focus_purple($variant);
-    }
-    &.magenta-os-button {
-        border: 1px solid focus_magenta($variant);
-    }
+  &.red-os-button {
+    border: 1px solid focus_red($variant);
+  }
+  &.orange-os-button {
+    border: 1px solid focus_orange($variant);
+  }
+  &.yellow-os-button {
+    border: 1px solid focus_yellow($variant);
+  }
+  &.lime-os-button {
+    border: 1px solid focus_lime($variant);
+  }
+  &.green-os-button {
+    border: 1px solid focus_green($variant);
+  }
+  &.aqua-os-button {
+    border: 1px solid focus_aqua($variant);
+  }
+  &.blue-os-button {
+    border: 1px solid focus_blue($variant);
+  }
+  &.purple-os-button {
+    border: 1px solid focus_purple($variant);
+  }
+  &.magenta-os-button {
+    border: 1px solid focus_magenta($variant);
+  }
 }
 
 @mixin select_bg_box($variant) {
-    &.red-os-button {
-        background-color: focus_red($variant);
-        box-shadow: inset 0 2px 4px focus_red($variant);
-    }
-    &.orange-os-button {
-        background-color: focus_orange($variant);
-        box-shadow: inset 0 2px 4px focus_orange($variant);
-    }
-    &.yellow-os-button {
-        background-color: focus_yellow($variant);
-        box-shadow: inset 0 2px 4px focus_yellow($variant);
-    }
-    &.lime-os-button {
-        background-color: focus_lime($variant);
-        box-shadow: inset 0 2px 4px focus_lime($variant);
-    }
-    &.green-os-button {
-        background-color: focus_green($variant);
-        box-shadow: inset 0 2px 4px focus_green($variant);
-    }
-    &.aqua-os-button {
-        background-color: focus_aqua($variant);
-        box-shadow: inset 0 2px 4px focus_aqua($variant);
-    }
-    &.blue-os-button {
-        background-color: focus_blue($variant);
-        box-shadow: inset 0 2px 4px focus_blue($variant);
-    }
-    &.purple-os-button {
-        background-color: focus_purple($variant);
-        box-shadow: inset 0 2px 4px focus_purple($variant);
-    }
-    &.magenta-os-button {
-        background-color: focus_magenta($variant);
-        box-shadow: inset 0 2px 4px focus_magenta($variant);
-    }
+  &.red-os-button {
+    background-color: focus_red($variant);
+    box-shadow: inset 0 2px 4px focus_red($variant);
+  }
+  &.orange-os-button {
+    background-color: focus_orange($variant);
+    box-shadow: inset 0 2px 4px focus_orange($variant);
+  }
+  &.yellow-os-button {
+    background-color: focus_yellow($variant);
+    box-shadow: inset 0 2px 4px focus_yellow($variant);
+  }
+  &.lime-os-button {
+    background-color: focus_lime($variant);
+    box-shadow: inset 0 2px 4px focus_lime($variant);
+  }
+  &.green-os-button {
+    background-color: focus_green($variant);
+    box-shadow: inset 0 2px 4px focus_green($variant);
+  }
+  &.aqua-os-button {
+    background-color: focus_aqua($variant);
+    box-shadow: inset 0 2px 4px focus_aqua($variant);
+  }
+  &.blue-os-button {
+    background-color: focus_blue($variant);
+    box-shadow: inset 0 2px 4px focus_blue($variant);
+  }
+  &.purple-os-button {
+    background-color: focus_purple($variant);
+    box-shadow: inset 0 2px 4px focus_purple($variant);
+  }
+  &.magenta-os-button {
+    background-color: focus_magenta($variant);
+    box-shadow: inset 0 2px 4px focus_magenta($variant);
+  }
 }
 
 @mixin button($t, $variant) {
+  //
+  // Button drawing function
+  //
+
+  @if $t== 'normal' {
     //
-    // Button drawing function
+    // normal button
     //
+    color: fg($variant);
+    background-color: button_bg($variant);
+    border: 1px solid button_border($variant);
+    box-shadow: inset 0 2px 4px transparentize(button_bg($variant), 0.95);
 
-    @if $t=="normal" {
-        //
-        // normal button
-        //
-        color: fg($variant);
-        background-color: button_bg($variant);
-        border: 1px solid button_border($variant);
-        box-shadow: inset 0 2px 4px transparentize(button_bg($variant), 0.95);
+    @include button_bg_shadow_box_95($variant);
+  } @else if $t== 'focus' {
+    //
+    // focused button
+    //
+    color: fg($variant);
+    background-color: button_bg($variant);
+    border: 1px solid selected_bg();
+    box-shadow: inset 0 2px 4px transparentize(button_bg($variant), 0.95);
 
-        @include button_bg_shadow_box_95($variant);
-    }
+    @include button_bg_shadow_box_95($variant);
+    @include select_border($variant);
+  } @else if $t== 'focus-hover' {
+    //
+    // focused button
+    //
+    color: fg($variant);
+    background-color: button_bg($variant);
+    border: 1px solid selected_bg();
+    box-shadow: inset 0 2px 4px transparentize(button_bg($variant), 0.95);
 
-    @else if $t=="focus" {
-        //
-        // focused button
-        //
-        color: fg($variant);
-        background-color: button_bg($variant);
-        border: 1px solid selected_bg();
-        box-shadow: inset 0 2px 4px transparentize(button_bg($variant), 0.95);
+    @include button_bg_shadow_box_95($variant);
+    @include select_border($variant);
+  } @else if $t== 'hover' {
+    //
+    // hovered button
+    //
+    color: fg($variant);
+    background-color: lighten(button_bg($variant), 5%);
+    border: 1px solid button_border($variant);
+    box-shadow: inset
+      0
+      2px
+      4px
+      transparentize(lighten(button_bg($variant), 5%), 0.95);
 
-        @include button_bg_shadow_box_95($variant);
-        @include select_border($variant);
-    }
+    @include button_bg_shadow_box_5_95($variant);
+  } @else if $t== 'active' {
+    //
+    // pushed button
+    //
+    color: selected_fg();
+    background-color: selected_bg();
+    border: 1px solid selected_bg();
+    box-shadow: inset 0 2px 4px selected_bg();
 
-    @else if $t=="focus-hover" {
-        //
-        // focused button
-        //
-        color: fg($variant);
-        background-color: button_bg($variant);
-        border: 1px solid selected_bg();
-        box-shadow: inset 0 2px 4px transparentize(button_bg($variant), 0.95);
-
-        @include button_bg_shadow_box_95($variant);
-        @include select_border($variant);
-    }
-
-    @else if $t=="hover" {
-        //
-        // hovered button
-        //
-        color: fg($variant);
-        background-color: lighten(button_bg($variant), 5%);
-        border: 1px solid button_border($variant);
-        box-shadow: inset 0 2px 4px transparentize(lighten(button_bg($variant), 5%), 0.95);
-
-        @include button_bg_shadow_box_5_95($variant);
-    }
-
-    @else if $t=="active" {
-        //
-        // pushed button
-        //
-        color: selected_fg();
-        background-color: selected_bg();
-        border: 1px solid selected_bg();
-        box-shadow: inset 0 2px 4px selected_bg();
-
-        @include select_border($variant);
-        @include select_bg_box($variant);
-    }
-
-    @else if $t=="disabled" {
+    @include select_border($variant);
+    @include select_bg_box($variant);
+  } @else if $t== 'disabled' {
     //
     // disabled button
     //
-        color: insensitive_fg($variant);
-        border: 1px solid transparentize(button_border($variant), 0.45);
-        background-color: transparentize(button_bg($variant), 0.45);
-        box-shadow: inset 0 2px 4px transparentize(button_bg($variant), 0.95);
+    color: insensitive_fg($variant);
+    border: 1px solid transparentize(button_border($variant), 0.45);
+    background-color: transparentize(button_bg($variant), 0.45);
+    box-shadow: inset 0 2px 4px transparentize(button_bg($variant), 0.95);
 
-        @include button_bg_shadow_box_45_95($variant);
-    }
+    @include button_bg_shadow_box_45_95($variant);
+  }
 }
 
-
 $font-size: 9;
-$font-family: Futura Bk bt, 'Open Sans', sans, Sans-Serif;
+$font-family:
+  Futura Bk bt,
+  'Open Sans',
+  sans,
+  Sans-Serif;
 
 .arc-light-os-button {
-    @include font($font-family, $font-size);
+  @include font($font-family, $font-size);
 
-    min-height: 20px;
-    padding: 5px 32px;
-    transition-duration: 0;
-    border-radius: 2px;
+  min-height: 20px;
+  padding: 5px 32px;
+  transition-duration: 0;
+  border-radius: 2px;
 
-    
-    & { @include button(normal, "light"); }
-    &:focus { @include button("focus", "light"); }
-    &:hover { @include button("hover", "light"); }
-    &:hover:focus { @include button("focus-hover", "light"); }
-    &:not([disabled]):active, &:not([disabled]):active:focus { @include button("active", "light"); }
-    &[disabled] { @include button("disabled", "light"); }
+  & {
+    @include button(normal, 'light');
+  }
+  &:focus {
+    @include button('focus', 'light');
+  }
+  &:hover {
+    @include button('hover', 'light');
+  }
+  &:hover:focus {
+    @include button('focus-hover', 'light');
+  }
+  &:not([disabled]):active,
+  &:not([disabled]):active:focus {
+    @include button('active', 'light');
+  }
+  &[disabled] {
+    @include button('disabled', 'light');
+  }
 
-    &[os-icon-button] {
-        display: flex;
-        align-items: center;
+  &[os-icon-button] {
+    display: flex;
+    align-items: center;
 
-        padding: 8px;
-        * {
-            margin: 0;
-        }
+    padding: 8px;
+    * {
+      margin: 0;
     }
+  }
 }
 
 .arc-dark-os-button {
-    @include font($font-family, $font-size);
+  @include font($font-family, $font-size);
 
-    min-height: 20px;
-    padding: 5px 32px;
-    transition-duration: 0;
-    border-radius: 2px;
+  min-height: 20px;
+  padding: 5px 32px;
+  transition-duration: 0;
+  border-radius: 2px;
 
+  & {
+    @include button(normal, 'dark');
+  }
+  &:focus {
+    @include button('focus', 'dark');
+  }
+  &:hover {
+    @include button('hover', 'dark');
+  }
+  &:hover:focus {
+    @include button('focus-hover', 'dark');
+  }
+  &:not([disabled]):active,
+  &:not([disabled]):active:focus {
+    @include button('active', 'dark');
+  }
+  &[disabled] {
+    @include button('disabled', 'dark');
+  }
 
-    & { @include button(normal, "dark"); }
-    &:focus { @include button("focus", "dark"); }
-    &:hover { @include button("hover", "dark"); }
-    &:hover:focus { @include button("focus-hover", "dark"); }
-    &:not([disabled]):active, &:not([disabled]):active:focus { @include button("active", "dark"); }
-    &[disabled] { @include button("disabled", "dark"); }
+  &[os-icon-button] {
+    display: flex;
+    align-items: center;
 
-    &[os-icon-button] {
-        display: flex;
-        align-items: center;
-
-        padding: 8px;
-        * {
-            margin: 0;
-        }
+    padding: 8px;
+    * {
+      margin: 0;
     }
+  }
 }
