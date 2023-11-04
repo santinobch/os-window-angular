@@ -2,9 +2,9 @@
   "name": "@santinobch/os-window-angular",
   "version": "0.2.5",
   "peerDependencies": {
-    "@angular/common": "^14.1.2",
-    "@angular/core": "^14.1.2",
-    "@angular/cdk": "^14.1.2",
+    "@angular/common": "^15.1.4",
+    "@angular/core": "^15.1.4",
+    "@angular/cdk": "^15.1.4",
     "ngx-scrollbar": "^10.0.1"
   },
   "dependencies": {
