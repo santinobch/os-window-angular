@@ -65,8 +65,8 @@
       border-color: header_border($variant);
       border-bottom: 1px solid header_border($variant);
 
-      border-top-left-radius: var(--winRadius);
-      border-top-right-radius: var(--winRadius);
+      border-top-left-radius: calc(var(--winRadius) - 1);
+      border-top-right-radius: calc(var(--winRadius) - 1);
 
       .window-bar-anchor {
         height: 36px;
@@ -127,6 +127,8 @@
     margin-right: 8px;
     width: 76px;
     height: auto;
+    display: flex;
+    gap: 14px;
 
     .control {
       padding: 0;
