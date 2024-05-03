@@ -50,21 +50,13 @@ export class OsWindowContent {}
   },
 })
 export class OsWindowComponent implements OnInit, OnChanges {
-  private componentElement!: ElementRef<HTMLElement>;
-  private renderer!: Renderer2;
-  private globalConfigService!: OsConfigService;
-
   public win!: OsWindowClass;
 
   constructor(
-    private _componentElement: ElementRef<HTMLElement>,
-    public _renderer: Renderer2,
-    private _globalConfigService: OsConfigService
+    public componentElement: ElementRef<HTMLElement>,
+    public renderer: Renderer2,
+    public globalConfigService: OsConfigService
   ) {
-    this.componentElement = _componentElement;
-    this.renderer = _renderer;
-    this.globalConfigService = _globalConfigService;
-
     this.win = new OsWindowClass(
       this.componentElement,
       this.renderer,

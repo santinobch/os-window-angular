@@ -25,24 +25,17 @@ import { StyleClass } from '../../classes/Style.class';
   encapsulation: ViewEncapsulation.None,
 })
 export class OsRadioComponent implements OnInit, OnChanges {
-  public componentElement!: ElementRef<HTMLElement>;
-  private renderer!: Renderer2;
-  private globalConfigService!: OsConfigService;
   public styleConfig!: StyleClass;
 
   constructor(
-    private _componentElement: ElementRef,
-    private _renderer: Renderer2,
-    private _globalConfigService: OsConfigService
+    public componentElement: ElementRef,
+    public renderer: Renderer2,
+    public globalConfigService: OsConfigService
   ) {
-    this.componentElement = _componentElement;
-    this.renderer = _renderer;
-    this.globalConfigService = _globalConfigService;
-
     this.styleConfig = new StyleClass(
-      _componentElement,
-      _renderer,
-      _globalConfigService,
+      componentElement,
+      renderer,
+      globalConfigService,
       'radio'
     );
   }

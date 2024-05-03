@@ -14,24 +14,17 @@ export function clamp(v: Number, min = 0, max = Number.MAX_SAFE_INTEGER) {
 }
 
 export class OsWindowClass {
-  public componentElement!: ElementRef<HTMLElement>;
-  private renderer!: Renderer2;
-  private globalConfigService!: OsConfigService;
   public styleConfig!: StyleClass;
 
   constructor(
-    private _componentElement: ElementRef,
-    private _renderer: Renderer2,
-    private _globalConfigService: OsConfigService
+    public componentElement: ElementRef<HTMLElement>,
+    public renderer: Renderer2,
+    public globalConfigService: OsConfigService
   ) {
-    this.componentElement = _componentElement;
-    this.renderer = _renderer;
-    this.globalConfigService = _globalConfigService;
-
     this.styleConfig = new StyleClass(
-      _componentElement,
-      _renderer,
-      _globalConfigService,
+      componentElement,
+      renderer,
+      globalConfigService,
       'window'
     );
   }
@@ -101,8 +94,7 @@ export class OsWindowClass {
   }
 
   private clamp(input: number, max: number) {
-    let n: number = input >= max ? input : max;
-    return n;
+    return input >= max ? input : max;
   }
 
   private clampHeight(

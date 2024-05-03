@@ -39,6 +39,6 @@ export class OsConfigDirective implements OnInit {
       color: '',
     };
 
-    this.themeService.setGlobal(this.globalConfig);
+    this.themeService.setGlobalStyles(this.globalConfig);
   }
 }

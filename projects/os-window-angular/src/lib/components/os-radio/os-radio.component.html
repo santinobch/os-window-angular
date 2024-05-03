@@ -1,5 +1,5 @@
 <div
-  class="radio-container"
+  class="radio-container flex w-fit"
   [style.flex-direction]="flexDirection"
   (click)="radio.disabled ? undefined : check(radio)">
   <input
@@ -15,7 +15,10 @@
     [attr.aria-labelledby]="ariaLabelledby"
     [attr.aria-describedby]="ariaDescribedby" />
 
-  <label [attr.for]="id" [class.disabled]="disabled">
+  <label
+    [attr.for]="id"
+    [class.disabled]="disabled"
+    class="flex cursor-pointer items-center">
     <span>
       <ng-content></ng-content>
     </span>

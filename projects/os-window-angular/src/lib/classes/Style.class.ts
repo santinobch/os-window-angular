@@ -132,7 +132,7 @@ export class StyleClass {
 
   public loadGlobalStyles() {
     //Global theme config
-    this.globalConfigData = this.globalConfigService.getGlobal();
+    this.globalConfigData = this.globalConfigService.getGlobalStyles();
     this.style.theme = this.globalConfigData.theme;
     this.style.variant = this.globalConfigData.variant;
     this.renderer.addClass(

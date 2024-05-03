@@ -1,10 +1,10 @@
-export interface osTheme {
+export interface OsTheme {
   theme: string;
   variants: string[];
   palette: string[];
 }
 
-export const theme_list: osTheme[] = [
+export const theme_list: OsTheme[] = [
   {
     theme: 'arc',
     variants: ['light', 'dark'],
