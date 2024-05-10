@@ -5,12 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "build": "ng build --configuration production os-window-angular",
-    "link": "npm link ./dist/os-window-angular",
-    "publish": "cd ./dist/os-window-angular && npm publish",
+    "build-npm": "ng build --configuration production os-window-angular",
     "build-web": "ng build --configuration production testing-app",
-    "publishweb": "ng deploy testing-app --base-href=/os-window-angular/"
+    "link": "npm link ./dist/os-window-angular",
+    "publish-npm": "cd ./dist/os-window-angular && npm publish",
+    "publish-web": "ng deploy testing-app --base-href=/os-window-angular/"
   },
   "private": true,
   "dependencies": {
