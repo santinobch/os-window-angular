@@ -1,8 +1,6 @@
 <os-window
-  [theme]="theme ? 'win98' : 'arc'"
-  [variant]="
-    theme ? (variant ? 'classic' : 'vaporwave') : variant ? 'dark' : 'light'
-  "
+  [theme]="getTheme(0)"
+  [variant]="getVariant(0)"
   [height]="400"
   [width]="600"
   [minHeight]="300"
@@ -12,52 +10,28 @@
   [maximizable]="true"
   [closable]="true"
   position="left top">
-  <window-title> Win98 Classic Window </window-title>
+  <window-title> {{ getNameOfWindow(0) }} </window-title>
   <window-content>
     <div class="buttons">
       <button
         os-button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         disabled>
         Disabled
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         (click)="toggleTheme()">
         Toggle theme
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         (click)="toggleVariant()">
         Toggle variant
@@ -66,144 +40,72 @@
 
     <div>
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         color="red">
         Red
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         color="orange">
         Orange
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         color="yellow">
         Yellow
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         color="lime">
         Lime
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         color="green">
         Green
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         color="aqua">
         Aqua
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         color="blue">
         Blue
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         color="purple">
         Purple
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         color="magenta">
         Magenta
@@ -211,16 +113,8 @@
       <br />
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         disabled
         color="red">
@@ -228,16 +122,8 @@
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         disabled
         color="orange">
@@ -245,16 +131,8 @@
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         disabled
         color="yellow">
@@ -262,16 +140,8 @@
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         disabled
         color="lime">
@@ -279,16 +149,8 @@
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         disabled
         color="green">
@@ -296,16 +158,8 @@
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         disabled
         color="aqua">
@@ -313,16 +167,8 @@
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         disabled
         color="blue">
@@ -330,16 +176,8 @@
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         disabled
         color="purple">
@@ -347,16 +185,8 @@
       </button>
 
       <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         os-button
         disabled
         color="magenta">
@@ -367,81 +197,35 @@
     <br />
 
     <div>
-      <os-radio
-        name="test1"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+      <os-radio name="test1" [theme]="getTheme(0)" [variant]="getVariant(0)"
         >Test 1</os-radio
       >
       <br />
-      <os-radio
-        name="test1"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+      <os-radio name="test1" [theme]="getTheme(0)" [variant]="getVariant(0)"
         >Test 1</os-radio
       >
       <br />
       <os-radio
         name="test2"
         labelPosition="before"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         >Test 2</os-radio
       >
       <br />
       <os-radio
         name="test2"
         labelPosition="before"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         >Test 2</os-radio
       >
       <br />
       <os-radio
         name="test3"
         disabled
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         >Test 3</os-radio
       >
       <br />
@@ -449,16 +233,8 @@
         name="test3"
         disabled
         checked
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         >Test 3</os-radio
       >
       <br />
@@ -466,16 +242,8 @@
         name="test4"
         disabled
         labelPosition="before"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         >Test 4</os-radio
       >
       <br />
@@ -484,16 +252,8 @@
         disabled
         checked
         labelPosition="before"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
         >Test 4</os-radio
       >
     </div>
@@ -559,10 +319,322 @@
 </os-window>
 
 <os-window
-  [theme]="theme ? 'win98' : 'arc'"
-  [variant]="
-    theme ? (variant ? 'classic' : 'vaporwave') : variant ? 'dark' : 'light'
-  "
+  [theme]="getTheme(1)"
+  [variant]="getVariant(1)"
+  [height]="400"
+  [width]="600"
+  [minHeight]="300"
+  [minWidth]="300"
+  [maximizable]="true"
+  [resizable]="true"
+  position="center center">
+  <window-title> {{ getNameOfWindow(1) }} </window-title>
+  <window-content>
+    <div class="buttons">
+      <button
+        os-button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        disabled>
+        Disabled
+      </button>
+
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        (click)="toggleTheme()">
+        Toggle theme
+      </button>
+
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        (click)="toggleVariant()">
+        Toggle variant
+      </button>
+    </div>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      color="red">
+      Red
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      color="orange">
+      Orange
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      color="yellow">
+      Yellow
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      color="lime">
+      Lime
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      color="green">
+      Green
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      color="aqua">
+      Aqua
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      color="blue">
+      Blue
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      color="purple">
+      Purple
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      color="magenta">
+      Magenta
+    </button>
+    <br />
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      disabled
+      color="red">
+      Red
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      disabled
+      color="orange">
+      Orange
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      disabled
+      color="yellow">
+      Yellow
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      disabled
+      color="lime">
+      Lime
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      disabled
+      color="green">
+      Green
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      disabled
+      color="aqua">
+      Aqua
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      disabled
+      color="blue">
+      Blue
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      disabled
+      color="purple">
+      Purple
+    </button>
+
+    <button
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      os-button
+      disabled
+      color="magenta">
+      Magenta
+    </button>
+
+    <br />
+
+    <os-radio name="test1" [theme]="getTheme(1)" [variant]="getVariant(1)"
+      >Test 1</os-radio
+    >
+    <br />
+    <os-radio name="test1" [theme]="getTheme(1)" [variant]="getVariant(1)"
+      >Test 1</os-radio
+    >
+    <br />
+    <os-radio
+      name="test2"
+      labelPosition="before"
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      >Test 2</os-radio
+    >
+    <br />
+    <os-radio
+      name="test2"
+      labelPosition="before"
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      >Test 2</os-radio
+    >
+    <br />
+    <os-radio
+      name="test3"
+      disabled
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      >Test 3</os-radio
+    >
+    <br />
+    <os-radio
+      name="test3"
+      disabled
+      checked
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      >Test 3</os-radio
+    >
+    <br />
+    <os-radio
+      name="test4"
+      disabled
+      labelPosition="before"
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      >Test 4</os-radio
+    >
+    <br />
+    <os-radio
+      name="test4"
+      disabled
+      checked
+      labelPosition="before"
+      [theme]="getTheme(1)"
+      [variant]="getVariant(1)"
+      >Test 4</os-radio
+    >
+
+    <br />
+
+    <p>
+      <a href="">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget
+        nibh eu mauris faucibus bibendum sit amet eget arcu. Mauris quis
+        accumsan metus, quis varius diam. Nullam a lectus eros. Integer tempor
+        lacus eros, nec sodales risus fermentum vel. Nam in gravida nibh, ut
+        ultrices mi. Morbi viverra facilisis sapien, sodales tincidunt ipsum
+        bibendum hendrerit. Duis tellus augue, sodales interdum elit nec,
+        pulvinar semper lorem. Sed condimentum odio nec risus sagittis, ac
+        facilisis orci scelerisque. Sed magna est, congue id rutrum ultrices,
+        fermentum non ligula. Duis at pellentesque arcu, viverra fringilla arcu.
+      </a>
+    </p>
+
+    <p>
+      Ut eros purus, eleifend vitae pharetra vitae, auctor sit amet orci. Cras
+      non dolor enim. Duis id fringilla erat. Maecenas et nulla nec libero
+      venenatis dignissim. Nulla feugiat augue ut consequat pretium. Etiam
+      eleifend, leo ac ornare ultricies, odio felis iaculis arcu, sed blandit
+      tellus turpis tincidunt lacus. Cras non mauris sit amet lorem convallis
+      interdum. Duis tempus fringilla tellus sed tempus. Class aptent taciti
+      sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+      Vestibulum vitae ex a orci volutpat congue.
+    </p>
+    <p>
+      Quisque eget neque purus. Proin pharetra vulputate lorem sed fringilla.
+      Mauris tempus odio neque, ac rhoncus ligula cursus vitae. In hac habitasse
+      platea dictumst. Proin quis ligula tempor, egestas elit non, faucibus
+      sapien. Sed mi nisl, lacinia nec mi non, pulvinar tempor erat. Integer
+      pharetra id leo id laoreet. Fusce accumsan lorem vitae leo egestas,
+      euismod venenatis erat lobortis. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Aliquam orci erat, sollicitudin quis volutpat eu,
+      venenatis non enim. In a magna at erat vulputate mollis. Phasellus finibus
+      augue et mauris accumsan sagittis. Praesent et lacus sollicitudin,
+      ultricies elit a, viverra lorem. Sed et elementum velit, nec dignissim
+      nibh.
+    </p>
+    <p>
+      Nam sit amet mauris arcu. Etiam vulputate vehicula gravida. Suspendisse
+      molestie odio a enim placerat, a semper erat lacinia. Pellentesque
+      tristique maximus pellentesque. Nullam quis varius metus, nec lobortis mi.
+      Integer venenatis mi eget nisi dignissim tempor. Maecenas eget imperdiet
+      enim. Morbi non sodales tellus, quis imperdiet odio. Sed nisi lectus,
+      tincidunt eget finibus vel, feugiat ac felis. Donec euismod sapien a nisl
+      pharetra, sed hendrerit turpis interdum.
+    </p>
+    <p>
+      Donec fermentum nunc semper blandit semper. Maecenas sed libero leo. Nunc
+      sed lacinia nisi. Etiam vel magna vitae orci aliquet bibendum a eu nulla.
+      Fusce vulputate, quam ut faucibus pretium, risus urna pellentesque eros,
+      ac tristique ante libero at arcu. Vivamus quis nisl in odio laoreet
+      aliquam. Praesent convallis dolor non massa suscipit iaculis. Etiam quis
+      dui felis. Nulla scelerisque scelerisque lorem, et dictum ligula fringilla
+      a. Aenean congue molestie rhoncus. Nulla facilisi. Nam ut leo nulla.
+    </p>
+  </window-content>
+</os-window>
+
+<os-window
+  [theme]="getTheme(2)"
+  [variant]="getVariant(2)"
   [height]="400"
   [width]="600"
   [minHeight]="300"
@@ -571,890 +643,254 @@
   [minimizable]="true"
   [maximizable]="true"
   [closable]="true"
-  position="center center">
-  <window-title> Win98 Classic Window </window-title>
-  <window-content>
-    <div class="buttons">
-      <button
-        os-button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        disabled>
-        Disabled
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        (click)="toggleTheme()">
-        Toggle theme
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        (click)="toggleVariant()">
-        Toggle variant
-      </button>
-    </div>
-
-    <div>
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        color="red">
-        Red
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        color="orange">
-        Orange
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        color="yellow">
-        Yellow
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        color="lime">
-        Lime
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        color="green">
-        Green
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        color="aqua">
-        Aqua
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        color="blue">
-        Blue
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        color="purple">
-        Purple
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        color="magenta">
-        Magenta
-      </button>
-      <br />
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        disabled
-        color="red">
-        Red
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        disabled
-        color="orange">
-        Orange
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        disabled
-        color="yellow">
-        Yellow
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        disabled
-        color="lime">
-        Lime
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        disabled
-        color="green">
-        Green
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        disabled
-        color="aqua">
-        Aqua
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        disabled
-        color="blue">
-        Blue
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        disabled
-        color="purple">
-        Purple
-      </button>
-
-      <button
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        os-button
-        disabled
-        color="magenta">
-        Magenta
-      </button>
-    </div>
-
-    <br />
-
-    <div>
-      <os-radio
-        name="test1"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        >Test 1</os-radio
-      >
-      <br />
-      <os-radio
-        name="test1"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        >Test 1</os-radio
-      >
-      <br />
-      <os-radio
-        name="test2"
-        labelPosition="before"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        >Test 2</os-radio
-      >
-      <br />
-      <os-radio
-        name="test2"
-        labelPosition="before"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        >Test 2</os-radio
-      >
-      <br />
-      <os-radio
-        name="test3"
-        disabled
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        >Test 3</os-radio
-      >
-      <br />
-      <os-radio
-        name="test3"
-        disabled
-        checked
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        >Test 3</os-radio
-      >
-      <br />
-      <os-radio
-        name="test4"
-        disabled
-        labelPosition="before"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        >Test 4</os-radio
-      >
-      <br />
-      <os-radio
-        name="test4"
-        disabled
-        checked
-        labelPosition="before"
-        [theme]="theme ? 'win98' : 'arc'"
-        [variant]="
-          theme
-            ? variant
-              ? 'classic'
-              : 'vaporwave'
-            : variant
-            ? 'dark'
-            : 'light'
-        "
-        >Test 4</os-radio
-      >
-    </div>
-
-    <br />
-
-    <p>
-      <a href="">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget
-        nibh eu mauris faucibus bibendum sit amet eget arcu. Mauris quis
-        accumsan metus, quis varius diam. Nullam a lectus eros. Integer tempor
-        lacus eros, nec sodales risus fermentum vel. Nam in gravida nibh, ut
-        ultrices mi. Morbi viverra facilisis sapien, sodales tincidunt ipsum
-        bibendum hendrerit. Duis tellus augue, sodales interdum elit nec,
-        pulvinar semper lorem. Sed condimentum odio nec risus sagittis, ac
-        facilisis orci scelerisque. Sed magna est, congue id rutrum ultrices,
-        fermentum non ligula. Duis at pellentesque arcu, viverra fringilla arcu.
-      </a>
-    </p>
-
-    <p>
-      Ut eros purus, eleifend vitae pharetra vitae, auctor sit amet orci. Cras
-      non dolor enim. Duis id fringilla erat. Maecenas et nulla nec libero
-      venenatis dignissim. Nulla feugiat augue ut consequat pretium. Etiam
-      eleifend, leo ac ornare ultricies, odio felis iaculis arcu, sed blandit
-      tellus turpis tincidunt lacus. Cras non mauris sit amet lorem convallis
-      interdum. Duis tempus fringilla tellus sed tempus. Class aptent taciti
-      sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-      Vestibulum vitae ex a orci volutpat congue.
-    </p>
-    <p>
-      Quisque eget neque purus. Proin pharetra vulputate lorem sed fringilla.
-      Mauris tempus odio neque, ac rhoncus ligula cursus vitae. In hac habitasse
-      platea dictumst. Proin quis ligula tempor, egestas elit non, faucibus
-      sapien. Sed mi nisl, lacinia nec mi non, pulvinar tempor erat. Integer
-      pharetra id leo id laoreet. Fusce accumsan lorem vitae leo egestas,
-      euismod venenatis erat lobortis. Lorem ipsum dolor sit amet, consectetur
-      adipiscing elit. Aliquam orci erat, sollicitudin quis volutpat eu,
-      venenatis non enim. In a magna at erat vulputate mollis. Phasellus finibus
-      augue et mauris accumsan sagittis. Praesent et lacus sollicitudin,
-      ultricies elit a, viverra lorem. Sed et elementum velit, nec dignissim
-      nibh.
-    </p>
-    <p>
-      Nam sit amet mauris arcu. Etiam vulputate vehicula gravida. Suspendisse
-      molestie odio a enim placerat, a semper erat lacinia. Pellentesque
-      tristique maximus pellentesque. Nullam quis varius metus, nec lobortis mi.
-      Integer venenatis mi eget nisi dignissim tempor. Maecenas eget imperdiet
-      enim. Morbi non sodales tellus, quis imperdiet odio. Sed nisi lectus,
-      tincidunt eget finibus vel, feugiat ac felis. Donec euismod sapien a nisl
-      pharetra, sed hendrerit turpis interdum.
-    </p>
-    <p>
-      Donec fermentum nunc semper blandit semper. Maecenas sed libero leo. Nunc
-      sed lacinia nisi. Etiam vel magna vitae orci aliquet bibendum a eu nulla.
-      Fusce vulputate, quam ut faucibus pretium, risus urna pellentesque eros,
-      ac tristique ante libero at arcu. Vivamus quis nisl in odio laoreet
-      aliquam. Praesent convallis dolor non massa suscipit iaculis. Etiam quis
-      dui felis. Nulla scelerisque scelerisque lorem, et dictum ligula fringilla
-      a. Aenean congue molestie rhoncus. Nulla facilisi. Nam ut leo nulla.
-    </p>
-  </window-content>
-</os-window>
-
-<os-window
-  [theme]="theme ? 'arc' : 'win98'"
-  [variant]="
-    theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-  "
-  [height]="400"
-  [width]="600"
-  [minHeight]="300"
-  [minWidth]="300"
-  [maximizable]="true"
-  [resizable]="true"
   position="right bottom">
-  <window-title> Arc Dark Window </window-title>
+  <window-title> {{ getNameOfWindow(2) }} </window-title>
   <window-content>
     <div class="buttons">
       <button
         os-button
-        [theme]="theme ? 'arc' : 'win98'"
-        [variant]="
-          theme
-            ? variant
-              ? 'dark'
-              : 'light'
-            : variant
-            ? 'classic'
-            : 'vaporwave'
-        "
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
         disabled>
         Disabled
       </button>
 
       <button
-        [theme]="theme ? 'arc' : 'win98'"
-        [variant]="
-          theme
-            ? variant
-              ? 'dark'
-              : 'light'
-            : variant
-            ? 'classic'
-            : 'vaporwave'
-        "
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
         os-button
         (click)="toggleTheme()">
         Toggle theme
       </button>
 
       <button
-        [theme]="theme ? 'arc' : 'win98'"
-        [variant]="
-          theme
-            ? variant
-              ? 'dark'
-              : 'light'
-            : variant
-            ? 'classic'
-            : 'vaporwave'
-        "
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
         os-button
         (click)="toggleVariant()">
         Toggle variant
       </button>
     </div>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      color="red">
-      Red
-    </button>
+    <div>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        color="red">
+        Red
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      color="orange">
-      Orange
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        color="orange">
+        Orange
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      color="yellow">
-      Yellow
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        color="yellow">
+        Yellow
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      color="lime">
-      Lime
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        color="lime">
+        Lime
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      color="green">
-      Green
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        color="green">
+        Green
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      color="aqua">
-      Aqua
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        color="aqua">
+        Aqua
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      color="blue">
-      Blue
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        color="blue">
+        Blue
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      color="purple">
-      Purple
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        color="purple">
+        Purple
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      color="magenta">
-      Magenta
-    </button>
-    <br />
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        color="magenta">
+        Magenta
+      </button>
+      <br />
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      disabled
-      color="red">
-      Red
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        disabled
+        color="red">
+        Red
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      disabled
-      color="orange">
-      Orange
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        disabled
+        color="orange">
+        Orange
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      disabled
-      color="yellow">
-      Yellow
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        disabled
+        color="yellow">
+        Yellow
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      disabled
-      color="lime">
-      Lime
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        disabled
+        color="lime">
+        Lime
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      disabled
-      color="green">
-      Green
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        disabled
+        color="green">
+        Green
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      disabled
-      color="aqua">
-      Aqua
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        disabled
+        color="aqua">
+        Aqua
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      disabled
-      color="blue">
-      Blue
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        disabled
+        color="blue">
+        Blue
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      disabled
-      color="purple">
-      Purple
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        disabled
+        color="purple">
+        Purple
+      </button>
 
-    <button
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      os-button
-      disabled
-      color="magenta">
-      Magenta
-    </button>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        disabled
+        color="magenta">
+        Magenta
+      </button>
+    </div>
 
     <br />
 
-    <os-radio
-      name="test1"
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      >Test 1</os-radio
-    >
-    <br />
-    <os-radio
-      name="test1"
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      >Test 1</os-radio
-    >
-    <br />
-    <os-radio
-      name="test2"
-      labelPosition="before"
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      >Test 2</os-radio
-    >
-    <br />
-    <os-radio
-      name="test2"
-      labelPosition="before"
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      >Test 2</os-radio
-    >
-    <br />
-    <os-radio
-      name="test3"
-      disabled
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      >Test 3</os-radio
-    >
-    <br />
-    <os-radio
-      name="test3"
-      disabled
-      checked
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      >Test 3</os-radio
-    >
-    <br />
-    <os-radio
-      name="test4"
-      disabled
-      labelPosition="before"
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      >Test 4</os-radio
-    >
-    <br />
-    <os-radio
-      name="test4"
-      disabled
-      checked
-      labelPosition="before"
-      [theme]="theme ? 'arc' : 'win98'"
-      [variant]="
-        theme ? (variant ? 'dark' : 'light') : variant ? 'classic' : 'vaporwave'
-      "
-      >Test 4</os-radio
-    >
+    <div>
+      <os-radio name="test1" [theme]="getTheme(2)" [variant]="getVariant(2)"
+        >Test 1</os-radio
+      >
+      <br />
+      <os-radio name="test1" [theme]="getTheme(2)" [variant]="getVariant(2)"
+        >Test 1</os-radio
+      >
+      <br />
+      <os-radio
+        name="test2"
+        labelPosition="before"
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        >Test 2</os-radio
+      >
+      <br />
+      <os-radio
+        name="test2"
+        labelPosition="before"
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        >Test 2</os-radio
+      >
+      <br />
+      <os-radio
+        name="test3"
+        disabled
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        >Test 3</os-radio
+      >
+      <br />
+      <os-radio
+        name="test3"
+        disabled
+        checked
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        >Test 3</os-radio
+      >
+      <br />
+      <os-radio
+        name="test4"
+        disabled
+        labelPosition="before"
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        >Test 4</os-radio
+      >
+      <br />
+      <os-radio
+        name="test4"
+        disabled
+        checked
+        labelPosition="before"
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        >Test 4</os-radio
+      >
+    </div>
 
     <br />
 

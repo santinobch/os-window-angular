@@ -58,17 +58,22 @@ export class OsConfigService {
 
   private USER_THEME_LIST: OsTheme[] = THEME_LIST;
 
-  addUserStyle(theme: OsTheme) {
+  addTheme(theme: OsTheme) {
     this.USER_THEME_LIST.push(theme);
+
+    localStorage.setItem(
+      'USER_THEME_LIST',
+      JSON.stringify(this.USER_THEME_LIST)
+    );
   }
 
-  getThemeList() {
-    const THEME_LIST = localStorage.getItem('THEME_LIST');
+  getThemes() {
+    const USER_THEME_LIST = localStorage.getItem('USER_THEME_LIST');
 
-    if (THEME_LIST === null) {
-      return {};
+    if (USER_THEME_LIST === null) {
+      return THEME_LIST;
     }
 
-    return JSON.parse(THEME_LIST);
+    return JSON.parse(USER_THEME_LIST);
   }
 }

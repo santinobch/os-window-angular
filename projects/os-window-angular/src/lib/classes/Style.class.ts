@@ -45,7 +45,7 @@ export class StyleClass {
       this.style.variant !== '' &&
       this.style.variant !== undefined
     ) {
-      for (const i of this.globalConfigService.getThemeList()) {
+      for (const i of this.globalConfigService.getThemes()) {
         if (i.name == this.style.theme) {
           for (const v of i.variants) {
             if (v == this.style.variant) {
@@ -79,7 +79,7 @@ export class StyleClass {
       this.style.color !== '' &&
       this.style.color !== undefined
     ) {
-      for (const i of this.globalConfigService.getThemeList()) {
+      for (const i of this.globalConfigService.getThemes()) {
         if (i.name == this.style.theme) {
           for (const p of i.palette) {
             if (p == this.style.color) {
