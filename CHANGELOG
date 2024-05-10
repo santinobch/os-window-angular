@@ -1,0 +1,32 @@
+# Change Log
+
+## [0.1.1] - 2017-03-15
+
+Here we would have the update steps for 1.2.4 for people to follow.
+
+### Added
+
+### Changed
+
+- [PROJECTNAME-ZZZZ](http://tickets.projectname.com/browse/PROJECTNAME-ZZZZ)
+  PATCH Drupal.org is now used for composer.
+
+### Fixed
+
+- [PROJECTNAME-TTTT](http://tickets.projectname.com/browse/PROJECTNAME-TTTT)
+  PATCH Add logic to runsheet teaser delete to delete corresponding
+  schedule cards.
+
+## [0.2.0 - 0.2.3] - 2017-03-15
+
+I had many issues with npm while uploading the package, which resulted in many broken minor versions
+
+## [0.1.1] - 2021-03-01
+
+### Changed
+
+- Updated readme
+
+## [0.1.0] - 2021-01-28
+
+Initial release.

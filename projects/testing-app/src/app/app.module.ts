@@ -4,12 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-//import { OsWindowModule, OsConfigModule, OsButtonModule } from "@santinobch/os-window-angular";
 import {
   OsWindowModule,
   OsButtonModule,
   OsRadioModule,
-} from '../../../os-window-angular/src/public-api';
+} from '@santinobch/os-window-angular';
+// import {
+//   OsWindowModule,
+//   OsButtonModule,
+//   OsRadioModule,
+// } from '../../../os-window-angular/src/public-api';
 
 @NgModule({
   declarations: [AppComponent],
