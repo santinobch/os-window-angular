@@ -1,12 +1,8 @@
-export interface OsTheme {
-  theme: string;
-  variants: string[];
-  palette: string[];
-}
+import { OsTheme } from '../models/Theme.model';
 
-export const theme_list: OsTheme[] = [
+export const THEME_LIST: OsTheme[] = [
   {
-    theme: 'arc',
+    name: 'arc',
     variants: ['light', 'dark'],
     palette: [
       'red',
@@ -21,7 +17,7 @@ export const theme_list: OsTheme[] = [
     ],
   },
   {
-    theme: 'win98',
+    name: 'win98',
     variants: ['classic', 'vaporwave'],
     palette: [
       'red',

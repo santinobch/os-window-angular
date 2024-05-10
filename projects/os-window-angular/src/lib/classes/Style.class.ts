@@ -1,7 +1,7 @@
 import { ElementRef, Renderer2, SimpleChanges } from '@angular/core';
 import { SimpleStyleModel, StyleModel } from '../models/Style.model';
 import { OsConfigService } from '../services/os-config/os-config.service';
-import { theme_list } from '../themes/theme_list';
+import { THEME_LIST } from '../themes/theme_list';
 
 export class StyleClass {
   private componentElement!: ElementRef;
@@ -45,8 +45,8 @@ export class StyleClass {
       this.style.variant !== '' &&
       this.style.variant !== undefined
     ) {
-      for (const i of theme_list) {
-        if (i.theme == this.style.theme) {
+      for (const i of this.globalConfigService.getThemeList()) {
+        if (i.name == this.style.theme) {
           for (const v of i.variants) {
             if (v == this.style.variant) {
               return true;
@@ -79,8 +79,8 @@ export class StyleClass {
       this.style.color !== '' &&
       this.style.color !== undefined
     ) {
-      for (const i of theme_list) {
-        if (i.theme == this.style.theme) {
+      for (const i of this.globalConfigService.getThemeList()) {
+        if (i.name == this.style.theme) {
           for (const p of i.palette) {
             if (p == this.style.color) {
               return true;

@@ -9,9 +9,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { StyleModel } from '../../models/Style.model';
 import { OsConfigService } from '../../services/os-config/os-config.service';
-import { theme_list } from '../../themes/theme_list';
 import { StyleClass } from '../../classes/Style.class';
 
 @Component({

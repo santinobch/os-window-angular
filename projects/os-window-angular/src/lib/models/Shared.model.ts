@@ -1,6 +1,6 @@
 import { StyleModel } from './Style.model';
 
-export interface SharedModel {
+export interface ProcessModel {
   //Window ID
   wId: number;
   style: StyleModel;
