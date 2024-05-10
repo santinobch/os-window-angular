@@ -2,7 +2,7 @@
   [theme]="getTheme(0)"
   [variant]="getVariant(0)"
   [height]="400"
-  [width]="600"
+  [width]="650"
   [minHeight]="300"
   [minWidth]="300"
   [resizable]="true"
@@ -12,15 +12,8 @@
   position="left top">
   <window-title> {{ getNameOfWindow(0) }} </window-title>
   <window-content>
+    <h3 class="pl-1.5 text-xl">Controls</h3>
     <div class="buttons">
-      <button
-        os-button
-        [theme]="getTheme(0)"
-        [variant]="getVariant(0)"
-        disabled>
-        Disabled
-      </button>
-
       <button
         [theme]="getTheme(0)"
         [variant]="getVariant(0)"
@@ -38,7 +31,13 @@
       </button>
     </div>
 
+    <br />
+    <h3 class="pl-1.5 text-xl">Buttons</h3>
     <div>
+      <button [theme]="getTheme(0)" [variant]="getVariant(0)" os-button>
+        Default
+      </button>
+
       <button
         [theme]="getTheme(0)"
         [variant]="getVariant(0)"
@@ -110,7 +109,16 @@
         color="magenta">
         Magenta
       </button>
-      <br />
+    </div>
+
+    <div>
+      <button
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
+        os-button
+        disabled>
+        Default
+      </button>
 
       <button
         [theme]="getTheme(0)"
@@ -196,13 +204,28 @@
 
     <br />
 
-    <div>
+    <h3 class="pl-1.5 text-xl">Radio buttons</h3>
+    <h4 class="pb-1.5 pl-1.5 text-lg">Right label</h4>
+
+    <div class="flex gap-3">
       <os-radio name="test1" [theme]="getTheme(0)" [variant]="getVariant(0)"
-        >Test 1</os-radio
+        >Group 1</os-radio
       >
       <br />
       <os-radio name="test1" [theme]="getTheme(0)" [variant]="getVariant(0)"
-        >Test 1</os-radio
+        >Group 1</os-radio
+      >
+    </div>
+
+    <h4 class="pb-1.5 pl-1.5 text-lg">Right label</h4>
+
+    <div class="flex gap-3 pl-1.5">
+      <os-radio
+        name="test2"
+        labelPosition="before"
+        [theme]="getTheme(0)"
+        [variant]="getVariant(0)"
+        >Group 2</os-radio
       >
       <br />
       <os-radio
@@ -210,23 +233,18 @@
         labelPosition="before"
         [theme]="getTheme(0)"
         [variant]="getVariant(0)"
-        >Test 2</os-radio
+        >Group 2</os-radio
       >
-      <br />
-      <os-radio
-        name="test2"
-        labelPosition="before"
-        [theme]="getTheme(0)"
-        [variant]="getVariant(0)"
-        >Test 2</os-radio
-      >
-      <br />
+    </div>
+
+    <h4 class="pb-1.5 pl-1.5 text-lg">Disabled radio button</h4>
+    <div class="flex gap-3">
       <os-radio
         name="test3"
         disabled
         [theme]="getTheme(0)"
         [variant]="getVariant(0)"
-        >Test 3</os-radio
+        >Group disabled</os-radio
       >
       <br />
       <os-radio
@@ -235,32 +253,14 @@
         checked
         [theme]="getTheme(0)"
         [variant]="getVariant(0)"
-        >Test 3</os-radio
-      >
-      <br />
-      <os-radio
-        name="test4"
-        disabled
-        labelPosition="before"
-        [theme]="getTheme(0)"
-        [variant]="getVariant(0)"
-        >Test 4</os-radio
-      >
-      <br />
-      <os-radio
-        name="test4"
-        disabled
-        checked
-        labelPosition="before"
-        [theme]="getTheme(0)"
-        [variant]="getVariant(0)"
-        >Test 4</os-radio
+        >Group disabled</os-radio
       >
     </div>
 
     <br />
 
-    <p>
+    <h3 class="pl-1.5 text-xl">Text</h3>
+    <p class="w-11/12 pl-1.5">
       <a href="">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget
         nibh eu mauris faucibus bibendum sit amet eget arcu. Mauris quis
@@ -274,7 +274,7 @@
       </a>
     </p>
 
-    <p>
+    <p class="w-11/12 pl-1.5">
       Ut eros purus, eleifend vitae pharetra vitae, auctor sit amet orci. Cras
       non dolor enim. Duis id fringilla erat. Maecenas et nulla nec libero
       venenatis dignissim. Nulla feugiat augue ut consequat pretium. Etiam
@@ -284,7 +284,7 @@
       sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
       Vestibulum vitae ex a orci volutpat congue.
     </p>
-    <p>
+    <p class="w-11/12 pl-1.5">
       Quisque eget neque purus. Proin pharetra vulputate lorem sed fringilla.
       Mauris tempus odio neque, ac rhoncus ligula cursus vitae. In hac habitasse
       platea dictumst. Proin quis ligula tempor, egestas elit non, faucibus
@@ -297,7 +297,7 @@
       ultricies elit a, viverra lorem. Sed et elementum velit, nec dignissim
       nibh.
     </p>
-    <p>
+    <p class="w-11/12 pl-1.5">
       Nam sit amet mauris arcu. Etiam vulputate vehicula gravida. Suspendisse
       molestie odio a enim placerat, a semper erat lacinia. Pellentesque
       tristique maximus pellentesque. Nullam quis varius metus, nec lobortis mi.
@@ -306,7 +306,7 @@
       tincidunt eget finibus vel, feugiat ac felis. Donec euismod sapien a nisl
       pharetra, sed hendrerit turpis interdum.
     </p>
-    <p>
+    <p class="w-11/12 pl-1.5">
       Donec fermentum nunc semper blandit semper. Maecenas sed libero leo. Nunc
       sed lacinia nisi. Etiam vel magna vitae orci aliquet bibendum a eu nulla.
       Fusce vulputate, quam ut faucibus pretium, risus urna pellentesque eros,
@@ -322,23 +322,18 @@
   [theme]="getTheme(1)"
   [variant]="getVariant(1)"
   [height]="400"
-  [width]="600"
+  [width]="650"
   [minHeight]="300"
   [minWidth]="300"
-  [maximizable]="true"
   [resizable]="true"
+  [minimizable]="true"
+  [maximizable]="true"
+  [closable]="true"
   position="center center">
   <window-title> {{ getNameOfWindow(1) }} </window-title>
   <window-content>
+    <h3 class="pl-1.5 text-xl">Controls</h3>
     <div class="buttons">
-      <button
-        os-button
-        [theme]="getTheme(1)"
-        [variant]="getVariant(1)"
-        disabled>
-        Disabled
-      </button>
-
       <button
         [theme]="getTheme(1)"
         [variant]="getVariant(1)"
@@ -356,225 +351,236 @@
       </button>
     </div>
 
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      color="red">
-      Red
-    </button>
-
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      color="orange">
-      Orange
-    </button>
-
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      color="yellow">
-      Yellow
-    </button>
-
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      color="lime">
-      Lime
-    </button>
-
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      color="green">
-      Green
-    </button>
-
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      color="aqua">
-      Aqua
-    </button>
-
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      color="blue">
-      Blue
-    </button>
-
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      color="purple">
-      Purple
-    </button>
-
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      color="magenta">
-      Magenta
-    </button>
     <br />
+    <h3 class="pl-1.5 text-xl">Buttons</h3>
+    <div>
+      <button [theme]="getTheme(1)" [variant]="getVariant(1)" os-button>
+        Default
+      </button>
 
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      disabled
-      color="red">
-      Red
-    </button>
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        color="red">
+        Red
+      </button>
 
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      disabled
-      color="orange">
-      Orange
-    </button>
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        color="orange">
+        Orange
+      </button>
 
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      disabled
-      color="yellow">
-      Yellow
-    </button>
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        color="yellow">
+        Yellow
+      </button>
 
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      disabled
-      color="lime">
-      Lime
-    </button>
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        color="lime">
+        Lime
+      </button>
 
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      disabled
-      color="green">
-      Green
-    </button>
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        color="green">
+        Green
+      </button>
 
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      disabled
-      color="aqua">
-      Aqua
-    </button>
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        color="aqua">
+        Aqua
+      </button>
 
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      disabled
-      color="blue">
-      Blue
-    </button>
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        color="blue">
+        Blue
+      </button>
 
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      disabled
-      color="purple">
-      Purple
-    </button>
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        color="purple">
+        Purple
+      </button>
 
-    <button
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      os-button
-      disabled
-      color="magenta">
-      Magenta
-    </button>
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        color="magenta">
+        Magenta
+      </button>
+    </div>
 
-    <br />
+    <div>
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        disabled>
+        Default
+      </button>
 
-    <os-radio name="test1" [theme]="getTheme(1)" [variant]="getVariant(1)"
-      >Test 1</os-radio
-    >
-    <br />
-    <os-radio name="test1" [theme]="getTheme(1)" [variant]="getVariant(1)"
-      >Test 1</os-radio
-    >
-    <br />
-    <os-radio
-      name="test2"
-      labelPosition="before"
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      >Test 2</os-radio
-    >
-    <br />
-    <os-radio
-      name="test2"
-      labelPosition="before"
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      >Test 2</os-radio
-    >
-    <br />
-    <os-radio
-      name="test3"
-      disabled
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      >Test 3</os-radio
-    >
-    <br />
-    <os-radio
-      name="test3"
-      disabled
-      checked
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      >Test 3</os-radio
-    >
-    <br />
-    <os-radio
-      name="test4"
-      disabled
-      labelPosition="before"
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      >Test 4</os-radio
-    >
-    <br />
-    <os-radio
-      name="test4"
-      disabled
-      checked
-      labelPosition="before"
-      [theme]="getTheme(1)"
-      [variant]="getVariant(1)"
-      >Test 4</os-radio
-    >
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        disabled
+        color="red">
+        Red
+      </button>
+
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        disabled
+        color="orange">
+        Orange
+      </button>
+
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        disabled
+        color="yellow">
+        Yellow
+      </button>
+
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        disabled
+        color="lime">
+        Lime
+      </button>
+
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        disabled
+        color="green">
+        Green
+      </button>
+
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        disabled
+        color="aqua">
+        Aqua
+      </button>
+
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        disabled
+        color="blue">
+        Blue
+      </button>
+
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        disabled
+        color="purple">
+        Purple
+      </button>
+
+      <button
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        os-button
+        disabled
+        color="magenta">
+        Magenta
+      </button>
+    </div>
 
     <br />
 
-    <p>
+    <h3 class="pl-1.5 text-xl">Radio buttons</h3>
+    <h4 class="pb-1.5 pl-1.5 text-lg">Right label</h4>
+
+    <div class="flex gap-3">
+      <os-radio name="test1" [theme]="getTheme(1)" [variant]="getVariant(1)"
+        >Group 1</os-radio
+      >
+      <br />
+      <os-radio name="test1" [theme]="getTheme(1)" [variant]="getVariant(1)"
+        >Group 1</os-radio
+      >
+    </div>
+
+    <h4 class="pb-1.5 pl-1.5 text-lg">Right label</h4>
+
+    <div class="flex gap-3 pl-1.5">
+      <os-radio
+        name="test2"
+        labelPosition="before"
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        >Group 2</os-radio
+      >
+      <br />
+      <os-radio
+        name="test2"
+        labelPosition="before"
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        >Group 2</os-radio
+      >
+    </div>
+
+    <h4 class="pb-1.5 pl-1.5 text-lg">Disabled radio button</h4>
+    <div class="flex gap-3">
+      <os-radio
+        name="test3"
+        disabled
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        >Group disabled</os-radio
+      >
+      <br />
+      <os-radio
+        name="test3"
+        disabled
+        checked
+        [theme]="getTheme(1)"
+        [variant]="getVariant(1)"
+        >Group disabled</os-radio
+      >
+    </div>
+
+    <br />
+
+    <h3 class="pl-1.5 text-xl">Text</h3>
+    <p class="w-11/12 pl-1.5">
       <a href="">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget
         nibh eu mauris faucibus bibendum sit amet eget arcu. Mauris quis
@@ -588,7 +594,7 @@
       </a>
     </p>
 
-    <p>
+    <p class="w-11/12 pl-1.5">
       Ut eros purus, eleifend vitae pharetra vitae, auctor sit amet orci. Cras
       non dolor enim. Duis id fringilla erat. Maecenas et nulla nec libero
       venenatis dignissim. Nulla feugiat augue ut consequat pretium. Etiam
@@ -598,7 +604,7 @@
       sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
       Vestibulum vitae ex a orci volutpat congue.
     </p>
-    <p>
+    <p class="w-11/12 pl-1.5">
       Quisque eget neque purus. Proin pharetra vulputate lorem sed fringilla.
       Mauris tempus odio neque, ac rhoncus ligula cursus vitae. In hac habitasse
       platea dictumst. Proin quis ligula tempor, egestas elit non, faucibus
@@ -611,7 +617,7 @@
       ultricies elit a, viverra lorem. Sed et elementum velit, nec dignissim
       nibh.
     </p>
-    <p>
+    <p class="w-11/12 pl-1.5">
       Nam sit amet mauris arcu. Etiam vulputate vehicula gravida. Suspendisse
       molestie odio a enim placerat, a semper erat lacinia. Pellentesque
       tristique maximus pellentesque. Nullam quis varius metus, nec lobortis mi.
@@ -620,7 +626,7 @@
       tincidunt eget finibus vel, feugiat ac felis. Donec euismod sapien a nisl
       pharetra, sed hendrerit turpis interdum.
     </p>
-    <p>
+    <p class="w-11/12 pl-1.5">
       Donec fermentum nunc semper blandit semper. Maecenas sed libero leo. Nunc
       sed lacinia nisi. Etiam vel magna vitae orci aliquet bibendum a eu nulla.
       Fusce vulputate, quam ut faucibus pretium, risus urna pellentesque eros,
@@ -636,7 +642,7 @@
   [theme]="getTheme(2)"
   [variant]="getVariant(2)"
   [height]="400"
-  [width]="600"
+  [width]="650"
   [minHeight]="300"
   [minWidth]="300"
   [resizable]="true"
@@ -646,15 +652,8 @@
   position="right bottom">
   <window-title> {{ getNameOfWindow(2) }} </window-title>
   <window-content>
+    <h3 class="pl-1.5 text-xl">Controls</h3>
     <div class="buttons">
-      <button
-        os-button
-        [theme]="getTheme(2)"
-        [variant]="getVariant(2)"
-        disabled>
-        Disabled
-      </button>
-
       <button
         [theme]="getTheme(2)"
         [variant]="getVariant(2)"
@@ -672,7 +671,13 @@
       </button>
     </div>
 
+    <br />
+    <h3 class="pl-1.5 text-xl">Buttons</h3>
     <div>
+      <button [theme]="getTheme(2)" [variant]="getVariant(2)" os-button>
+        Default
+      </button>
+
       <button
         [theme]="getTheme(2)"
         [variant]="getVariant(2)"
@@ -744,7 +749,16 @@
         color="magenta">
         Magenta
       </button>
-      <br />
+    </div>
+
+    <div>
+      <button
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        os-button
+        disabled>
+        Default
+      </button>
 
       <button
         [theme]="getTheme(2)"
@@ -830,13 +844,28 @@
 
     <br />
 
-    <div>
+    <h3 class="pl-1.5 text-xl">Radio buttons</h3>
+    <h4 class="pb-1.5 pl-1.5 text-lg">Right label</h4>
+
+    <div class="flex gap-3">
       <os-radio name="test1" [theme]="getTheme(2)" [variant]="getVariant(2)"
-        >Test 1</os-radio
+        >Group 1</os-radio
       >
       <br />
       <os-radio name="test1" [theme]="getTheme(2)" [variant]="getVariant(2)"
-        >Test 1</os-radio
+        >Group 1</os-radio
+      >
+    </div>
+
+    <h4 class="pb-1.5 pl-1.5 text-lg">Right label</h4>
+
+    <div class="flex gap-3 pl-1.5">
+      <os-radio
+        name="test2"
+        labelPosition="before"
+        [theme]="getTheme(2)"
+        [variant]="getVariant(2)"
+        >Group 2</os-radio
       >
       <br />
       <os-radio
@@ -844,23 +873,18 @@
         labelPosition="before"
         [theme]="getTheme(2)"
         [variant]="getVariant(2)"
-        >Test 2</os-radio
+        >Group 2</os-radio
       >
-      <br />
-      <os-radio
-        name="test2"
-        labelPosition="before"
-        [theme]="getTheme(2)"
-        [variant]="getVariant(2)"
-        >Test 2</os-radio
-      >
-      <br />
+    </div>
+
+    <h4 class="pb-1.5 pl-1.5 text-lg">Disabled radio button</h4>
+    <div class="flex gap-3">
       <os-radio
         name="test3"
         disabled
         [theme]="getTheme(2)"
         [variant]="getVariant(2)"
-        >Test 3</os-radio
+        >Group disabled</os-radio
       >
       <br />
       <os-radio
@@ -869,32 +893,14 @@
         checked
         [theme]="getTheme(2)"
         [variant]="getVariant(2)"
-        >Test 3</os-radio
-      >
-      <br />
-      <os-radio
-        name="test4"
-        disabled
-        labelPosition="before"
-        [theme]="getTheme(2)"
-        [variant]="getVariant(2)"
-        >Test 4</os-radio
-      >
-      <br />
-      <os-radio
-        name="test4"
-        disabled
-        checked
-        labelPosition="before"
-        [theme]="getTheme(2)"
-        [variant]="getVariant(2)"
-        >Test 4</os-radio
+        >Group disabled</os-radio
       >
     </div>
 
     <br />
 
-    <p>
+    <h3 class="pl-1.5 text-xl">Text</h3>
+    <p class="w-11/12 pl-1.5">
       <a href="">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget
         nibh eu mauris faucibus bibendum sit amet eget arcu. Mauris quis
@@ -908,7 +914,7 @@
       </a>
     </p>
 
-    <p>
+    <p class="w-11/12 pl-1.5">
       Ut eros purus, eleifend vitae pharetra vitae, auctor sit amet orci. Cras
       non dolor enim. Duis id fringilla erat. Maecenas et nulla nec libero
       venenatis dignissim. Nulla feugiat augue ut consequat pretium. Etiam
@@ -918,7 +924,7 @@
       sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
       Vestibulum vitae ex a orci volutpat congue.
     </p>
-    <p>
+    <p class="w-11/12 pl-1.5">
       Quisque eget neque purus. Proin pharetra vulputate lorem sed fringilla.
       Mauris tempus odio neque, ac rhoncus ligula cursus vitae. In hac habitasse
       platea dictumst. Proin quis ligula tempor, egestas elit non, faucibus
@@ -931,7 +937,7 @@
       ultricies elit a, viverra lorem. Sed et elementum velit, nec dignissim
       nibh.
     </p>
-    <p>
+    <p class="w-11/12 pl-1.5">
       Nam sit amet mauris arcu. Etiam vulputate vehicula gravida. Suspendisse
       molestie odio a enim placerat, a semper erat lacinia. Pellentesque
       tristique maximus pellentesque. Nullam quis varius metus, nec lobortis mi.
@@ -940,7 +946,7 @@
       tincidunt eget finibus vel, feugiat ac felis. Donec euismod sapien a nisl
       pharetra, sed hendrerit turpis interdum.
     </p>
-    <p>
+    <p class="w-11/12 pl-1.5">
       Donec fermentum nunc semper blandit semper. Maecenas sed libero leo. Nunc
       sed lacinia nisi. Etiam vel magna vitae orci aliquet bibendum a eu nulla.
       Fusce vulputate, quam ut faucibus pretium, risus urna pellentesque eros,
