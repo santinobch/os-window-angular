@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 //import { OsWindowModule, OsConfigModule, OsButtonModule } from "@santinobch/os-window-angular";
 import {
   OsWindowModule,
-  OsConfigModule,
   OsButtonModule,
   OsRadioModule,
 } from '../../../os-window-angular/src/public-api';
@@ -18,7 +17,6 @@ import {
     BrowserModule,
     AppRoutingModule,
     OsWindowModule,
-    OsConfigModule,
     OsButtonModule,
     OsRadioModule,
   ],

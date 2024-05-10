@@ -1,5 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { OsTheme } from 'projects/os-window-angular/src/lib/models/Theme.model';
+import { Component, OnInit } from '@angular/core';
+import {
+  Theme,
+  ThemeDefinition,
+} from 'projects/os-window-angular/src/lib/models/Theme.model';
 import { OsConfigService } from 'projects/os-window-angular/src/lib/services/os-config/os-config.service';
 
 @Component({
@@ -10,12 +13,12 @@ import { OsConfigService } from 'projects/os-window-angular/src/lib/services/os-
 export class AppComponent implements OnInit {
   title = 'testing-app';
 
-  theme: number = 0;
+  theme: number = 2;
   variant: boolean = true;
 
   constructor(private osConfigService: OsConfigService) {}
 
-  win98custom: OsTheme = {
+  win98custom: ThemeDefinition = {
     name: 'win98custom',
     variants: ['classic', 'vaporwave'],
     palette: [
@@ -31,16 +34,22 @@ export class AppComponent implements OnInit {
     ],
   };
 
+  globalTheme: Theme = {
+    name: 'arc',
+    variant: 'dark',
+  };
+
   ngOnInit(): void {
     this.osConfigService.addTheme(this.win98custom);
+    this.osConfigService.setGlobalTheme(this.globalTheme);
   }
 
   toggleTheme() {
-    if (this.theme == 2) {
-      this.theme = 0;
+    if (this.theme == 0) {
+      this.theme = 2;
       return;
     }
-    this.theme++;
+    this.theme--;
   }
 
   toggleVariant() {

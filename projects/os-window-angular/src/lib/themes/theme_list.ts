@@ -1,6 +1,6 @@
-import { OsTheme } from '../models/Theme.model';
+import { ThemeDefinition } from '../models/Theme.model';
 
-export const THEME_LIST: OsTheme[] = [
+export const THEME_LIST: ThemeDefinition[] = [
   {
     name: 'arc',
     variants: ['light', 'dark'],

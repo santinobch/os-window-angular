@@ -1,7 +1,7 @@
-import { StyleModel } from './Style.model';
+import { Theme } from './Theme.model';
 
 export interface ProcessModel {
   //Window ID
   wId: number;
-  style: StyleModel;
+  theme: Theme;
 }

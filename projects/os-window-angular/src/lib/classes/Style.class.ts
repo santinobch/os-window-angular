@@ -1,7 +1,7 @@
 import { ElementRef, Renderer2, SimpleChanges } from '@angular/core';
-import { SimpleStyleModel, StyleModel } from '../models/Style.model';
 import { OsConfigService } from '../services/os-config/os-config.service';
 import { THEME_LIST } from '../themes/theme_list';
+import { Theme } from '../models/Theme.model';
 
 export class StyleClass {
   private componentElement!: ElementRef;
@@ -21,32 +21,32 @@ export class StyleClass {
     this.componentName = _componentName;
   }
 
-  private globalConfigData: SimpleStyleModel = {
-    theme: '',
+  private globalConfigData: Theme = {
+    name: '',
     variant: '',
   };
 
-  public style: StyleModel = {
-    theme: '',
+  public style: Theme = {
+    name: '',
     variant: '',
     color: '',
   };
 
-  private previousStyle: StyleModel = {
-    theme: '',
+  private previousStyle: Theme = {
+    name: '',
     variant: '',
     color: '',
   };
 
   private isValidStyle(): boolean {
     if (
-      this.style.theme !== '' &&
-      this.style.theme !== undefined &&
+      this.style.name !== '' &&
+      this.style.name !== undefined &&
       this.style.variant !== '' &&
       this.style.variant !== undefined
     ) {
       for (const i of this.globalConfigService.getThemes()) {
-        if (i.name == this.style.theme) {
+        if (i.name == this.style.name) {
           for (const v of i.variants) {
             if (v == this.style.variant) {
               return true;
@@ -65,7 +65,7 @@ export class StyleClass {
         'Invalid Theme at ' +
           this.componentName +
           ' component: ' +
-          this.style.theme
+          this.style.name
       );
       return false;
     }
@@ -74,13 +74,13 @@ export class StyleClass {
 
   private isValidColor(): boolean {
     if (
-      this.style.theme !== '' &&
-      this.style.theme !== undefined &&
+      this.style.name !== '' &&
+      this.style.name !== undefined &&
       this.style.color !== '' &&
       this.style.color !== undefined
     ) {
       for (const i of this.globalConfigService.getThemes()) {
-        if (i.name == this.style.theme) {
+        if (i.name == this.style.name) {
           for (const p of i.palette) {
             if (p == this.style.color) {
               return true;
@@ -99,7 +99,7 @@ export class StyleClass {
         'Invalid Theme at ' +
           this.componentName +
           ' component: ' +
-          this.style.theme
+          this.style.name
       );
       return false;
     }
@@ -108,13 +108,13 @@ export class StyleClass {
 
   private getStyle(): string {
     return (
-      this.style.theme + '-' + this.style.variant + '-os-' + this.componentName
+      this.style.name + '-' + this.style.variant + '-os-' + this.componentName
     );
   }
 
   private getPreviousStyle(): string {
     return (
-      this.previousStyle.theme +
+      this.previousStyle.name +
       '-' +
       this.previousStyle.variant +
       '-os-' +
@@ -132,8 +132,8 @@ export class StyleClass {
 
   public loadGlobalStyles() {
     //Global theme config
-    this.globalConfigData = this.globalConfigService.getGlobalStyles();
-    this.style.theme = this.globalConfigData.theme;
+    this.globalConfigData = this.globalConfigService.getGlobalTheme();
+    this.style.name = this.globalConfigData.name;
     this.style.variant = this.globalConfigData.variant;
     this.renderer.addClass(
       this.componentElement.nativeElement,
@@ -145,8 +145,8 @@ export class StyleClass {
     if (this.isValidStyle()) {
       //Removes old theme class
       if (
-        this.previousStyle.theme !== '' &&
-        this.previousStyle.theme !== undefined &&
+        this.previousStyle.name !== '' &&
+        this.previousStyle.name !== undefined &&
         this.previousStyle.variant !== '' &&
         this.previousStyle.variant !== undefined
       ) {
@@ -156,7 +156,7 @@ export class StyleClass {
         );
       }
 
-      this.previousStyle.theme = this.style.theme;
+      this.previousStyle.name = this.style.name;
       this.previousStyle.variant = this.style.variant;
 
       //Adds theme class
@@ -192,7 +192,7 @@ export class StyleClass {
   public onChanges(changes: SimpleChanges) {
     if (changes != undefined) {
       if (changes['theme'] != undefined) {
-        this.style.theme = changes['theme'].currentValue;
+        this.style.name = changes['theme'].currentValue;
       }
       if (changes.variant != undefined) {
         this.style.variant = changes['variant'].currentValue;

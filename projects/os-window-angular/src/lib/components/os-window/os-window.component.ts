@@ -79,10 +79,10 @@ export class OsWindowComponent implements OnInit, OnChanges {
   //  Component theme  //
   @Input()
   get theme(): string {
-    return this.win.styleConfig.style.theme;
+    return this.win.styleConfig.style.name;
   }
   set theme(v: string) {
-    this.win.styleConfig.style.theme = v;
+    this.win.styleConfig.style.name = v;
   }
 
   @Input()

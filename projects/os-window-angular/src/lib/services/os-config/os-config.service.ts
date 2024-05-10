@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProcessModel as InstanceModel } from '../../models/Shared.model';
-import { SimpleStyleModel } from '../../models/Style.model';
-import { OsTheme } from '../../models/Theme.model';
+import { Theme, ThemeDefinition } from '../../models/Theme.model';
 import { THEME_LIST } from '../../themes/theme_list';
 
 @Injectable({
@@ -10,8 +9,8 @@ import { THEME_LIST } from '../../themes/theme_list';
 export class OsConfigService {
   constructor() {}
 
-  private globalStyles: SimpleStyleModel = {
-    theme: 'arc',
+  private globalTheme: Theme = {
+    name: 'arc',
     variant: 'light',
   };
 
@@ -26,12 +25,20 @@ export class OsConfigService {
     this.instances.push(shared);
   }
 
-  getGlobalStyles(): SimpleStyleModel {
-    return this.globalStyles;
+  getGlobalTheme(): Theme {
+    const GLOBAL_THEME = localStorage.getItem('GLOBAL_THEME');
+
+    if (GLOBAL_THEME === null) {
+      return this.globalTheme;
+    }
+
+    return JSON.parse(GLOBAL_THEME);
   }
 
-  setGlobalStyles(config: SimpleStyleModel) {
-    this.globalStyles = config;
+  setGlobalTheme(style: Theme) {
+    this.globalTheme = style;
+
+    localStorage.setItem('GLOBAL_THEME', JSON.stringify(this.globalTheme));
   }
 
   private zIndex: number = 1;
@@ -56,24 +63,21 @@ export class OsConfigService {
     this.zIndex = zIndex;
   }
 
-  private USER_THEME_LIST: OsTheme[] = THEME_LIST;
+  private userThemeList: ThemeDefinition[] = THEME_LIST;
 
-  addTheme(theme: OsTheme) {
-    this.USER_THEME_LIST.push(theme);
+  addTheme(theme: ThemeDefinition) {
+    this.userThemeList.push(theme);
 
-    localStorage.setItem(
-      'USER_THEME_LIST',
-      JSON.stringify(this.USER_THEME_LIST)
-    );
+    localStorage.setItem('THEME_LIST', JSON.stringify(this.userThemeList));
   }
 
   getThemes() {
-    const USER_THEME_LIST = localStorage.getItem('USER_THEME_LIST');
+    const THEME_LIST = localStorage.getItem('THEME_LIST');
 
-    if (USER_THEME_LIST === null) {
+    if (THEME_LIST === null) {
       return THEME_LIST;
     }
 
-    return JSON.parse(USER_THEME_LIST);
+    return JSON.parse(THEME_LIST);
   }
 }

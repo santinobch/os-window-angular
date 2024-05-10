@@ -47,10 +47,10 @@ export class OsRadioComponent implements OnInit, OnChanges {
   //
   @Input()
   get theme(): string {
-    return this.styleConfig.style.theme;
+    return this.styleConfig.style.name;
   }
   set theme(v: string) {
-    this.styleConfig.style.theme = v;
+    this.styleConfig.style.name = v;
   }
 
   @Input()
@@ -63,7 +63,7 @@ export class OsRadioComponent implements OnInit, OnChanges {
 
   @Input()
   get color(): string {
-    return this.styleConfig.style.color;
+    return this.styleConfig.style.color || '';
   }
   set color(v: string) {
     this.styleConfig.style.color = v;
