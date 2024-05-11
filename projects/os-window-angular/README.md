@@ -1,14 +1,30 @@
-# OS window like, component for Angular
+# OS window component for Angular
+
+## Demo
+
+https://santinobch.github.io/os-window-angular/
 
 ## Getting started
 
-Read the wiki on how to [getting started](https://github.com/santinobch/os-window-angular/wiki/1.--Getting-Started), i promise it's a light read ;)
+_This has only been tested with angular 15, but later versions may work._
 
-## Yes it works :D ! Here are some features:
+Run this to add the library to your project and the needed dependencies:
+
+```
+ npm i @santinobch/os-window-angular ngx-scrollbar@10.0.1 @angular/cdk
+```
+
+For what to do next check the [wiki](https://github.com/santinobch/os-window-angular/wiki)!
+
+## Features
 
 ### Multiple Themes!
 
 ![Multiple Windows](https://i.imgur.com/c9pwlUR.gif)
+
+### Custom themes!
+
+![User Themes](https://i.imgur.com/s4JZcoh.png)
 
 ### Resize
 
@@ -22,45 +38,43 @@ Read the wiki on how to [getting started](https://github.com/santinobch/os-windo
 
 ![Maximize](https://i.imgur.com/gFmpKBB.gif)
 
-## Demo
-
-https://santinobch.github.io/os-window-angular/
-
 ## Roadmap
 
-At the moment, im working on this alone in my free time, using this to build my own portafolio. Also learning in the way how to make, publish and mantain a **_npm_** package.
+At the moment, im working on this alone in my free time, using this to build my own portafolio.
 
 If i have enough time i will keep this updated periodically, but don't get your hopes up.
 
-**Planned releases:**
+**Roadmap:**
 
-- 0.3-beta **The basics** update
+- 0.3.0
 
-  - Leaving Alpha, entering Beta
-  - Standarize themes, remove `ng-deep` uses
-  - Use `onPush` for change detection strategy instead of default
-  - Add the ability to import custom themes
-  - Add the following components:
-    - Switch
-    - Checkbox
-    - Select
-    - Slider (vertical & horizontal)
-    - Textarea
-    - Text input
-    - Password input
-    - Search input
+  - Radio buttons
+  - User defined themes
 
-- 0.4-beta **System booting up** update
+- 0.3.x - Basic components
 
-  - Add Taskbar and Menu
-  - Add the following components:
-    - GroupBox
-    - TreeView
-    - Loading bars
+  - Switch
+  - Checkbox
+  - Select
+  - Slider (vertical & horizontal)
+  - Textarea
+  - Text input
+  - Password input
+  - Search input
+  - GroupBox
+  - TreeView
+  - Loading bars
 
-- 1.0 and beyond
-  - Add more themes: Win XP, Mac OSX 10.6, Win 3.1, Etc...
-  - Eventually some templates (By example a file manager template)
+- 0.4 - Other OS components
+
+  - Taskbar0
+  - Main menu
+  - Context menu
+  - Wallpaper
+
+- 1.0 - And beyond
+  - Templates (By example a file manager template)
+  - Maybe more themes if i have the time
 
 ## Contributing to the library
 
