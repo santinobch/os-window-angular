@@ -7,11 +7,9 @@ import {
   OnInit,
   Renderer2,
   SimpleChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
-import { StyleModel } from "../../models/Style.model";
-import { OsConfigService } from "../../services/os-config/os-config.service";
-import { theme_list } from "../../themes/theme_list";
+import { OsConfigService } from '../../services/os-config/os-config.service';
 import { StyleClass } from '../../classes/Style.class';
 
 @Component({
@@ -21,19 +19,32 @@ import { StyleClass } from '../../classes/Style.class';
   styleUrls: [
     './os-button.component.scss',
     '../../themes/arc/components/buttons.scss',
-    '../../themes/win98/components/buttons.scss'
+    '../../themes/win98/components/buttons.scss',
   ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class OsButtonComponent implements OnInit, OnChanges {
+  public componentElement!: ElementRef<HTMLElement>;
+  private renderer!: Renderer2;
+  private globalConfigService!: OsConfigService;
+  public styleConfig!: StyleClass;
 
   constructor(
-    public componentElement: ElementRef, 
-    public renderer: Renderer2,
-    public globalConfigService: OsConfigService
-    ) {}
+    private _componentElement: ElementRef,
+    private _renderer: Renderer2,
+    private _globalConfigService: OsConfigService
+  ) {
+    this.componentElement = _componentElement;
+    this.renderer = _renderer;
+    this.globalConfigService = _globalConfigService;
 
-  styleConfig: StyleClass = new StyleClass(this.componentElement, this.renderer, this.globalConfigService, "button");
+    this.styleConfig = new StyleClass(
+      _componentElement,
+      _renderer,
+      _globalConfigService,
+      'button'
+    );
+  }
 
   //////////////////////
   ////    Inputs    ////
@@ -43,20 +54,30 @@ export class OsButtonComponent implements OnInit, OnChanges {
   //  Component theme  //
   //
   @Input()
-  get theme(): string { return this.styleConfig.style.theme; }
-  set theme(v: string) { this.styleConfig.style.theme = v  };
-
-  @Input()
-  get variant(): string { return this.styleConfig.style.variant; }
-  set variant(v: string) { this.styleConfig.style.variant = v };
-
-  @Input()
-  get color(): string { return this.styleConfig.style.color }
-  set color(v: string) { this.styleConfig.style.color = v };
-
-
-  ngOnInit(): void {
+  get theme(): string {
+    return this.styleConfig.style.name;
   }
+  set theme(v: string) {
+    this.styleConfig.style.name = v;
+  }
+
+  @Input()
+  get variant(): string {
+    return this.styleConfig.style.variant;
+  }
+  set variant(v: string) {
+    this.styleConfig.style.variant = v;
+  }
+
+  @Input()
+  get color(): string {
+    return this.styleConfig.style.color || '';
+  }
+  set color(v: string) {
+    this.styleConfig.style.color = v;
+  }
+
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.styleConfig.loadStyles();

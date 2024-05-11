@@ -1,9 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './app/win98custom/style.scss';
+
 body {
-    margin: 0;
-    overflow: hidden;
-    img {
-        height: 110vh;
-        width: auto;
-    }
+  margin: 0;
+  overflow: hidden;
+  img {
+    height: 110vh;
+    width: auto;
+  }
 }

@@ -1,149 +1,166 @@
-
 .os-window {
-    //
-    //Variables
-    //
+  //
+  //Variables
+  //
 
-    //Hides & shows controls buttons
-    --minimizeButton: block;
-    --maximizeButton: block;
-    --closeButton: block;
+  //Hides & shows controls buttons
+  --minimizeButton: block;
+  --maximizeButton: block;
+  --closeButton: block;
 
-    //Hides & shows resizable cursor
-    --cursorN: n-resize;
-    --cursorNE: ne-resize;
-    --cursorE: e-resize;
-    --cursorSE: se-resize;
-    --cursorS: s-resize;
-    --cursorSW: sw-resize;
-    --cursorW: w-resize;
-    --cursorNW: nw-resize;
+  //Hides & shows resizable cursor
+  --cursorN: n-resize;
+  --cursorNE: ne-resize;
+  --cursorE: e-resize;
+  --cursorSE: se-resize;
+  --cursorS: s-resize;
+  --cursorSW: sw-resize;
+  --cursorW: w-resize;
+  --cursorNW: nw-resize;
 
-    //Why is this fixed 'instead' of 'absolute'?
-    position: fixed;
-    top: -100%;
-    left: 0;
+  //Why is this fixed 'instead' of 'absolute'?
+  position: fixed;
+  top: -100%;
+  left: 0;
 }
 
 //Universal theming
-.os-window-wrapper {
+.window-child {
+  display: flex;
+  flex-direction: column;
 
-    .window-resize {
-        position: absolute;
-    }
+  .window-resize {
+    position: absolute;
+  }
 
-    //heads up, --winBorder is located in the theme file
-    .n {
-        top: calc(-4px - var(--winBorder));
-        left: calc(4px - var(--winBorder));
+  //heads up, --winBorder is located in the theme file
+  .n {
+    top: calc(-4px - var(--winBorder));
+    left: calc(4px - var(--winBorder));
 
-        height: 8px;
-        width: calc(100% - (8px - 2 * var(--winBorder)) );
+    height: 8px;
+    width: calc(100% - (8px - 2 * var(--winBorder)));
 
-        cursor:  var(--cursorN);
-    }
+    cursor: var(--cursorN);
+  }
 
-    .ne {
-        top: calc(-4px - var(--winBorder));
-        right: calc(-4px - var(--winBorder));
+  .ne {
+    top: calc(-4px - var(--winBorder));
+    right: calc(-4px - var(--winBorder));
 
-        height: 8px;
-        width: 8px;
-        
-        cursor:  var(--cursorNE);
-    }
+    height: 8px;
+    width: 8px;
 
-    .e {
-        top: calc(4px - var(--winBorder));
-        right: calc(-4px - var(--winBorder));
+    cursor: var(--cursorNE);
+  }
 
-        height: calc(100% - (8px - 2 * var(--winBorder)) );
-        width: 8px;
-        
-        cursor:  var(--cursorE);
-    }
+  .e {
+    top: calc(4px - var(--winBorder));
+    right: calc(-4px - var(--winBorder));
 
-    .se {
-        bottom: calc(-4px - var(--winBorder));
-        right: calc(-4px - var(--winBorder));
+    height: calc(100% - (8px - 2 * var(--winBorder)));
+    width: 8px;
 
-        height: 8px;
-        width: 8px;
-        
-        cursor:  var(--cursorSE);
-    }
+    cursor: var(--cursorE);
+  }
 
-    .s {
-        bottom: calc(-4px - var(--winBorder));
-        left: calc(4px - var(--winBorder));
+  .se {
+    bottom: calc(-4px - var(--winBorder));
+    right: calc(-4px - var(--winBorder));
 
-        height: 8px;
-        width: calc(100% - (8px - 2 * var(--winBorder)) );
-        
-        cursor:  var(--cursorS);
-    }
+    height: 8px;
+    width: 8px;
 
-    .sw {
-        bottom: calc(-4px - var(--winBorder));;
-        left: calc(-4px - var(--winBorder));
+    cursor: var(--cursorSE);
+  }
 
-        height: 8px;
-        width: 8px;
-        
-        cursor:  var(--cursorSW);
-    }
+  .s {
+    bottom: calc(-4px - var(--winBorder));
+    left: calc(4px - var(--winBorder));
 
-    .w {
-        top: calc(4px - var(--winBorder));
-        left: calc(-4px - var(--winBorder));
+    height: 8px;
+    width: calc(100% - (8px - 2 * var(--winBorder)));
 
-        height: calc(100% - (8px - 2 * var(--winBorder)) );
-        width: 8px;
-        
-        cursor:  var(--cursorW);
-    }
+    cursor: var(--cursorS);
+  }
 
-    .nw {
-        top: calc(-4px - var(--winBorder));
-        left: calc(-4px - var(--winBorder));;
+  .sw {
+    bottom: calc(-4px - var(--winBorder));
+    left: calc(-4px - var(--winBorder));
 
-        height: 8px;
-        width: 8px;
-        
-        cursor:  var(--cursorNW);
-    }
+    height: 8px;
+    width: 8px;
 
+    cursor: var(--cursorSW);
+  }
 
-    .window-bar {
-        padding-top: 4px;
-        padding-right: 4px;
-        padding-left: 4px;
-    
-        .window-bar-anchor {
-            .minimize {
-                display: var(--minimizeButton);
-            }
-            
-            .maximize {
-                display: var(--maximizeButton);
-            }
-            
-            .close {
-                display: var(--closeButton);
-            }
+  .w {
+    top: calc(4px - var(--winBorder));
+    left: calc(-4px - var(--winBorder));
+
+    height: calc(100% - (8px - 2 * var(--winBorder)));
+    width: 8px;
+
+    cursor: var(--cursorW);
+  }
+
+  .nw {
+    top: calc(-4px - var(--winBorder));
+    left: calc(-4px - var(--winBorder));
+
+    height: 8px;
+    width: 8px;
+
+    cursor: var(--cursorNW);
+  }
+
+  .window-bar {
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-left: 4px;
+
+    .window-bar-anchor {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .window-title {
+        flex: 1 1 0%;
+      }
+
+      .controls-container {
+        display: flex;
+        align-items: center;
+
+        .minimize {
+          display: var(--minimizeButton);
         }
-    }
 
-    .window-content {
-        height: 100%;
-        width: 100%;
-        overflow: auto;
+        .maximize {
+          display: var(--maximizeButton);
+        }
+
+        .close {
+          display: var(--closeButton);
+        }
+      }
     }
+  }
+
+  .window-content {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+
+    ng-scrollbar {
+      ng-content {
+        flex: 1 1 0%;
+      }
+    }
+  }
 }
 
 .maximized {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
-
-

@@ -1,200 +1,217 @@
-@import '../fonts/fonts';
 @import '../colors';
 @import '../mixins';
+@import '../fonts/fonts';
 
 // provide font size in rem, with px fallback
 @mixin font($font, $size: 24, $base: 16) {
-    font-family: $font;
-    font-size: round($size) + pt;
+  font-family: $font;
+  font-size: round($size) + pt;
 }
 
 @mixin theme($variant, $transparency) {
-    
-    // Others
-    $font-size: 10;
-    $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
+  // Others
+  $font-size: 10;
+  $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
 
-    //
-    // CSS Variables (We may change this ones in runtime)
-    // These variables are not used in this theme, we use box-shadow instead,
-    // we still need to declare them for correct javascript functionality.
-    //
-    --winBorder: 1px;
-    --winRadius: 0px;
+  //
+  // CSS Variables (We may change this ones in runtime)
+  // These variables are not used in this theme, we use box-shadow instead,
+  // we still need to declare them for correct javascript functionality.
+  //
+  --winBorder: 1px;
 
+  // Maximized styles > Focused styles > Normal style
 
-    // Maximized styles > Focused styles > Normal style
+  //
+  // General styles
+  //
+  .window-child {
+    @include win98_box($variant);
+    @include font($font-family, $font-size);
 
-    //
-    // General styles
-    // 
-    .os-window-wrapper {
-        @include win98_box($variant);
-        @include font($font-family, $font-size);
+    padding: 4px;
+    background-color: base($variant);
 
-        padding: 4px;
-        background-color: base($variant);
+    .window-bar {
+      height: 20px;
+      padding: 0px;
 
-        .window-bar {
-            height: 20px;
-            padding: 0px;
+      background: none;
 
-            background: none;
+      .window-bar-anchor {
+        background: linear-gradient(
+          90deg,
+          shadow($variant) 0%,
+          base($variant) 170%
+        );
+        height: 18px;
+        width: 100%;
 
-            .window-bar-anchor {
-                background: linear-gradient(90deg, shadow($variant) 0%, base($variant) 170%);
-                height: 18px;
-                width: 100%;
-
-                .window-title  {
-                    margin-left: 30px;
-                    color: light($variant);
-                }
-            }
+        .window-title {
+          margin-left: 30px;
+          color: light($variant);
         }
-
-        .window-content {
-            @include win98_inner_box($variant);
-
-            width: calc(100% - 2px);
-            color: dark($variant);
-            background-color: base($variant);
-        }
+      }
     }
 
-    //
-    // Focused window styles
-    //
-    .focused  {  
-        .window-bar {
-            .window-bar-anchor {
-                background: linear-gradient(90deg, selected($variant) 0%, base($variant) 170%);
-                height: 18px;
-                width: 100%;
-            }
-        }
-    }
-    
-    //
-    // Maximized window styles
-    //
-    .maximized {
-        border: 0px;
-        border-radius: 0px;
-
-        box-shadow: 0 0, 
-                    0 0; 
-
-        padding: 0;
-
-        .window-bar {
-            border: 0px;
-            border-radius: 0px;
-        }
-    }
-    
-    //
-    // Separators
-    //
-    .controls-separator {
-        display: none;
-    }
-
-
-    //
-    // Window control buttons
-    //
-    .controls-container {
-        margin-right: 2px;
-        width: 50px;
-        height: auto;
-    }
-
-    .controls {
-        @include win98_control_box($variant);
-
-        padding-left: 0;
-        min-height: 14px;
-        width: 16px;
-        height: 14px;
-
-        outline: none;
-        border: 0;
-        border-radius: 0px;
-
-        background-color: base($variant);
-        image-rendering: pixelated;
-    }
-
-    $asset_path: '../assets';
-
-    .minimize {
-        background-image: url("#{$asset_path}/minimize.png");
-        image-rendering: pixelated;
-        &:active { @include win98_control_box_active($variant) }
-    }
-
-    .maximize {
-        background-image: url("#{$asset_path}/maximize.png");
-        image-rendering: pixelated;
-        &:active { @include win98_control_box_active($variant) }
-    }
-
-    .close {
-        margin-left: 2px;
-        background-image: url("#{$asset_path}/close.png");
-        image-rendering: pixelated;
-        &:active { @include win98_control_box_active($variant) }
-    }
-
-    //
-    // Links
-    //
     .window-content {
-        a { color: link($variant); }
-        a:visited { color: link_visited($variant); }
-        a:visited:hover { color: lighten(link_visited($variant), 10%); }
-        a:hover { color: lighten(link($variant), 10%); }
+      @include win98_inner_box($variant);
+
+      width: calc(100% - 2px);
+      color: dark($variant);
+      background-color: base($variant);
+    }
+  }
+
+  //
+  // Focused window styles
+  //
+  .focused {
+    .window-bar {
+      .window-bar-anchor {
+        background: linear-gradient(
+          90deg,
+          selected($variant) 0%,
+          base($variant) 170%
+        );
+        height: 18px;
+        width: 100%;
+      }
+    }
+  }
+
+  //
+  // Maximized window styles
+  //
+  .maximized {
+    border: 0px;
+    border-radius: 0px;
+
+    box-shadow:
+      0 0,
+      0 0;
+
+    padding: 0;
+
+    .window-bar {
+      border: 0px;
+      border-radius: 0px;
+    }
+  }
+
+  //
+  // Separators
+  //
+  .controls-separator {
+    display: none;
+  }
+
+  //
+  // Window control buttons
+  //
+  .controls-container {
+    margin-right: 2px;
+    width: 50px;
+    height: auto;
+  }
+
+  .control {
+    @include win98_control_box($variant);
+
+    padding-left: 0;
+    min-height: 14px;
+    width: 16px;
+    height: 14px;
+
+    outline: none;
+    border: 0;
+    border-radius: 0px;
+
+    background-color: base($variant);
+    image-rendering: pixelated;
+  }
+
+  $asset_path: '../assets';
+
+  .minimize {
+    background-image: url('#{$asset_path}/minimize.png');
+    image-rendering: pixelated;
+    &:active {
+      @include win98_control_box_active($variant);
+    }
+  }
+
+  .maximize {
+    background-image: url('#{$asset_path}/maximize.png');
+    image-rendering: pixelated;
+    &:active {
+      @include win98_control_box_active($variant);
+    }
+  }
+
+  .close {
+    margin-left: 2px;
+    background-image: url('#{$asset_path}/close.png');
+    image-rendering: pixelated;
+    &:active {
+      @include win98_control_box_active($variant);
+    }
+  }
+
+  //
+  // Links
+  //
+  .window-content {
+    a {
+      color: link($variant);
+    }
+    a:visited {
+      color: link_visited($variant);
+    }
+    a:visited:hover {
+      color: lighten(link_visited($variant), 10%);
+    }
+    a:hover {
+      color: lighten(link($variant), 10%);
+    }
+  }
+
+  //
+  // Scrollbars
+  //
+  .window-content {
+    .os-scrollbar-track {
+      background-image: './assets/scrollbar_track.png';
+      min-height: 14px;
+      min-width: 14px;
+
+      margin-right: 4px;
+      margin-bottom: 4px;
+      margin-top: 1px;
+
+      border-radius: 0;
     }
 
-    //
-    // Scrollbars
-    //
-    .window-content {
+    .os-scrollbar-thumb {
+      @include win98_box($variant);
 
-        .os-scrollbar-track {
-            background-image: './assets/scrollbar_track.png';
-            min-height: 14px;
-            min-width: 14px;
-
-            margin-right: 4px;
-            margin-bottom: 4px;
-            margin-top: 1px;
-
-            border-radius: 0;
-        }
-
-        .os-scrollbar-thumb {
-            @include win98_box($variant);
-
-            background-color: base($variant);
-            height: 14px;
-            width: 14px;
-        }
+      background-color: base($variant);
+      height: 14px;
+      width: 14px;
     }
+  }
 
-    .win98-scrollbar {
-        //ngx-scrollbar applies the :hover pseudoclass weirdly, this works i guess
-        --scrollbar-thumb-hover-color: #{base($variant)};
-    }
+  .win98-scrollbar {
+    //ngx-scrollbar applies the :hover pseudoclass weirdly, this works i guess
+    --scrollbar-thumb-hover-color: #{base($variant)};
+  }
 }
 
 //Actual declaration of themes
 .win98-classic-os-window {
-    @include theme('classic', 'false');
-
+  @include theme('classic', 'false');
 }
 
 .win98-vaporwave-os-window {
-    @include theme('vaporwave', 'false');
+  @include theme('vaporwave', 'false');
 }

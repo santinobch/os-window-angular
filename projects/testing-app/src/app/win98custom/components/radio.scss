@@ -1,0 +1,83 @@
+@import '../colors';
+@import '../mixins';
+@import '../fonts/fonts';
+
+$font-size: 10;
+$font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
+
+$radio-width: 12px;
+$radio-label-spacing: 6px;
+$radio-dot-width: 4px;
+
+@mixin radioIcon() {
+  content: '';
+  display: inline-block;
+  width: $radio-width;
+  height: $radio-width;
+  margin-left: $radio-label-spacing;
+  margin-right: $radio-label-spacing;
+}
+
+@mixin radio() {
+  input[type='radio'] + label {
+    line-height: 13px;
+  }
+
+  .radio-container[style='flex-direction: row;'] {
+    input[type='radio'] + label::before {
+      @include radioIcon();
+
+      background: url('../assets/radio/radio.svg');
+    }
+
+    input[type='radio']:checked + label::before {
+      background: url('../assets/radio/radio-checked.svg');
+    }
+
+    input[type='radio']:disabled + label::before {
+      background: url('../assets/radio/radio-disabled.svg');
+    }
+
+    input[type='radio']:disabled:checked + label::before {
+      background: url('../assets/radio/radio-checked-disabled.svg');
+    }
+  }
+
+  .radio-container[style='flex-direction: row-reverse;'] {
+    input[type='radio'] + label::after {
+      @include radioIcon();
+
+      background: url('../assets/radio/radio.svg');
+    }
+
+    input[type='radio']:checked + label::after {
+      background: url('../assets/radio/radio-checked.svg');
+    }
+
+    input[type='radio']:disabled + label::after {
+      background: url('../assets/radio/radio-disabled.svg');
+    }
+
+    input[type='radio']:disabled:checked + label::after {
+      background: url('../assets/radio/radio-checked-disabled.svg');
+    }
+  }
+
+  input[type='radio']:focus + label {
+    span {
+      outline: 1px dotted #000000;
+    }
+  }
+}
+
+.win98custom-classic-os-radio {
+  @include font($font-family, $font-size);
+
+  @include radio();
+}
+
+.win98custom-vaporwave-os-radio {
+  @include font($font-family, $font-size);
+
+  @include radio();
+}

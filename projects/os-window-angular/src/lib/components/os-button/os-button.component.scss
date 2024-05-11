@@ -1,28 +1,26 @@
-a[os-button], 
-a[os-icon-button], 
+a[os-button],
+a[os-icon-button],
 a[os-warn-button],
-button[os-button], 
+button[os-button],
 button[os-icon-button],
 button[os-warn-button] {
-    outline: 0;
-    text-decoration: none;
+  outline: 0;
+  text-decoration: none;
 
-    max-height: 64px;
-    padding: 10px;
-    margin: 5px;
+  max-height: 64px;
+  padding: 10px;
+  margin: 5px;
 
-    display: inline-block;
+  display: inline-block;
 }
-
-
 
 a[os-icon-button],
 button[os-icon-button] {
-    img {
-        --imgWidth: 16px;
-        --imgHeight: 16px;
+  img {
+    --imgWidth: 16px;
+    --imgHeight: 16px;
 
-        width: var(--imgWidth);
-        height: var(--imgHeight);
-    }
+    width: var(--imgWidth);
+    height: var(--imgHeight);
+  }
 }
