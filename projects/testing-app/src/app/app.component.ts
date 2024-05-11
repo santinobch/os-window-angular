@@ -10,7 +10,7 @@ import { OsConfigService } from '@santinobch/os-window-angular';
 export class AppComponent implements OnInit {
   title = 'testing-app';
 
-  theme: number = 2;
+  theme: boolean = false;
   variant: boolean = true;
 
   constructor(private osConfigService: OsConfigService) {}
@@ -42,33 +42,27 @@ export class AppComponent implements OnInit {
   }
 
   toggleTheme() {
-    if (this.theme == 0) {
-      this.theme = 2;
-      return;
-    }
-    this.theme--;
+    this.theme = !this.theme;
   }
 
   toggleVariant() {
     this.variant = !this.variant;
   }
 
-  themeArray = ['win98', 'arc', 'win98custom', 'win98', 'arc'];
-
   getTheme(id: number) {
-    switch (this.theme) {
-      case 0:
-        return this.themeArray[0 + id];
+    if (id === 0) {
+      if (this.theme) {
+        return 'arc';
+      }
 
-      case 1:
-        return this.themeArray[1 + id];
-
-      case 2:
-        return this.themeArray[2 + id];
-
-      default:
-        return this.themeArray[0 + id];
+      return 'win98';
     }
+
+    if (this.theme) {
+      return 'win98';
+    }
+
+    return 'arc';
   }
 
   getNameOfWindow(id: number) {
@@ -78,9 +72,6 @@ export class AppComponent implements OnInit {
 
       case 'arc':
         return 'Arc themed window';
-
-      case 'win98custom':
-        return 'Custom user theme window';
 
       default:
         return 'undefined';

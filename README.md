@@ -22,6 +22,10 @@ For what to do next check the [wiki](https://github.com/santinobch/os-window-ang
 
 ![Multiple Windows](https://i.imgur.com/c9pwlUR.gif)
 
+### Custom themes!
+
+![User Themes](https://i.imgur.com/s4JZcoh.png)
+
 ### Resize
 
 ![Resize](https://i.imgur.com/3xcHM7j.gif)
