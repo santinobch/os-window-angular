@@ -1,6 +1,6 @@
 {
   "name": "@santinobch/os-window-angular",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "peerDependencies": {
     "@angular/common": "^15.1.4",
     "@angular/core": "^15.1.4",
