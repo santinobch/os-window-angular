@@ -6,7 +6,15 @@ https://santinobch.github.io/os-window-angular/
 
 ## Getting started
 
-Read the wiki on how to [getting started](https://github.com/santinobch/os-window-angular/wiki/1.--Getting-Started), i promise it's a light read ;)
+_This has only been tested with angular 15, but later versions may work._
+
+Run this to add the library to your project and the needed dependencies:
+
+```
+ npm i @santinobch/os-window-angular ngx-scrollbar@10.0.1 @angular/cdk
+```
+
+For what to do next check the [wiki](https://github.com/santinobch/os-window-angular/wiki)!
 
 ## Features
 

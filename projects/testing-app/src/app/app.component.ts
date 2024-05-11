@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Theme,
-  ThemeDefinition,
-} from 'projects/os-window-angular/src/lib/models/Theme.model';
-import { OsConfigService } from 'projects/os-window-angular/src/lib/services/os-config/os-config.service';
+import { Theme, ThemeDefinition } from '@santinobch/os-window-angular';
+import { OsConfigService } from '@santinobch/os-window-angular';
 
 @Component({
   selector: 'app-root',

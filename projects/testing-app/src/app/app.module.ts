@@ -9,11 +9,6 @@ import {
   OsButtonModule,
   OsRadioModule,
 } from '@santinobch/os-window-angular';
-// import {
-//   OsWindowModule,
-//   OsButtonModule,
-//   OsRadioModule,
-// } from '../../../os-window-angular/src/public-api';
 
 @NgModule({
   declarations: [AppComponent],
