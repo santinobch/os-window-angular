@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.3.1] - 2024-05-15
+
+### Added
+
+- Window component now accepts numbers (pixels) in the position attribute
+
 ## [0.3.0] - 2024-05-10
 
 ### Added

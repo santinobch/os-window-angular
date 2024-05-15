@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "watch": "ng build --watch --configuration development",
+    "watch-npm": "ng build --watch --configuration production os-window-angular",
     "build-npm": "ng build --configuration production os-window-angular",
     "build-web": "ng build --configuration production testing-app",
     "link": "npm link ./dist/os-window-angular",
