@@ -139,46 +139,58 @@ export class OsWindowClass {
   ////////////////////////
 
   setPosition(positionStr: string[]) {
-    switch (positionStr[0]) {
-      case 'left':
-        this.position.next.x = 0;
-        break;
+    const X = parseInt(positionStr[0]);
+    const Y = parseInt(positionStr[1]);
 
-      case 'center':
-        this.position.next.x =
-          window.innerWidth / 2 - this.size.width.current / 2;
-        break;
+    if (!Number.isNaN(X)) {
+      this.position.next.x = X;
+    } else {
+      switch (positionStr[0]) {
+        case 'left':
+          this.position.next.x = 0;
+          break;
 
-      case 'right':
-        this.position.next.x = window.innerWidth - this.size.width.current;
-        break;
+        case 'center':
+          this.position.next.x =
+            window.innerWidth / 2 - this.size.width.current / 2;
+          break;
 
-      default:
-        this.position.next.x = 0;
-        break;
+        case 'right':
+          this.position.next.x = window.innerWidth - this.size.width.current;
+          break;
+
+        default:
+          this.position.next.x = 0;
+          break;
+      }
     }
 
-    //To hide the window element we need to set it top: -100% in scss,
-    //so we later need to calculate everything + innerHeight
-    switch (positionStr[1]) {
-      case 'top':
-        this.position.next.y = window.innerHeight;
-        break;
+    if (!Number.isNaN(Y)) {
+      this.position.next.y = Y + window.innerHeight;
+    } else {
+      //To hide the window element we need to set it top: -100% in scss,
+      //so we later need to calculate everything + innerHeight
+      switch (positionStr[1]) {
+        case 'top':
+          this.position.next.y = window.innerHeight;
+          break;
 
-      case 'center':
-        this.position.next.y =
-          window.innerHeight +
-          (window.innerHeight / 2 - this.size.height.current / 2);
-        break;
+        case 'center':
+          this.position.next.y =
+            window.innerHeight +
+            (window.innerHeight / 2 - this.size.height.current / 2);
+          break;
 
-      case 'bottom':
-        this.position.next.y =
-          window.innerHeight + (window.innerHeight - this.size.height.current);
-        break;
+        case 'bottom':
+          this.position.next.y =
+            window.innerHeight +
+            (window.innerHeight - this.size.height.current);
+          break;
 
-      default:
-        this.position.next.y = window.innerHeight;
-        break;
+        default:
+          this.position.next.y = window.innerHeight;
+          break;
+      }
     }
 
     this.position.current = this.position.next;
