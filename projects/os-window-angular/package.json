@@ -2,10 +2,10 @@
   "name": "@santinobch/os-window-angular",
   "version": "0.3.1",
   "peerDependencies": {
-    "@angular/common": "^15.1.4",
-    "@angular/core": "^15.1.4",
-    "@angular/cdk": "^15.1.4",
-    "ngx-scrollbar": "^10.0.1"
+    "@angular/common": ">=15",
+    "@angular/core": ">=15",
+    "@angular/cdk": ">=15",
+    "ngx-scrollbar": ">=10.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
