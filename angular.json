@@ -44,12 +44,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/testing-app",
+            "outputPath": {
+              "base": "dist/testing-app"
+            },
             "index": "projects/testing-app/src/index.html",
-            "main": "projects/testing-app/src/main.ts",
-            "polyfills": "projects/testing-app/src/polyfills.ts",
+            "polyfills": [
+              "projects/testing-app/src/polyfills.ts"
+            ],
             "tsConfig": "projects/testing-app/tsconfig.app.json",
             "aot": true,
             "assets": [
@@ -57,7 +60,8 @@
               "projects/testing-app/src/assets"
             ],
             "styles": ["projects/testing-app/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "browser": "projects/testing-app/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -72,8 +76,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -88,9 +90,7 @@
               ]
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -100,14 +100,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "testing-app:build"
+            "buildTarget": "testing-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "testing-app:build:production"
+              "buildTarget": "testing-app:build:production"
             },
             "development": {
-              "browserTarget": "testing-app:build:development"
+              "buildTarget": "testing-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -115,7 +115,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "testing-app:build"
+            "buildTarget": "testing-app:build"
           }
         },
         "test": {

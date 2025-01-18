@@ -13,15 +13,16 @@ import { OsConfigService } from '../../services/os-config/os-config.service';
 import { StyleClass } from '../../classes/Style.class';
 
 @Component({
-  selector: `button[os-button], button[os-icon-button],
+    selector: `button[os-button], button[os-icon-button],
               a[os-button], a[os-icon-button]`,
-  templateUrl: './os-button.component.html',
-  styleUrls: [
-    './os-button.component.scss',
-    '../../themes/arc/components/buttons.scss',
-    '../../themes/win98/components/buttons.scss',
-  ],
-  encapsulation: ViewEncapsulation.None,
+    templateUrl: './os-button.component.html',
+    styleUrls: [
+        './os-button.component.scss',
+        '../../themes/arc/components/buttons.scss',
+        '../../themes/win98/components/buttons.scss',
+    ],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class OsButtonComponent implements OnInit, OnChanges {
   public componentElement!: ElementRef<HTMLElement>;

@@ -13,14 +13,15 @@ import { OsConfigService } from '../../services/os-config/os-config.service';
 import { StyleClass } from '../../classes/Style.class';
 
 @Component({
-  selector: `os-radio`,
-  templateUrl: './os-radio.component.html',
-  styleUrls: [
-    './os-radio.component.scss',
-    '../../themes/win98/components/radio.scss',
-    '../../themes/arc/components/radio.scss',
-  ],
-  encapsulation: ViewEncapsulation.None,
+    selector: `os-radio`,
+    templateUrl: './os-radio.component.html',
+    styleUrls: [
+        './os-radio.component.scss',
+        '../../themes/win98/components/radio.scss',
+        '../../themes/arc/components/radio.scss',
+    ],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class OsRadioComponent implements OnInit, OnChanges {
   public styleConfig!: StyleClass;

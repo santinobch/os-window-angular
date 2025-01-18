@@ -25,29 +25,32 @@ import { clamp, OsWindowClass } from '../../classes/OsWindow.class';
 import { OsConfigService } from '../../services/os-config/os-config.service';
 
 @Directive({
-  selector: `window-title, [window-title], [windowTitle]`,
-  exportAs: 'OsWindowTitle',
+    selector: `window-title, [window-title], [windowTitle]`,
+    exportAs: 'OsWindowTitle',
+    standalone: false
 })
 export class OsWindowTitle {}
 
 @Directive({
-  selector: `window-content, [window-content], [windowContent]`,
-  exportAs: 'WindowContent',
+    selector: `window-content, [window-content], [windowContent]`,
+    exportAs: 'WindowContent',
+    standalone: false
 })
 export class OsWindowContent {}
 
 @Component({
-  selector: 'os-window',
-  templateUrl: './os-window.component.html',
-  styleUrls: [
-    './os-window.component.scss',
-    '../../themes/arc/components/window.scss',
-    '../../themes/win98/components/window.scss',
-  ],
-  encapsulation: ViewEncapsulation.None,
-  host: {
-    class: 'os-window',
-  },
+    selector: 'os-window',
+    templateUrl: './os-window.component.html',
+    styleUrls: [
+        './os-window.component.scss',
+        '../../themes/arc/components/window.scss',
+        '../../themes/win98/components/window.scss',
+    ],
+    encapsulation: ViewEncapsulation.None,
+    host: {
+        class: 'os-window',
+    },
+    standalone: false
 })
 export class OsWindowComponent implements OnInit, OnChanges {
   public win!: OsWindowClass;

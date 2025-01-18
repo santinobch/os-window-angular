@@ -3,9 +3,10 @@ import { Theme, ThemeDefinition } from '@santinobch/os-window-angular';
 import { OsConfigService } from '@santinobch/os-window-angular';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
   title = 'testing-app';
