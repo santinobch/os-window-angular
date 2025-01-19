@@ -50,9 +50,7 @@
               "base": "dist/testing-app"
             },
             "index": "projects/testing-app/src/index.html",
-            "polyfills": [
-              "projects/testing-app/src/polyfills.ts"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/testing-app/tsconfig.app.json",
             "aot": true,
             "assets": [

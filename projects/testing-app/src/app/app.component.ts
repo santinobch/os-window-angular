@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Theme, ThemeDefinition } from '@santinobch/os-window-angular';
+import { BrowserModule } from '@angular/platform-browser';
+import {
+  OsButtonModule,
+  OsRadioModule,
+  OsWindowModule,
+  Theme,
+  ThemeDefinition,
+} from '@santinobch/os-window-angular';
 import { OsConfigService } from '@santinobch/os-window-angular';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [OsWindowModule, OsButtonModule, OsRadioModule],
 })
 export class AppComponent implements OnInit {
   title = 'testing-app';
