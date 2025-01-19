@@ -1,11 +1,13 @@
-@import '../fonts/fonts';
-@import '../colors';
-@import '../mixins';
+@use "sass:color";
+@use "sass:math";
+@use '../fonts/fonts';
+@use '../colors';
+@use '../mixins';
 
 // provide font size in rem, with px fallback
 @mixin font($font, $size: 24, $base: 16) {
   font-family: $font;
-  font-size: round($size) + pt;
+  font-size: math.round($size) + pt;
 }
 
 @mixin theme($variant, $transparency) {
@@ -26,11 +28,11 @@
   // General styles
   //
   .window-child {
-    @include win98_box($variant);
+    @include mixins.win98_box($variant);
     @include font($font-family, $font-size);
 
     padding: 4px;
-    background-color: base($variant);
+    background-color: colors.base($variant);
 
     .window-bar {
       height: 20px;
@@ -41,25 +43,25 @@
       .window-bar-anchor {
         background: linear-gradient(
           90deg,
-          shadow($variant) 0%,
-          base($variant) 170%
+          colors.shadow($variant) 0%,
+          colors.base($variant) 170%
         );
         height: 18px;
         width: 100%;
 
         .window-title {
           margin-left: 30px;
-          color: light($variant);
+          color: colors.light($variant);
         }
       }
     }
 
     .window-content {
-      @include win98_inner_box($variant);
+      @include mixins.win98_inner_box($variant);
 
       width: calc(100% - 2px);
-      color: dark($variant);
-      background-color: base($variant);
+      color: colors.dark($variant);
+      background-color: colors.base($variant);
       background-image: url('../assets/marcille.png');
     }
   }
@@ -72,8 +74,8 @@
       .window-bar-anchor {
         background: linear-gradient(
           90deg,
-          selected($variant) 0%,
-          base($variant) 170%
+          colors.selected($variant) 0%,
+          colors.base($variant) 170%
         );
         height: 18px;
         width: 100%;
@@ -117,7 +119,7 @@
   }
 
   .control {
-    @include win98_control_box($variant);
+    @include mixins.win98_control_box($variant);
 
     padding-left: 0;
     min-height: 14px;
@@ -128,7 +130,7 @@
     border: 0;
     border-radius: 0px;
 
-    background-color: base($variant);
+    background-color: colors.base($variant);
     image-rendering: pixelated;
   }
 
@@ -138,7 +140,7 @@
     background-image: url('#{$asset_path}/minimize.png');
     image-rendering: pixelated;
     &:active {
-      @include win98_control_box_active($variant);
+      @include mixins.win98_control_box_active($variant);
     }
   }
 
@@ -146,7 +148,7 @@
     background-image: url('#{$asset_path}/maximize.png');
     image-rendering: pixelated;
     &:active {
-      @include win98_control_box_active($variant);
+      @include mixins.win98_control_box_active($variant);
     }
   }
 
@@ -155,7 +157,7 @@
     background-image: url('#{$asset_path}/close.png');
     image-rendering: pixelated;
     &:active {
-      @include win98_control_box_active($variant);
+      @include mixins.win98_control_box_active($variant);
     }
   }
 
@@ -164,16 +166,16 @@
   //
   .window-content {
     a {
-      color: link($variant);
+      color: colors.link($variant);
     }
     a:visited {
-      color: link_visited($variant);
+      color: colors.link_visited($variant);
     }
     a:visited:hover {
-      color: lighten(link_visited($variant), 10%);
+      color: color.adjust(colors.link_visited($variant), $lightness: 10%);
     }
     a:hover {
-      color: lighten(link($variant), 10%);
+      color: color.adjust(colors.link($variant), $lightness: 10%);
     }
   }
 
@@ -194,9 +196,9 @@
     }
 
     .os-scrollbar-thumb {
-      @include win98_box($variant);
+      @include mixins.win98_box($variant);
 
-      background-color: base($variant);
+      background-color: colors.base($variant);
       height: 14px;
       width: 14px;
     }
@@ -204,7 +206,7 @@
 
   .win98custom-scrollbar {
     //ngx-scrollbar applies the :hover pseudoclass weirdly, this works i guess
-    --scrollbar-thumb-hover-color: #{base($variant)};
+    --scrollbar-thumb-hover-color: #{colors.base($variant)};
   }
 }
 

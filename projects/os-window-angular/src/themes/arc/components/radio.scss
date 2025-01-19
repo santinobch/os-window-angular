@@ -1,4 +1,4 @@
-@import '../colors';
+@use '../colors';
 
 $radio-width: 16px;
 $radio-label-spacing: 4px;
@@ -19,7 +19,7 @@ $radio-label-spacing: 4px;
   }
 
   input[type='radio']:focus + label {
-    outline: 1px dotted insensitive_fg($theme);
+    outline: 1px dotted colors.insensitive_fg($theme);
   }
 }
 

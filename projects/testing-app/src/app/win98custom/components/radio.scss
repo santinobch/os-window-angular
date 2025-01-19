@@ -1,9 +1,10 @@
-@import '../colors';
-@import '../mixins';
-@import '../fonts/fonts';
+@use '../colors';
+@use '../mixins';
+@use '../fonts/fonts';
+@use "buttons";
 
-$font-size: 10;
-$font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
+buttons.$font-size: 10;
+buttons.$font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
 
 $radio-width: 12px;
 $radio-label-spacing: 6px;
@@ -71,13 +72,13 @@ $radio-dot-width: 4px;
 }
 
 .win98custom-classic-os-radio {
-  @include font($font-family, $font-size);
+  @include mixins.font(buttons.$font-family, buttons.$font-size);
 
   @include radio();
 }
 
 .win98custom-vaporwave-os-radio {
-  @include font($font-family, $font-size);
+  @include mixins.font(buttons.$font-family, buttons.$font-size);
 
   @include radio();
 }

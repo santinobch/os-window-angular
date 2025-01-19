@@ -1,6 +1,6 @@
-@import '../colors';
-@import '../mixins';
-@import '../fonts/fonts';
+@use '../colors';
+@use '../mixins';
+@use '../fonts/fonts';
 
 $font-size: 10;
 $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
@@ -71,13 +71,13 @@ $radio-dot-width: 4px;
 }
 
 .win98-classic-os-radio {
-  @include font($font-family, $font-size);
+  @include mixins.font($font-family, $font-size);
 
   @include radio();
 }
 
 .win98-vaporwave-os-radio {
-  @include font($font-family, $font-size);
+  @include mixins.font($font-family, $font-size);
 
   @include radio();
 }

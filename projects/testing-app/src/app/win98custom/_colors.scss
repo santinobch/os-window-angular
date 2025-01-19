@@ -1,3 +1,4 @@
+@use "sass:color";
 //
 // Basic colors
 //
@@ -12,8 +13,8 @@ $classic-dark: black;
 
 $classic-selected: #ce009b;
 
-$link_classic: lighten($classic-selected, 20%);
-$link_visited_classic: lighten($classic-selected, 10%);
+$link_classic: color.adjust($classic-selected, $lightness: 20%);
+$link_visited_classic: color.adjust($classic-selected, $lightness: 10%);
 
 //win98 vaporwave colors
 $vaporwave-base: #c7abd5;
@@ -25,8 +26,8 @@ $vaporwave-dark: #210029;
 
 $vaporwave-selected: #d200ff;
 
-$link_vaporwave: darken($vaporwave-selected, 10%);
-$link_visited_vaporwave: darken($vaporwave-selected, 20%);
+$link_vaporwave: color.adjust($vaporwave-selected, $lightness: -10%);
+$link_visited_vaporwave: color.adjust($vaporwave-selected, $lightness: -20%);
 
 @function base($variant) {
   @return if($variant == 'classic', $classic-base, $vaporwave-base);

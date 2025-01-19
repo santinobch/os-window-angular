@@ -1,8 +1,9 @@
+@use "sass:meta";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import './app/win98custom/style.scss';
+@include meta.load-css('app/win98custom/style.scss');
 
 body {
   margin: 0;

@@ -1,3 +1,4 @@
+@use "sass:color";
 //Cinnamon colors from: https://github.com/horst3180/arc-theme/blob/master/common/cinnamon/sass/_colors.scss
 //I have reorganized or deleted them but not changed them
 //Ihave added the 9 color palette
@@ -28,7 +29,7 @@
 $selected_fg: #ffffff;
 $selected_bg: #5294e2;
 
-$selected_borders: darken($selected_bg, 20%);
+$selected_borders: color.adjust($selected_bg, $lightness: -20%);
 
 // // May need in the future
 // // make function
@@ -52,19 +53,19 @@ $text_dark: #d3dae3;
 $bg_dark: #383c4a;
 $fg_dark: #d3dae3;
 
-$borders_dark: darken($base_dark, 6%);
+$borders_dark: color.adjust($base_dark, $lightness: -6%);
 
-$link_dark: lighten($selected_bg, 20%);
-$link_visited_dark: lighten($selected_bg, 10%);
+$link_dark: color.adjust($selected_bg, $lightness: 20%);
+$link_visited_dark: color.adjust($selected_bg, $lightness: 10%);
 
 //insensitive state derived colors
-$insensitive_fg_dark: transparentize($fg_dark, 0.55);
-$insensitive_bg_dark: lighten($bg_dark, 2%);
+$insensitive_fg_dark: color.adjust($fg_dark, $alpha: -0.55);
+$insensitive_bg_dark: color.adjust($bg_dark, $lightness: 2%);
 
-$entry_bg_dark: lighten($base_dark, 0%);
-$entry_border_dark: darken($borders_dark, 0%);
+$entry_bg_dark: color.adjust($base_dark, $lightness: 0%);
+$entry_border_dark: color.adjust($borders_dark, $lightness: -0%);
 
-$button_bg_dark: lighten($base_dark, 2%);
+$button_bg_dark: color.adjust($base_dark, $lightness: 2%);
 $button_border_dark: $entry_border_dark;
 
 //Light palette
@@ -73,19 +74,19 @@ $text_light: #5c616c;
 $bg_light: #f5f6f7;
 $fg_light: #5c616c;
 
-$borders_light: darken($bg_light, 9%);
+$borders_light: color.adjust($bg_light, $lightness: -9%);
 
-$link_light: darken($selected_bg, 10%);
-$link_visited_light: darken($selected_bg, 20%);
+$link_light: color.adjust($selected_bg, $lightness: -10%);
+$link_visited_light: color.adjust($selected_bg, $lightness: -20%);
 
 //insensitive state derived colors
-$insensitive_fg_light: transparentize($fg_light, 0.45);
-$insensitive_bg_light: mix($bg_light, $base_light, 40%);
+$insensitive_fg_light: color.adjust($fg_light, $alpha: -0.45);
+$insensitive_bg_light: color.mix($bg_light, $base_light, 40%);
 
 $entry_bg_light: $base_light;
 $entry_border_light: #cfd6e6;
 
-$button_bg_light: lighten($bg_light, 2%);
+$button_bg_light: color.adjust($bg_light, $lightness: 2%);
 $button_border_light: $entry_border_light;
 
 //Shared
@@ -148,8 +149,8 @@ $button_border_light: $entry_border_light;
 @function window_shadow($variant) {
   @return if(
     $variant == 'dark',
-    transparentize(black, 0.45),
-    transparentize(black, 0.9)
+    color.adjust(black, $alpha: -0.45),
+    color.adjust(black, $alpha: -0.9)
   );
 }
 
@@ -157,62 +158,62 @@ $button_border_light: $entry_border_light;
 @function header_bg($variant) {
   @return if(
     $variant == 'dark',
-    transparentize(#2f343f, 0.03),
-    transparentize(#e7e8eb, 0.05)
+    color.adjust(#2f343f, $alpha: -0.03),
+    color.adjust(#e7e8eb, $alpha: -0.05)
   );
 }
 @function header_bg_backdrop($variant) {
   @return if(
     $variant == 'dark',
-    lighten(header_bg($variant), 1.5%),
-    lighten(header_bg($variant), 3%)
+    color.adjust(header_bg($variant), $lightness: 1.5%),
+    color.adjust(header_bg($variant), $lightness: 3%)
   );
 }
 @function header_border($variant) {
   @return if(
     $variant == 'light',
-    darken(header_bg($variant), 7%),
-    darken(header_bg($variant), 4%)
+    color.adjust(header_bg($variant), $lightness: -7%),
+    color.adjust(header_bg($variant), $lightness: -4%)
   );
 }
 @function header_fg($variant) {
   @return if(
     $variant == 'light',
-    saturate(transparentize(fg($variant), 0.2), 10%),
-    saturate(transparentize(fg($variant), 0.2), 10%)
+    color.adjust(color.adjust(fg($variant), $alpha: -0.2), $saturation: 10%),
+    color.adjust(color.adjust(fg($variant), $alpha: -0.2), $saturation: 10%)
   );
 }
 @function header_entry_bg($variant) {
   @return if(
     $variant == 'dark',
-    transparentize(lighten(header_bg($variant), 22%), 0.6),
-    transparentize(base($variant), 0.1)
+    color.adjust(color.adjust(header_bg($variant), $lightness: 22%), $alpha: -0.6),
+    color.adjust(base($variant), $alpha: -0.1)
   );
 }
 @function header_entry_border($variant) {
   @return if(
     $variant == 'dark',
-    transparentize(darken(header_bg($variant), 12%), 0.6),
-    transparentize(header_fg($variant), 0.7)
+    color.adjust(color.adjust(header_bg($variant), $lightness: -12%), $alpha: -0.6),
+    color.adjust(header_fg($variant), $alpha: -0.7)
   );
 }
 @function header_button_bg($variant) {
   @return if(
     $variant == 'dark',
-    transparentize(lighten(header_bg($variant), 22%), 0.6),
-    transparentize(button_bg($variant), 0.1)
+    color.adjust(color.adjust(header_bg($variant), $lightness: 22%), $alpha: -0.6),
+    color.adjust(button_bg($variant), $alpha: -0.1)
   );
 }
 @function header_button_border($variant) {
   @return if(
     $variant == 'dark',
-    transparentize(darken(header_bg($variant), 12%), 0.6),
-    transparentize(header_fg($variant), 0.7)
+    color.adjust(color.adjust(header_bg($variant), $lightness: -12%), $alpha: -0.6),
+    color.adjust(header_fg($variant), $alpha: -0.7)
   );
 }
 
 @function dark_sidebar_bg() {
-  @return transparentize(#353945, 0.05);
+  @return color.adjust(#353945, $alpha: -0.05);
 }
 @function dark_sidebar_fg() {
   @return #bac3cf;
@@ -221,12 +222,12 @@ $button_border_light: $entry_border_light;
   @return if(
     $variant == 'light',
     dark_sidebar_bg(),
-    darken(dark_sidebar_bg(), 5%)
+    color.adjust(dark_sidebar_bg(), $lightness: -5%)
   );
 }
 
 @function panel_bg() {
-  @return darken(dark_sidebar_bg(), 4.7%);
+  @return color.adjust(dark_sidebar_bg(), $lightness: -4.7%);
 }
 @function panel_fg() {
   @return dark_sidebar_fg();

@@ -1,11 +1,12 @@
-@import '../colors';
-@import '../mixins';
-@import '../fonts/fonts';
+@use "sass:math";
+@use '../colors';
+@use '../mixins';
+@use '../fonts/fonts';
 
 // provide font size in rem, with px fallback
 @mixin font($font, $size: 24, $base: 16) {
   font-family: $font;
-  font-size: round($size) + pt;
+  font-size: math.round($size) + pt;
 }
 
 @mixin button_color($variant) {
@@ -75,7 +76,7 @@
     //
     // normal button
     //
-    @include win98_control_box('classic');
+    @include mixins.win98_control_box('classic');
   } @else if $t== 'focus' {
     //
     // focused button
@@ -87,7 +88,7 @@
     //
     // pushed button
     //
-    @include win98_control_box_active('classic');
+    @include mixins.win98_control_box_active('classic');
   } @else if $t== 'disabled' {
     //
     // disabled button

@@ -1,11 +1,13 @@
-@import '../colors';
-@import '../mixins';
-@import '../fonts/fonts';
+@use 'sass:color';
+@use 'sass:math';
+@use '../colors' as colors;
+@use '../mixins';
+@use '../fonts/fonts';
 
 // provide font size in rem, with px fallback
 @mixin font($font, $size: 24, $base: 16) {
   font-family: $font;
-  font-size: round($size) + pt;
+  font-size: math.round($size) + pt;
 }
 
 @mixin theme($variant, $transparency) {
@@ -26,7 +28,7 @@
   // General styles
   //
   .window-child {
-    @include win98_box($variant);
+    @include mixins.win98_box($variant);
     @include font($font-family, $font-size);
 
     padding: 4px;
@@ -55,7 +57,7 @@
     }
 
     .window-content {
-      @include win98_inner_box($variant);
+      @include mixins.win98_inner_box($variant);
 
       width: calc(100% - 2px);
       color: dark($variant);
@@ -116,7 +118,7 @@
   }
 
   .control {
-    @include win98_control_box($variant);
+    @include mixins.win98_control_box($variant);
 
     padding-left: 0;
     min-height: 14px;
@@ -137,7 +139,7 @@
     background-image: url('#{$asset_path}/minimize.png');
     image-rendering: pixelated;
     &:active {
-      @include win98_control_box_active($variant);
+      @include mixins.win98_control_box_active($variant);
     }
   }
 
@@ -145,7 +147,7 @@
     background-image: url('#{$asset_path}/maximize.png');
     image-rendering: pixelated;
     &:active {
-      @include win98_control_box_active($variant);
+      @include mixins.win98_control_box_active($variant);
     }
   }
 
@@ -154,7 +156,7 @@
     background-image: url('#{$asset_path}/close.png');
     image-rendering: pixelated;
     &:active {
-      @include win98_control_box_active($variant);
+      @include mixins.win98_control_box_active($variant);
     }
   }
 
@@ -163,16 +165,16 @@
   //
   .window-content {
     a {
-      color: link($variant);
+      color: colors.link($variant);
     }
     a:visited {
-      color: link_visited($variant);
+      color: colors.link_visited($variant);
     }
     a:visited:hover {
-      color: lighten(link_visited($variant), 10%);
+      color: color.adjust(colors.link_visited($variant), $lightness: 10%);
     }
     a:hover {
-      color: lighten(link($variant), 10%);
+      color: color.adjust(colors.link($variant), $lightness: 10%);
     }
   }
 
@@ -193,7 +195,7 @@
     }
 
     .os-scrollbar-thumb {
-      @include win98_box($variant);
+      @include mixins.win98_box($variant);
 
       background-color: base($variant);
       height: 14px;

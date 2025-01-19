@@ -1,70 +1,71 @@
-@import '../colors';
-@import '../mixins';
-@import '../fonts/fonts';
+@use "sass:math";
+@use '../colors';
+@use '../mixins';
+@use '../fonts/fonts';
 
 // provide font size in rem, with px fallback
 @mixin font($font, $size: 24, $base: 16) {
   font-family: $font;
-  font-size: round($size) + pt;
+  font-size: math.round($size) + pt;
 }
 
 @mixin button_color($variant) {
   &.red-os-button {
-    background-color: bg_red();
+    background-color: colors.bg_red();
   }
   &.orange-os-button {
-    background-color: bg_orange();
+    background-color: colors.bg_orange();
   }
   &.yellow-os-button {
-    background-color: bg_yellow();
+    background-color: colors.bg_yellow();
   }
   &.lime-os-button {
-    background-color: bg_lime();
+    background-color: colors.bg_lime();
   }
   &.green-os-button {
-    background-color: bg_green();
+    background-color: colors.bg_green();
   }
   &.aqua-os-button {
-    background-color: bg_aqua();
+    background-color: colors.bg_aqua();
   }
   &.blue-os-button {
-    background-color: bg_blue();
+    background-color: colors.bg_blue();
   }
   &.purple-os-button {
-    background-color: bg_purple();
+    background-color: colors.bg_purple();
   }
   &.magenta-os-button {
-    background-color: bg_magenta();
+    background-color: colors.bg_magenta();
   }
 }
 
 @mixin focus_button_color($variant) {
   &.red-os-button {
-    background-color: focus_red();
+    background-color: colors.focus_red();
   }
   &.orange-os-button {
-    background-color: focus_orange();
+    background-color: colors.focus_orange();
   }
   &.yellow-os-button {
-    background-color: focus_yellow();
+    background-color: colors.focus_yellow();
   }
   &.lime-os-button {
-    background-color: focus_lime();
+    background-color: colors.focus_lime();
   }
   &.green-os-button {
-    background-color: focus_green();
+    background-color: colors.focus_green();
   }
   &.aqua-os-button {
-    background-color: focus_aqua();
+    background-color: colors.focus_aqua();
   }
   &.blue-os-button {
-    background-color: focus_blue();
+    background-color: colors.focus_blue();
   }
   &.purple-os-button {
-    background-color: focus_purple();
+    background-color: colors.focus_purple();
   }
   &.magenta-os-button {
-    background-color: focus_magenta();
+    background-color: colors.focus_magenta();
   }
 }
 
@@ -75,7 +76,7 @@
     //
     // normal button
     //
-    @include win98_control_box('classic');
+    @include mixins.win98_control_box('classic');
   } @else if $t== 'focus' {
     //
     // focused button
@@ -87,12 +88,12 @@
     //
     // pushed button
     //
-    @include win98_control_box_active('classic');
+    @include mixins.win98_control_box_active('classic');
   } @else if $t== 'disabled' {
     //
     // disabled button
     //
-    color: disabled($variant);
+    color: colors.disabled($variant);
     text-shadow: 1px 1px 0 white;
   }
 }
@@ -104,7 +105,7 @@ $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
   @include font($font-family, $font-size);
 
   border: 0;
-  background-color: base('classic');
+  background-color: colors.base('classic');
 
   @include button('normal', 'classic');
   &:not([disabled]):active {
@@ -132,7 +133,7 @@ $font-family: 'w95fa', 'MS Sans Serif', sans, Sans-Serif;
   @include font($font-family, $font-size);
 
   border: 0;
-  background-color: base('vaporwave');
+  background-color: colors.base('vaporwave');
 
   @include button('normal', 'vaporwave');
   &:not([disabled]):active {
